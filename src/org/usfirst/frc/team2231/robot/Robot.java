@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
+import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,6 +24,7 @@ import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 public class Robot extends TimedRobot {
 	public static DriveTrain m_driveTrain;
 	public static RobotMap m_robotMap;
+	public static Collector m_collector;
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
@@ -36,6 +39,8 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		m_robotMap = new RobotMap();
 		m_driveTrain = new DriveTrain();
+		m_climber = new Climber();
+		
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
 

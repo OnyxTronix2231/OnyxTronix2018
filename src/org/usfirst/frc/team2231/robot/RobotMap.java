@@ -41,6 +41,8 @@ public class RobotMap {
 	public static WPI_TalonSRX collectorRightWheel;
 	public static WPI_TalonSRX elevatorFirstMotor;
 	public static WPI_TalonSRX elevatorSecondMotor;
+	public static WPI_TalonSRX climberFirstMotor;
+	public static WPI_TalonSRX climberSecondMotor;
 	
 	
 	public RobotMap() {

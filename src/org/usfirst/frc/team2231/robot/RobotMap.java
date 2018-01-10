@@ -30,11 +30,18 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	public static WPI_TalonSRX driveTrainFirstLeft;
 	public static WPI_TalonSRX driveTrainSecondLeft;
+//	public static WPI_TalonSRX driveTrainThirdLeft;
 	public static WPI_TalonSRX driveTrainFirstRight;
 	public static WPI_TalonSRX driveTrainSecondRight;
+//	public static WPI_TalonSRX driveTrainThirdRight;
 	public static DifferentialDrive driveTrainRobotDrive;
 	public static SpeedControllerGroup driveTrainleftTalons;
 	public static SpeedControllerGroup driveTrainRightTalons;
+	public static WPI_TalonSRX collectorLeftWheel;
+	public static WPI_TalonSRX collectorRightWheel;
+	public static WPI_TalonSRX elevatorFirstMotor;
+	public static WPI_TalonSRX elevatorSecondMotor;
+	
 	
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -46,5 +53,8 @@ public class RobotMap {
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
 		
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
+		
+		//collectorLeftWheel = new WPI_TalonSRX(/);
+		//collectorRightWheel = new WPI_TalonSRX(/);
 	}
 }

@@ -8,7 +8,12 @@
 package org.usfirst.frc.team2231.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
+import com.kauailabs.navx.frc.AHRS.SerialDataType;
 
+import edu.wpi.first.wpilibj.SerialPort.Port;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -41,9 +46,12 @@ public class RobotMap {
 	public static WPI_TalonSRX collectorRightWheel;
 	public static WPI_TalonSRX elevatorFirstMotor;
 	public static WPI_TalonSRX elevatorSecondMotor;
-	
+	public static AHRS driveTrainAhrs;
+	public static PIDController driveTrainLeftRotationPIDController;
+	public static PIDController driveTrainRightRotationPIDController;
 	
 	public RobotMap() {
+		//DriveTrain
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
 		driveTrainSecondLeft = new WPI_TalonSRX(1);
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);
@@ -53,6 +61,10 @@ public class RobotMap {
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
 		
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
+		
+		driveTrainAhrs = new AHRS(SPI.Port.kMXP);	
+		driveTrainLeftRotationPIDController = new PIDController(0, 0, 0, driveTrainAhrs, driveTrainleftTalons);
+		driveTrainRightRotationPIDController = new PIDController(0, 0, 0, driveTrainAhrs, driveTrainleftTalons);
 		
 		//collectorLeftWheel = new WPI_TalonSRX(/);
 		//collectorRightWheel = new WPI_TalonSRX(/);

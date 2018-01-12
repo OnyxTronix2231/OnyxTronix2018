@@ -11,5 +11,7 @@
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/niVisionWPI.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/OnyxAPI.jar"/>
+	<classpathentry kind="var" path="navx-mxp"/>
+	<classpathentry kind="lib" path="C:/Users/2231-dev/navx-mxp/java/lib/navx_frc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

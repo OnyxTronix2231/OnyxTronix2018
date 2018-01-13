@@ -30,15 +30,18 @@ public class Elevator extends Subsystem {
     public int climbDirection = DEFAULT_DIRECTION;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
-    public void setSpeed(double speed){
-    	elevatorMotors.set(speed);
-    }
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+
+    public void setSpeed(double speed){
+    	elevatorMotors.set(speed);
+    }
     
+    public void stop() {
+    	elevatorMotors.set(0);
+    }
     
 }

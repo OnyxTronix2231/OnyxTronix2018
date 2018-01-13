@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Collect extends ConveyCube {
+public class Collect extends ConveyWithCollector {
 	
 
 	private static final int maxSpeed = 1;

@@ -17,17 +17,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ConveyCube extends Command {
+public class ConveyWithCollector extends Command {
     private double m_maxSpeed;
     
-    public ConveyCube(double maxSpeed) {
+    public ConveyWithCollector(double maxSpeed) {
         m_maxSpeed = maxSpeed;
         requires(Robot.m_collector);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.m_collector.startCubeCollector(m_maxSpeed);
+    	Robot.m_collector.setSpeed(m_maxSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -41,7 +41,7 @@ public class ConveyCube extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.m_collector.stopCubeCollector();
+    	Robot.m_collector.stop();
     }
 
     // Called when another command which requires one or more of the same

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Eject extends ConveyCube {
+public class Eject extends ConveyWithCollector {
 
 	private static final int maxSpeed = -1;
 

@@ -25,9 +25,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
     private final SpeedControllerGroup elevatorMotors = RobotMap.elevatorMotors;
-    private static final double SENSITIVITY_VALUE = 1 * 0.2;
-    public static final int DEFAULT_DIRECTION = 1;
-    public int climbDirection = DEFAULT_DIRECTION;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     

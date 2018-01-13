@@ -16,6 +16,7 @@ import org.usfirst.frc.team2231.robot.RobotMap;
 import com.ctre.CANTalon;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -23,28 +24,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-    private final WPI_TalonSRX firstMotor = RobotMap.elevatorFirstMotor;
-    private final WPI_TalonSRX secondMotor = RobotMap.elevatorSecondMotor;
+    private final SpeedControllerGroup elevatorMotors = RobotMap.elevatorMotors;
     private static final double SENSITIVITY_VALUE = 1 * 0.2;
     public static final int DEFAULT_DIRECTION = 1;
     public int climbDirection = DEFAULT_DIRECTION;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+    public void setSpeed(double speed){
+    	elevatorMotors.set(speed);
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
     
-//    public void climbRope() {
-//    	if(Math.abs(Robot.oi.getbuttonStick().getRawAxis(1)) > SENSITIVITY_VALUE){
-//    		double speed = climbDirection * Math.abs(Robot.oi.getbuttonStick().getRawAxis(1));
-//    		firstMotor.set(speed);
-//    		secondMotor.set(speed);
-//    	} else {
-//    		firstMotor.set(0);
-//    		secondMotor.set(0);
-//    	}
-//    }
+    
 }
-

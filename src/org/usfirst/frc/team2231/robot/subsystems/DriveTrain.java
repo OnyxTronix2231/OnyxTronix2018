@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  */
 public class DriveTrain extends Subsystem {
 
-	public static final WPI_TalonSRX firstLeft = Robot.m_robotMap.driveTrainFirstLeft;
-	public static final WPI_TalonSRX secondLeft = Robot.m_robotMap.driveTrainSecondLeft;
+//	public static final WPI_TalonSRX firstLeft = Robot.m_robotMap.driveTrainFirstLeft;
+//	public static final WPI_TalonSRX secondLeft = Robot.m_robotMap.driveTrainSecondLeft;
 	public static final WPI_TalonSRX firstRight= Robot.m_robotMap.driveTrainFirstRight;
 	public static final WPI_TalonSRX secondRight = Robot.m_robotMap.driveTrainSecondRight;
 	public static final DifferentialDrive robotDrive = Robot.m_robotMap.driveTrainRobotDrive;

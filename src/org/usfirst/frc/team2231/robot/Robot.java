@@ -107,6 +107,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		System.out.println(Robot.m_driveTrain.getAngle());
 	}
 
 	/**

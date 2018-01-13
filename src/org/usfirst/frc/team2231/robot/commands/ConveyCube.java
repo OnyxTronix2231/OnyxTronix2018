@@ -17,21 +17,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CollectCube extends Command {
+public class ConveyCube extends Command {
     private double m_maxSpeed;
     
-    public CollectCube(double maxSpeed) {
+    public ConveyCube(double maxSpeed) {
         m_maxSpeed = maxSpeed;
         requires(Robot.m_collector);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.m_collector.startCubeCollector(m_maxSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.m_collector.startCubeCollector(m_maxSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

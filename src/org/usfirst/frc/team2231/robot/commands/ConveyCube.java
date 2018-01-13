@@ -27,11 +27,11 @@ public class ConveyCube extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.m_collector.startCubeCollector(m_maxSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.m_collector.startCubeCollector(m_maxSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

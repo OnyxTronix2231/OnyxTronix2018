@@ -7,7 +7,10 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.commands.RotateByPID;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -42,10 +45,13 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	public Joystick driveStick;
-	
+	public JoystickButton rotateByNinteyDeg;
 	
 	public OI() {
 		driveStick = new Joystick(0);
+		
+		rotateByNinteyDeg = new JoystickButton(driveStick, 1);
+		rotateByNinteyDeg.whenPressed(new RotateByPID(90));
 	}
 	
 	public Joystick getDriveStick() {

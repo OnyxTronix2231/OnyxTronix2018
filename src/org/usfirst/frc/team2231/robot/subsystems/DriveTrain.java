@@ -23,10 +23,10 @@ public class DriveTrain extends Subsystem {
 	public static final WPI_TalonSRX firstRight= Robot.m_robotMap.driveTrainFirstRight;
 	public static final WPI_TalonSRX secondRight = Robot.m_robotMap.driveTrainSecondRight;
 	public static final DifferentialDrive robotDrive = Robot.m_robotMap.driveTrainRobotDrive;
-	public static final SpeedControllerGroup leftTalons = Robot.m_robotMap.driveTrainleftTalons;
+//	public static final SpeedControllerGroup leftTalons = Robot.m_robotMap.driveTrainleftTalons;
 	public static final SpeedControllerGroup rightTalons = Robot.m_robotMap.driveTrainRightTalons;
 	public static final AHRS m_ahrs = Robot.m_robotMap.driveTrainAhrs;
-	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
+//	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
 	public static final PIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
 	public static final double rotation_Absolute_Tolerence = 1;
 	// Put methods for controlling this subsystem
@@ -52,25 +52,25 @@ public class DriveTrain extends Subsystem {
     
     public void setRotationSetpoint(double setpoint) {
     	rightRotationPIDController.setSetpoint(setpoint);
-    	leftRotationPIDController.setSetpoint(setpoint);
+//    	leftRotationPIDController.setSetpoint(setpoint);
     }
     
     public void enableRotationPIDControllers() {
     	rightRotationPIDController.enable();
-    	leftRotationPIDController.enable();
+//    	leftRotationPIDController.enable();
     }
     
     public boolean isRotationPIDOnPoint() {
-    	return leftRotationPIDController.onTarget() && rightRotationPIDController.onTarget();
+    	return rightRotationPIDController.onTarget();
     }
     
     public void stop() {
-    	leftTalons.stopMotor();
+//    	leftTalons.stopMotor();
     	rightTalons.stopMotor();
     }
     
     public void disableRotationPIDControllers() {
-    	leftRotationPIDController.disable();
+//    	leftRotationPIDController.disable();
     	rightRotationPIDController.disable();
     }
 }

@@ -26,8 +26,10 @@ public class DriveTrain extends Subsystem {
 	public static final SpeedControllerGroup leftTalons = Robot.m_robotMap.driveTrainleftTalons;
 	public static final SpeedControllerGroup rightTalons = Robot.m_robotMap.driveTrainRightTalons;
 	public static final AHRS m_ahrs = Robot.m_robotMap.driveTrainAhrs;
-	public static final PIDController
-    // Put methods for controlling this subsystem
+	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
+	public static final PIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
+	public static final double rotation_Absolute_Tolerence = 1;
+	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
@@ -46,6 +48,30 @@ public class DriveTrain extends Subsystem {
     
     public double getAngle() {
     	return m_ahrs.getAngle();
+    }
+    
+    public void setRotationSetpoint(double setpoint) {
+    	rightRotationPIDController.setSetpoint(setpoint);
+    	leftRotationPIDController.setSetpoint(setpoint);
+    }
+    
+    public void enableRotationPIDControllers() {
+    	rightRotationPIDController.enable();
+    	leftRotationPIDController.enable();
+    }
+    
+    public boolean isRotationPIDOnPoint() {
+    	return leftRotationPIDController.onTarget() && rightRotationPIDController.onTarget();
+    }
+    
+    public void stop() {
+    	leftTalons.stopMotor();
+    	rightTalons.stopMotor();
+    }
+    
+    public void disableRotationPIDControllers() {
+    	leftRotationPIDController.disable();
+    	rightRotationPIDController.disable();
     }
 }
 

@@ -22,9 +22,10 @@ import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
  * project.
  */
 public class Robot extends TimedRobot {
+	
 	public static DriveTrain m_driveTrain;
-	public static RobotMap m_robotMap;
 	public static Collector m_collector;
+	public static RobotMap m_robotMap;
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
@@ -39,8 +40,7 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		m_robotMap = new RobotMap();
 		m_driveTrain = new DriveTrain();
-		m_climber = new Climber();
-		
+		m_collector = new Collector();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
 

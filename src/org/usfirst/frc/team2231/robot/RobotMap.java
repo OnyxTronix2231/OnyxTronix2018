@@ -41,7 +41,7 @@ public class RobotMap {
 	private static WPI_TalonSRX collectorRightWheel;
 	public static WPI_TalonSRX elevatorFirstMotor;
 	public static WPI_TalonSRX elevatorSecondMotor;
-	public static SpeedControllerGroup collectorTalons;
+	public static SpeedControllerGroup collectorWheels;
 	
 	
 	public RobotMap() {
@@ -57,6 +57,6 @@ public class RobotMap {
 		
 		collectorLeftWheel = new WPI_TalonSRX(4);
 		collectorRightWheel = new WPI_TalonSRX(5);
-		collectorTalons = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
+		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
 	}
 }

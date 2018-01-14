@@ -43,7 +43,7 @@ public class Collector extends Subsystem {
     }
     
     public boolean isCollecting() {
-    	return (wheels.get() != 0);
+    	return wheels.get() != 0;
     	
     }
 }

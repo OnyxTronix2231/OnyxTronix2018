@@ -39,9 +39,9 @@ public class RobotMap {
 	public static SpeedControllerGroup driveTrainRightTalons;
 	public static WPI_TalonSRX collectorLeftWheel;
 	public static WPI_TalonSRX collectorRightWheel;
-	public static SpeedControllerGroup elevatorMotors;
 	private static WPI_TalonSRX elevatorFirstMotor;
 	private static WPI_TalonSRX elevatorSecondMotor;
+	public static SpeedControllerGroup elevatorMotors;
 	
 	
 	

@@ -4,9 +4,6 @@ import org.usfirst.frc.team2231.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class ChangeCubeElevation extends Command {
 	private double m_maxSpeed;
 	

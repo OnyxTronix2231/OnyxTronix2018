@@ -33,7 +33,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick) {
-    	robotDrive.arcadeDrive(stick.getRawAxis(1) * 2, stick.getRawAxis(4) * 2);
+    	robotDrive.arcadeDrive(-stick.getRawAxis(1) * 2, stick.getRawAxis(4) * 2);
     }
 }
 

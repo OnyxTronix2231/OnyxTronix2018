@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
+import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.Elevator;
 import org.usfirst.frc.team2231.robot.OI;
@@ -22,7 +24,9 @@ import org.usfirst.frc.team2231.robot.OI;
  * project.
  */
 public class Robot extends TimedRobot {
+	
 	public static DriveTrain m_driveTrain;
+	public static Collector m_collector;
 	public static RobotMap m_robotMap;
 	public static OI m_oi;
 	public static Elevator m_elevator;
@@ -39,8 +43,8 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		m_robotMap = new RobotMap();
 		m_driveTrain = new DriveTrain();
+		m_collector = new Collector();
 		m_elevator = new Elevator();
-		
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
 

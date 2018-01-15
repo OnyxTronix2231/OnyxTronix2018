@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Collector extends Subsystem {
 	public static final double SPEED = 1;
-	public final SpeedControllerGroup wheels = RobotMap.collectorTalons;
+	public final SpeedControllerGroup wheels = RobotMap.collectorWheels;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     

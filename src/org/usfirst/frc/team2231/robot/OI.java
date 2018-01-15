@@ -63,7 +63,7 @@ public class OI {
 		raiseElevator = new JoystickButton(buttonStick, 1);
 		raiseElevator.whileHeld(new Raise());
 		lowerElevator = new JoystickButton(buttonStick, 4);
-		lowerElevator.whileActive(new Lower());
+		lowerElevator.whileHeld(new Lower());
 		
 		collectCube = new JoystickButton(buttonStick, 2);
 		collectCube.whileHeld(new Collect());

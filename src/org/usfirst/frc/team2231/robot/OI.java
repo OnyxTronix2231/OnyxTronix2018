@@ -7,7 +7,14 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.commands.Collect;
+import org.usfirst.frc.team2231.robot.commands.Eject;
+import org.usfirst.frc.team2231.robot.commands.Lower;
+import org.usfirst.frc.team2231.robot.commands.Raise;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -41,14 +48,34 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
-	public Joystick driveStick;
-	
-	
+	private Joystick driveStick;
+	private Joystick buttonStick;
+
+	public JoystickButton raiseElevator;
+	public JoystickButton lowerElevator;
+	public JoystickButton collectCube;
+	public JoystickButton ejectCube;
+
 	public OI() {
 		driveStick = new Joystick(0);
-	}
-	
+		buttonStick = new Joystick(1);
+		
+		raiseElevator = new JoystickButton(buttonStick, 1);
+		raiseElevator.whileHeld(new Raise());
+		lowerElevator = new JoystickButton(buttonStick, 4);
+		lowerElevator.whileHeld(new Lower());
+		
+		collectCube = new JoystickButton(buttonStick, 2);
+		collectCube.whileHeld(new Collect());
+		ejectCube = new JoystickButton(buttonStick, 3);
+		ejectCube.whileHeld(new Eject());
+		}
+
 	public Joystick getDriveStick() {
 		return driveStick;
+	}
+	
+	public Joystick getButtonStick() {
+		return buttonStick;
 	}
 }

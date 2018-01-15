@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-    private final SpeedControllerGroup elevatorMotors = RobotMap.elevatorMotors;
+    private final SpeedControllerGroup elevatorWheels = RobotMap.elevatorWheels;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
@@ -34,11 +34,11 @@ public class Elevator extends Subsystem {
     }
 
     public void setSpeed(double speed){
-    	elevatorMotors.set(speed);
+    	elevatorWheels.set(speed);
     }
     
     public void stop() {
-    	elevatorMotors.set(0);
+    	elevatorWheels.set(0);
     }
     
 }

@@ -41,14 +41,20 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
-	public Joystick driveStick;
-	
-	
+	private Joystick driveStick;
+	private Joystick buttonStick;
+
+
 	public OI() {
 		driveStick = new Joystick(0);
+		buttonStick = new Joystick(1);
 	}
-	
+
 	public Joystick getDriveStick() {
 		return driveStick;
+	}
+	
+	public Joystick getButtonStick() {
+		return buttonStick;
 	}
 }

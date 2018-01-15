@@ -39,8 +39,10 @@ public class RobotMap {
 	public static SpeedControllerGroup driveTrainRightTalons;
 	public static WPI_TalonSRX collectorLeftWheel;
 	public static WPI_TalonSRX collectorRightWheel;
-	public static WPI_TalonSRX elevatorFirstMotor;
-	public static WPI_TalonSRX elevatorSecondMotor;
+	private static WPI_TalonSRX elevatorLeftMotor;
+	private static WPI_TalonSRX elevatorRightMotor;
+	public static SpeedControllerGroup elevatorWheels;
+	
 	
 	
 	public RobotMap() {
@@ -53,6 +55,10 @@ public class RobotMap {
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
 		
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
+		
+		elevatorLeftMotor = new WPI_TalonSRX(4);
+		elevatorRightMotor = new WPI_TalonSRX(5);
+		elevatorWheels = new SpeedControllerGroup(elevatorLeftMotor, elevatorRightMotor);
 		
 		//collectorLeftWheel = new WPI_TalonSRX(/);
 		//collectorRightWheel = new WPI_TalonSRX(/);

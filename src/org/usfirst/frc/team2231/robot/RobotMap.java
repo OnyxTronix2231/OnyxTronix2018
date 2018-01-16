@@ -9,6 +9,7 @@ package org.usfirst.frc.team2231.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -43,6 +44,10 @@ public class RobotMap {
 	private static WPI_TalonSRX elevatorLeftMotor;
 	private static WPI_TalonSRX elevatorRightMotor;
 	public static SpeedControllerGroup elevatorWheels;
+	public static DigitalInput microSwitchTop;
+	public static DigitalInput microSwitchBottom;
+	public static DigitalInput microSwitchCollector;
+	
 
 	
 	public RobotMap() {

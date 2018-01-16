@@ -8,14 +8,13 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
 
 /**
  *
@@ -23,25 +22,36 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Collector extends Subsystem {
 	public static final double SPEED = 1;
 	public final SpeedControllerGroup wheels = RobotMap.collectorWheels;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-    
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
-    }
-    
-    public void setSpeed(double speed) {
-    	wheels.set(speed);
-    }
-    
-    public void stop() {
-    	wheels.set(0);
-    }
-    
-    public boolean isCollecting() {
-    	return wheels.get() != 0;
-    	
-    }
-}
+	public final DigitalInput microSwitchCollector = RobotMap.microSwitchCollector;
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
 
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+	}
+
+	public void setSpeed(double speed) {
+		if (isCubeCollected()) {
+			wheels.set(0);
+		} else {
+			wheels.set(0);
+		}
+	}
+
+	public void stop() {
+		wheels.set(0);
+	}
+
+	public boolean isCollecting() {
+		return wheels.get() != 0;
+
+	}
+
+	public boolean isCubeCollected() {
+		if (microSwitchCollector.get()) {
+			return true;
+		}
+		return false;
+	}
+}

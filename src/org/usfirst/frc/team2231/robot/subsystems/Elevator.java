@@ -8,34 +8,49 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
 
 /**
  *
  */
 public class Elevator extends Subsystem {
-    private final SpeedControllerGroup elevatorWheels = RobotMap.elevatorWheels;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-    
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
-    }
+	private final SpeedControllerGroup elevatorWheels = RobotMap.elevatorWheels;
+	public final DigitalInput microSwitchTop = RobotMap.microSwitchTop;
+	public final DigitalInput microSwitchBottom = RobotMap.microSwitchBottom;
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
 
-    public void setSpeed(double speed){
-    	elevatorWheels.set(speed);
-    }
-    
-    public void stop() {
-    	elevatorWheels.set(0);
-    }
-    
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+	}
+
+	public void setSpeed(double speed) {
+		if (isAtTop() && speed > 0) {
+			stop();
+		}
+		if (isAtBottom() && speed < 0) {
+			stop();
+		} else {
+			elevatorWheels.set(speed);
+		}
+	}
+
+	public void stop() {
+		elevatorWheels.set(0);
+	}
+
+	public boolean isAtTop() {
+		return microSwitchTop.get();
+	}
+
+	public boolean isAtBottom() {
+		return microSwitchBottom.get();
+	}
 }

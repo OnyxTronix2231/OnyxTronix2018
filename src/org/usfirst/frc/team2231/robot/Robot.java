@@ -40,11 +40,11 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		m_oi = new OI();
 		m_robotMap = new RobotMap();
 		m_driveTrain = new DriveTrain();
 		m_collector = new Collector();
 		m_elevator = new Elevator();
+		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
 

@@ -9,12 +9,11 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.Eject;
+import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.Raise;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -55,6 +54,7 @@ public class OI {
 	public JoystickButton lowerElevator;
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
+	public JoystickButton elevatorPitch;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -69,6 +69,9 @@ public class OI {
 		collectCube.whileHeld(new Collect());
 		ejectCube = new JoystickButton(buttonStick, 3);
 		ejectCube.whileHeld(new Eject());
+		
+		elevatorPitch = new JoystickButton(buttonStick, 7);
+		elevatorPitch.whenPressed(new EvelatorPitchDrop());
 		}
 
 	public Joystick getDriveStick() {

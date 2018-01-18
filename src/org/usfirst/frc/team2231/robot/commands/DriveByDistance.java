@@ -18,6 +18,13 @@ public class DriveByDistance extends Command {
     	this.setPointRight = setPointRight;
     	this.setPointLeft = SetPointLeft;
     }
+    public DriveByDistance(double setPoint) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.m_driveTrain);
+    	this.setPointRight = setPoint;
+    	this.setPointLeft = setPoint;
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {

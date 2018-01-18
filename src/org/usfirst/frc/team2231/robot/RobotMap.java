@@ -9,6 +9,7 @@ package org.usfirst.frc.team2231.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -43,6 +44,8 @@ public class RobotMap {
 	private static WPI_TalonSRX elevatorLeftMotor;
 	private static WPI_TalonSRX elevatorRightMotor;
 	public static SpeedControllerGroup elevatorWheels;
+	public static Encoder encoderRight;
+	public static Encoder encoderLeft;
 
 	
 	public RobotMap() {
@@ -63,5 +66,8 @@ public class RobotMap {
 		elevatorLeftMotor = new WPI_TalonSRX(6);
 		elevatorRightMotor = new WPI_TalonSRX(7);
 		elevatorWheels = new SpeedControllerGroup(elevatorLeftMotor, elevatorRightMotor);
+		
+		encoderRight = new Encoder(1, 2);
+		encoderLeft = new Encoder(3, 4);
 	}
 }

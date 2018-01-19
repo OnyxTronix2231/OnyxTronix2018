@@ -51,7 +51,7 @@ public class OI {
 		driveStick = new Joystick(0);
 		
 		rotateByNinteyDeg = new JoystickButton(driveStick, 1);
-		rotateByNinteyDeg.whenPressed(new RotateByPID(-90));
+		rotateByNinteyDeg.whenPressed(new RotateByPID(90));
 	}
 	
 	public Joystick getDriveStick() {

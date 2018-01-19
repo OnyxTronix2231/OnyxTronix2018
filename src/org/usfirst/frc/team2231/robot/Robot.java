@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -37,6 +39,12 @@ public class Robot extends TimedRobot {
 		m_robotMap = new RobotMap();
 		m_driveTrain = new DriveTrain();
 		// chooser.addObject("My Auto", new MyAutoCommand());
+		SmartDashboard.putNumber("P_Right", Robot.m_robotMap.driveTrainRightRotationPIDController.getP());
+		SmartDashboard.putNumber("I_Right", Robot.m_robotMap.driveTrainRightRotationPIDController.getI());
+		SmartDashboard.putNumber("D_Right", Robot.m_robotMap.driveTrainRightRotationPIDController.getD());
+		SmartDashboard.putNumber("P_Left", Robot.m_robotMap.driveTrainLeftRotationPIDController.getP());
+		SmartDashboard.putNumber("I_Left", Robot.m_robotMap.driveTrainLeftRotationPIDController.getI());
+		SmartDashboard.putNumber("D_Left", Robot.m_robotMap.driveTrainLeftRotationPIDController.getD());
 	}
 
 	/**
@@ -99,6 +107,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+
 	}
 
 	/**
@@ -107,7 +116,19 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		System.out.println(Robot.m_driveTrain.getAngle());
+		Robot.m_robotMap.driveTrainRightRotationPIDController.setP(SmartDashboard.getNumber("P_Right", 0));
+		Robot.m_robotMap.driveTrainRightRotationPIDController.setI(SmartDashboard.getNumber("I_Right", 0));
+		Robot.m_robotMap.driveTrainRightRotationPIDController.setD(SmartDashboard.getNumber("D_Right", 0));
+		Robot.m_robotMap.driveTrainLeftRotationPIDController.setP(SmartDashboard.getNumber("P_Left", 0));
+		Robot.m_robotMap.driveTrainLeftRotationPIDController.setI(SmartDashboard.getNumber("I_Left", 0));
+		Robot.m_robotMap.driveTrainLeftRotationPIDController.setD(SmartDashboard.getNumber("D_Left", 0));
+//		SmartDashboard.putnu(Robot.m_robotMap.driveTrainRightRotationPIDController.getP());
+//		System.out.println(Robot.m_robotMap.driveTrainRightRotationPIDController.getI());
+//		System.out.println(Robot.m_robotMap.driveTrainRightRotationPIDController.getD());
+//		System.out.println(Robot.m_robotMap.driveTrainLeftRotationPIDController.getP());
+//		System.out.println(Robot.m_robotMap.driveTrainLeftRotationPIDController.getI());
+//		System.out.println(Robot.m_robotMap.driveTrainLeftRotationPIDController.getD());
+		Robot.m_driveTrain.m_ahrs.getAngle();
 	}
 
 	/**

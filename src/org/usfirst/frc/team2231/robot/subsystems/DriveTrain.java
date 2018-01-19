@@ -7,6 +7,7 @@ import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
+import OnyxTronix.OnyxTronixPIDController;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -18,15 +19,15 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  */
 public class DriveTrain extends Subsystem {
 
-//	public static final WPI_TalonSRX firstLeft = Robot.m_robotMap.driveTrainFirstLeft;
-//	public static final WPI_TalonSRX secondLeft = Robot.m_robotMap.driveTrainSecondLeft;
+	public static final WPI_TalonSRX firstLeft = Robot.m_robotMap.driveTrainFirstLeft;
+	public static final WPI_TalonSRX secondLeft = Robot.m_robotMap.driveTrainSecondLeft;
 	public static final WPI_TalonSRX firstRight= Robot.m_robotMap.driveTrainFirstRight;
 	public static final WPI_TalonSRX secondRight = Robot.m_robotMap.driveTrainSecondRight;
 	public static final DifferentialDrive robotDrive = Robot.m_robotMap.driveTrainRobotDrive;
-//	public static final SpeedControllerGroup leftTalons = Robot.m_robotMap.driveTrainleftTalons;
+	public static final SpeedControllerGroup leftTalons = Robot.m_robotMap.driveTrainleftTalons;
 	public static final SpeedControllerGroup rightTalons = Robot.m_robotMap.driveTrainRightTalons;
 	public static final AHRS m_ahrs = Robot.m_robotMap.driveTrainAhrs;
-//	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
+	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
 	public static final PIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
 	public static final double rotation_Absolute_Tolerence = 1;
 	// Put methods for controlling this subsystem
@@ -39,7 +40,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick) {
-    	robotDrive.arcadeDrive(stick.getRawAxis(1) * 2, stick.getRawAxis(4) * 2);
+    	robotDrive.arcadeDrive(-stick.getRawAxis(1) * 2, stick.getRawAxis(4) * 2);
     }
     
     public void resetAHRSGyro() {
@@ -52,12 +53,12 @@ public class DriveTrain extends Subsystem {
     
     public void setRotationSetpoint(double setpoint) {
     	rightRotationPIDController.setSetpoint(setpoint);
-//    	leftRotationPIDController.setSetpoint(setpoint);
+    	leftRotationPIDController.setSetpoint(setpoint);
     }
     
     public void enableRotationPIDControllers() {
     	rightRotationPIDController.enable();
-//    	leftRotationPIDController.enable();
+    	leftRotationPIDController.enable();
     }
     
     public boolean isRotationPIDOnPoint() {
@@ -65,13 +66,17 @@ public class DriveTrain extends Subsystem {
     }
     
     public void stop() {
-//    	leftTalons.stopMotor();
+    	leftTalons.stopMotor();
     	rightTalons.stopMotor();
     }
     
     public void disableRotationPIDControllers() {
-//    	leftRotationPIDController.disable();
+    	leftRotationPIDController.disable();
     	rightRotationPIDController.disable();
+    }
+    public void setOutputRange() {
+    	leftRotationPIDController.setOutputRange(0, 1);
+    	rightRotationPIDController.setOutputRange(0, 1);
     }
 }
 

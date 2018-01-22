@@ -55,17 +55,19 @@ public class DriveTrain extends Subsystem {
     
     public boolean stopByEncoder(double distanceRight, double distanceLeft) {
     	double v;
-    	while(encoderRight.get()*wheelsRadius*3.14 < distanceRight) {
+    	if(encoderRight.get()*wheelsRadius*3.14 < distanceRight) {
     		if(distanceRight>distanceLeft) {
         		v = distanceLeft/distanceRight;
         		Robot.m_driveTrain.driveByProportion(1,v);
         	}
     		else {
-    			v=distanceRight/distanceLeft;
+    			v = distanceRight/distanceLeft;
     			Robot.m_driveTrain.driveByProportion(v,1);
     		}
+    		return false;
     	}
-    	return true;
+    	else
+    		return true;
     }
 }
 

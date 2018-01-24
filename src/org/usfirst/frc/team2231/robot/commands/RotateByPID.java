@@ -15,6 +15,7 @@ public class RotateByPID extends Command {
     	this.setpoint = setpoint;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.m_driveTrain);
     }
 
     // Called just before this Command runs the first time

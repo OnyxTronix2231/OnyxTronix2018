@@ -7,7 +7,6 @@ import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
-import OnyxTronix.OnyxTronixPIDController;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -62,7 +61,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public boolean isRotationPIDOnPoint() {
-    	return rightRotationPIDController.onTarget();
+    	return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget();
     }
     
     public void stop() {
@@ -74,9 +73,10 @@ public class DriveTrain extends Subsystem {
     	leftRotationPIDController.disable();
     	rightRotationPIDController.disable();
     }
+    
     public void setOutputRange() {
-    	leftRotationPIDController.setOutputRange(0, 1);
-    	rightRotationPIDController.setOutputRange(0, 1);
+    	leftRotationPIDController.setOutputRange(-1, 1);
+    	rightRotationPIDController.setOutputRange(-1, 1);
     }
 }
 

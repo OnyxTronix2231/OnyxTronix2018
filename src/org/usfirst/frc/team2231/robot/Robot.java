@@ -35,9 +35,9 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		m_oi = new OI();
 		m_robotMap = new RobotMap();
 		m_driveTrain = new DriveTrain();
+		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putNumber("P_Right", Robot.m_robotMap.driveTrainRightRotationPIDController.getP());
 		SmartDashboard.putNumber("I_Right", Robot.m_robotMap.driveTrainRightRotationPIDController.getI());

@@ -62,8 +62,8 @@ public class RobotMap {
 		
 		driveTrainAhrs = new AHRS(SPI.Port.kMXP);	
 		
-		driveTrainLeftRotationPIDController = new PIDController(1, 0, 0.2, driveTrainAhrs, driveTrainleftTalons);
-		driveTrainRightRotationPIDController = new PIDController(1, 0, 0.2, driveTrainAhrs, driveTrainRightTalons);
+		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainAhrs, driveTrainleftTalons);
+		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainAhrs, driveTrainRightTalons);
     	driveTrainLeftRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
     	driveTrainRightRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
 		

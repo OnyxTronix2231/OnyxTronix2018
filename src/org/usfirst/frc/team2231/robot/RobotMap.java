@@ -45,8 +45,8 @@ public class RobotMap {
 	public static WPI_TalonSRX elevatorFirstMotor;
 	public static WPI_TalonSRX elevatorSecondMotor;
 	public static AHRS driveTrainAhrs;
-	public static PIDController driveTrainLeftRotationPIDController;
-	public static PIDController driveTrainRightRotationPIDController;
+	public static OnyxTronixPIDController driveTrainLeftRotationPIDController;
+	public static OnyxTronixPIDController driveTrainRightRotationPIDController;
 	
 	public RobotMap() {
 		//DriveTrain
@@ -62,10 +62,10 @@ public class RobotMap {
 		
 		driveTrainAhrs = new AHRS(SPI.Port.kMXP);	
 		
-		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainAhrs, driveTrainleftTalons);
-		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainAhrs, driveTrainRightTalons);
-    	driveTrainLeftRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
-    	driveTrainRightRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
+		driveTrainLeftRotationPIDController = new OnyxTronixPIDController(0.0425, 0, 0.1, 0, driveTrainAhrs, driveTrainleftTalons);
+		driveTrainRightRotationPIDController = new OnyxTronixPIDController(0.0425, 0, 0.1, 0, driveTrainAhrs, driveTrainRightTalons);
+//    	driveTrainLeftRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
+//    	driveTrainRightRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
 		
 		//collectorLeftWheel = new WPI_TalonSRX(/);
 		//collectorRightWheel = new WPI_TalonSRX(/);

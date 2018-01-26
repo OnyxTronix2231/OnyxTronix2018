@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import org.usfirst.frc.team2231.robot.OnyxTronixPIDController;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
@@ -26,8 +27,8 @@ public class DriveTrain extends Subsystem {
 	public static final SpeedControllerGroup leftTalons = Robot.m_robotMap.driveTrainleftTalons;
 	public static final SpeedControllerGroup rightTalons = Robot.m_robotMap.driveTrainRightTalons;
 	public static final AHRS m_ahrs = Robot.m_robotMap.driveTrainAhrs;
-	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
-	public static final PIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
+	public static final OnyxTronixPIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
+	public static final OnyxTronixPIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
 	public static final double rotation_Absolute_Tolerence = 1;
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -61,7 +62,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public boolean isRotationPIDOnPoint() {
-    	return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget();
+    	return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget() && Math.abs(leftTalons.get()) < 0.05;
     }
     
     public void stop() {
@@ -78,5 +79,10 @@ public class DriveTrain extends Subsystem {
     	leftRotationPIDController.setOutputRange(-1, 1);
     	rightRotationPIDController.setOutputRange(-1, 1);
     }
+    
+    public void setF2(double f2) {
+    	leftRotationPIDController.setKf2(f2);
+    }
+    	
 }
 

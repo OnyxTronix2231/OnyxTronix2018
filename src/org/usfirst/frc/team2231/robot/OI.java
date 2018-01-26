@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.commands.DriveStraightWithPID;
 import org.usfirst.frc.team2231.robot.commands.RotateByPID;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -46,12 +47,15 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	public Joystick driveStick;
 	public JoystickButton rotateByNinteyDeg;
+	private JoystickButton driveStraightUsingPID;
 	
 	public OI() {
 		driveStick = new Joystick(0);
 		
 		rotateByNinteyDeg = new JoystickButton(driveStick, 1);
 		rotateByNinteyDeg.whenPressed(new RotateByPID(90));
+		driveStraightUsingPID = new JoystickButton(driveStick, 2);
+		driveStraightUsingPID.whileHeld(new DriveStraightWithPID());
 	}
 	
 	public Joystick getDriveStick() {

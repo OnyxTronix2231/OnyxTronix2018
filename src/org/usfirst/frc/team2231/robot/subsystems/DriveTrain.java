@@ -61,7 +61,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public boolean isRotationPIDOnPoint() {
-    	return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget();
+    	return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget() && leftTalons.get() < 0.05;
     }
     
     public void stop() {

@@ -52,7 +52,6 @@ public class RobotMap {
 
 	
 	public RobotMap() {
-		//DriveTrain
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
 		driveTrainSecondLeft = new WPI_TalonSRX(1);
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);

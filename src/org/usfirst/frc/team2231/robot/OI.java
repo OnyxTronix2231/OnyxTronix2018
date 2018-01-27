@@ -86,4 +86,12 @@ public class OI {
 	public Joystick getButtonStick() {
 		return buttonStick;
 	}
+	
+	public double getLeftStick(Joystick joystick) {
+		return joystick.getRawAxis(1);
+	}
+	
+	public double getRightStick(Joystick joystick) {
+		return joystick.getRawAxis(4);
+	}
 }

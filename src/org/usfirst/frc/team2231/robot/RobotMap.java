@@ -68,8 +68,6 @@ public class RobotMap {
 		
 		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
 		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainRightTalons);
-		driveTrainLeftRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
-		driveTrainRightRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
 		
 		collectorLeftWheel = new WPI_TalonSRX(4);
 		collectorRightWheel = new WPI_TalonSRX(5);

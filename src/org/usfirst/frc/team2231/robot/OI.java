@@ -7,8 +7,7 @@
 
 package org.usfirst.frc.team2231.robot;
 
-import org.usfirst.frc.team2231.robot.commands.RotateByPID;
-
+import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.Lower;
@@ -60,7 +59,6 @@ public class OI {
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
 	public JoystickButton rotateByNinteyDegrees;
-
 
 	public OI() {
 		driveStick = new Joystick(0);

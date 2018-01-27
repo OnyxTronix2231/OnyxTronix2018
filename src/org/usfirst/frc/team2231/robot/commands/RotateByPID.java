@@ -5,9 +5,6 @@ import org.usfirst.frc.team2231.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class RotateByPID extends Command {
 	double m_setpoint;
 

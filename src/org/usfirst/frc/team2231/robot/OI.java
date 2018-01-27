@@ -58,8 +58,8 @@ public class OI {
 	public JoystickButton raiseElevator;
 	public JoystickButton lowerElevator;
 	public JoystickButton collectCube;
-  public JoystickButton ejectCube;
-  public JoystickButton rotateByNinteyDeg;
+	public JoystickButton ejectCube;
+	public JoystickButton rotateByNinteyDegrees;
 
 
 	public OI() {
@@ -76,8 +76,8 @@ public class OI {
 		ejectCube = new JoystickButton(buttonStick, 3);
 		ejectCube.whileHeld(new Eject());
     
-    rotateByNinteyDeg = new JoystickButton(driveStick, 5);
-		rotateByNinteyDeg.whenPressed(new RotateByPID(90));
+		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
+		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
 		}
 
 

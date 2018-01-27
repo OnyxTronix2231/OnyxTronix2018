@@ -9,19 +9,16 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class RotateByPID extends Command {
-	double setpoint;
+	double m_setpoint;
 
     public RotateByPID(double setpoint) {
-    	this.setpoint = setpoint;
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    	this.m_setpoint = setpoint;
     	requires(Robot.m_driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	Robot.m_driveTrain.resetAHRSGyro();
-    	Robot.m_driveTrain.setRotationSetpoint(Robot.m_driveTrain.getAngle() + setpoint);
+    	Robot.m_driveTrain.setRotationSetpoint(Robot.m_driveTrain.getAngle() + m_setpoint);
     	Robot.m_driveTrain.setOutputRange();
     	Robot.m_driveTrain.enableRotationPIDControllers();
     	

@@ -25,7 +25,7 @@ public class DriveTrain extends Subsystem {
 	public static final DifferentialDrive robotDrive = Robot.m_robotMap.driveTrainRobotDrive;
 	public static final SpeedControllerGroup leftTalons = Robot.m_robotMap.driveTrainleftTalons;
 	public static final SpeedControllerGroup rightTalons = Robot.m_robotMap.driveTrainRightTalons;
-	public static final AHRS m_ahrs = Robot.m_robotMap.driveTrainAhrs;
+	public static final AHRS m_navX = Robot.m_robotMap.driveTrainNavX;
 	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
 	public static final PIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
 	public static final double rotation_Absolute_Tolerence = 1;
@@ -43,11 +43,11 @@ public class DriveTrain extends Subsystem {
     }
     
     public void resetAHRSGyro() {
-    	m_ahrs.reset();
+    	m_navX.reset();
     }
     
     public double getAngle() {
-    	return m_ahrs.getAngle();
+    	return m_navX.getAngle();
     }
     
     public void setRotationSetpoint(double setpoint) {

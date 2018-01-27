@@ -3,6 +3,7 @@ package org.usfirst.frc.team2231.robot.subsystems;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
+import org.usfirst.frc.team2231.robot.commands.DriveByJoystickWithLock;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
@@ -35,7 +36,7 @@ public class DriveTrain extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new DriveByJoystick());
+    	setDefaultCommand(new DriveByJoystickWithLock());
     }
     
     public void arcadeDrive(Joystick stick) {

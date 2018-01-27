@@ -7,9 +7,12 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import com.kauailabs.navx.frc.AHRS.SerialDataType;
+
+import OnyxTronix.OnyxCANTalon;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -45,6 +48,8 @@ public class RobotMap {
 	public static AHRS driveTrainNavX;
 	public static PIDController driveTrainLeftRotationPIDController;
 	public static PIDController driveTrainRightRotationPIDController;
+	public static PIDController driveTrainLeftDrivePIDController;
+	public static PIDController driveTrainRightDrivePIDController;
 	public static SpeedControllerGroup collectorWheels;
 	private static WPI_TalonSRX elevatorLeftMotor;
 	private static WPI_TalonSRX elevatorRightMotor;
@@ -67,7 +72,14 @@ public class RobotMap {
 		
 		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
 		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainRightTalons);
-		
+    	driveTrainFirstLeft.config_kP(0, 1, 0);
+    	driveTrainFirstLeft.config_kI(0, 0, 0);
+    	driveTrainFirstLeft.config_kD(0, 0, 0);
+    	driveTrainFirstRight.config_kP(0, 1, 0);
+    	driveTrainFirstRight.config_kI(0, 0, 0);
+    	driveTrainFirstRight.config_kD(0, 0, 0);
+    	driveTrainFirstLeft.configAllowableClosedloopError(0, 1, 0);
+			
 		collectorLeftWheel = new WPI_TalonSRX(4);
 		collectorRightWheel = new WPI_TalonSRX(5);
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);

@@ -4,6 +4,7 @@ import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -77,6 +78,15 @@ public class DriveTrain extends Subsystem {
     public void setOutputRange() {
     	leftRotationPIDController.setOutputRange(-1, 1);
     	rightRotationPIDController.setOutputRange(-1, 1);
+    }
+    
+    public void setPositionSetpoint(double setpoint) {
+    	firstLeft.set(ControlMode.Position, setpoint);
+    	firstRight.set(ControlMode.Position, setpoint);
+    }
+    
+    public double getPositionError() {
+    	return firstLeft.getClosedLoopError(0);
     }
 }
 

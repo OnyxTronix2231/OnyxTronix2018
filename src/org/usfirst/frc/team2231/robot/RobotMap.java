@@ -42,11 +42,14 @@ public class RobotMap {
 	public static SpeedControllerGroup driveTrainRightTalons;
 	public static WPI_TalonSRX collectorLeftWheel;
 	public static WPI_TalonSRX collectorRightWheel;
-	public static WPI_TalonSRX elevatorFirstMotor;
-	public static WPI_TalonSRX elevatorSecondMotor;
 	public static AHRS driveTrainAhrs;
 	public static PIDController driveTrainLeftRotationPIDController;
 	public static PIDController driveTrainRightRotationPIDController;
+	public static SpeedControllerGroup collectorWheels;
+	private static WPI_TalonSRX elevatorLeftMotor;
+	private static WPI_TalonSRX elevatorRightMotor;
+	public static SpeedControllerGroup elevatorWheels;
+
 	
 	public RobotMap() {
 		//DriveTrain
@@ -60,14 +63,20 @@ public class RobotMap {
 		
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
 		
+
 		driveTrainAhrs = new AHRS(SPI.Port.kMXP);	
 		
 		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainAhrs, driveTrainleftTalons);
 		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainAhrs, driveTrainRightTalons);
-    	driveTrainLeftRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
-    	driveTrainRightRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
+    driveTrainLeftRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
+    driveTrainRightRotationPIDController.setAbsoluteTolerance(Robot.m_driveTrain.rotation_Absolute_Tolerence);
 		
-		//collectorLeftWheel = new WPI_TalonSRX(/);
-		//collectorRightWheel = new WPI_TalonSRX(/);
+		collectorLeftWheel = new WPI_TalonSRX(4);
+		collectorRightWheel = new WPI_TalonSRX(5);
+		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
+
+		elevatorLeftMotor = new WPI_TalonSRX(6);
+		elevatorRightMotor = new WPI_TalonSRX(7);
+		elevatorWheels = new SpeedControllerGroup(elevatorLeftMotor, elevatorRightMotor);
 	}
 }

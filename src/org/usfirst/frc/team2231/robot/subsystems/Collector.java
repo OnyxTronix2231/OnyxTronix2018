@@ -13,9 +13,7 @@ package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -24,10 +22,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Collector extends Subsystem {
 	public static final double SPEED = 1;
-    private final WPI_TalonSRX leftWheel = RobotMap.collectorLeftWheel;
-    private final WPI_TalonSRX rightWheel = RobotMap.collectorRightWheel;
-
-    
+	public final SpeedControllerGroup wheels = RobotMap.collectorWheels;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
@@ -36,18 +31,16 @@ public class Collector extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     
-    public void startCubeCollector(double speed) {
-    	leftWheel.set(speed);
-    	rightWheel.set(speed);
+    public void setSpeed(double speed) {
+    	wheels.set(speed);
     }
     
-    public void stopCubeCollector() {
-    	leftWheel.set(0);
-    	rightWheel.set(0);
+    public void stop() {
+    	wheels.set(0);
     }
     
     public boolean isCollecting() {
-    	return (leftWheel.get() != 0 && rightWheel.get() != 0);
+    	return wheels.get() != 0;
     	
     }
 }

@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2231.robot.subsystems.Elevator;
+import org.usfirst.frc.team2231.robot.OI;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -22,9 +24,12 @@ import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
  * project.
  */
 public class Robot extends TimedRobot {
+	
 	public static DriveTrain m_driveTrain;
+	public static Collector m_collector;
 	public static RobotMap m_robotMap;
 	public static OI m_oi;
+	public static Elevator m_elevator;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -37,6 +42,8 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		m_robotMap = new RobotMap();
 		m_driveTrain = new DriveTrain();
+		m_collector = new Collector();
+		m_elevator = new Elevator();
 		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putNumber("P_Right", Robot.m_robotMap.driveTrainRightRotationPIDController.getP());

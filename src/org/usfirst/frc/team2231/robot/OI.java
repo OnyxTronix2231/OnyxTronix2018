@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.Lower;
@@ -48,6 +49,8 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+
+	
 	private Joystick driveStick;
 	private Joystick buttonStick;
 
@@ -55,6 +58,7 @@ public class OI {
 	public JoystickButton lowerElevator;
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
+	public JoystickButton rotateByNinteyDegrees;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -69,7 +73,11 @@ public class OI {
 		collectCube.whileHeld(new Collect());
 		ejectCube = new JoystickButton(buttonStick, 3);
 		ejectCube.whileHeld(new Eject());
+    
+		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
+		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
 		}
+
 
 	public Joystick getDriveStick() {
 		return driveStick;

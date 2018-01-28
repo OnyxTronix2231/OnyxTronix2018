@@ -9,6 +9,7 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
+import org.usfirst.frc.team2231.robot.commands.DriveByEncoder;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.Raise;
@@ -59,6 +60,7 @@ public class OI {
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
 	public JoystickButton rotateByNinteyDegrees;
+	public JoystickButton driveTenMeters;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -76,6 +78,8 @@ public class OI {
     
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
 		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
+		driveTenMeters = new JoystickButton(driveStick, 6);
+		driveTenMeters.whenPressed(new DriveByEncoder(10));
 		}
 
 

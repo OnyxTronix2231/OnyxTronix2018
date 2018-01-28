@@ -10,6 +10,7 @@ package org.usfirst.frc.team2231.robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -47,6 +48,7 @@ public class RobotMap {
 	public static SpeedControllerGroup elevatorWheels;
 	public static DigitalInput elevatorMicroSwitchTop;
 	public static DigitalInput elevatorMicroSwitchBottom;
+	public static DoubleSolenoid collectorHolderPiston;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -62,6 +64,7 @@ public class RobotMap {
 		collectorLeftWheel = new WPI_TalonSRX(4);
 		collectorRightWheel = new WPI_TalonSRX(5);
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
+		collectorHolderPiston = new DoubleSolenoid(0, 1);
 
 		elevatorLeftMotor = new WPI_TalonSRX(6);
 		elevatorRightMotor = new WPI_TalonSRX(7);

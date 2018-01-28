@@ -8,7 +8,9 @@
 package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.commands.Collect;
+import org.usfirst.frc.team2231.robot.commands.CollectCube;
 import org.usfirst.frc.team2231.robot.commands.Eject;
+import org.usfirst.frc.team2231.robot.commands.EjectCube;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.Raise;
 
@@ -66,9 +68,9 @@ public class OI {
 		lowerElevator.whileHeld(new Lower());
 		
 		collectCube = new JoystickButton(buttonStick, 2);
-		collectCube.whileHeld(new Collect());
+		collectCube.whileHeld(new CollectCube());
 		ejectCube = new JoystickButton(buttonStick, 3);
-		ejectCube.whileHeld(new Eject());
+		ejectCube.whileHeld(new EjectCube());
 		}
 
 	public Joystick getDriveStick() {

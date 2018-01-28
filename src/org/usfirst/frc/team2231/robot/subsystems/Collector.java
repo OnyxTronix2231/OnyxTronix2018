@@ -13,6 +13,7 @@ package org.usfirst.frc.team2231.robot.subsystems;
 import org.usfirst.frc.team2231.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -23,6 +24,7 @@ public class Collector extends Subsystem {
 	public static final double SPEED = 1;
 	public final SpeedControllerGroup wheels = RobotMap.collectorWheels;
 	public final DigitalInput microSwitchCollector = RobotMap.collectorMicroSwitch;
+	public final DoubleSolenoid holderPiston = RobotMap.collectorHolderPiston;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -53,5 +55,9 @@ public class Collector extends Subsystem {
 			return true;
 		}
 		return false;
+	}
+	
+	public void changeHolderPistonPosition(DoubleSolenoid.Value value) {
+		holderPiston.set(value);
 	}
 }

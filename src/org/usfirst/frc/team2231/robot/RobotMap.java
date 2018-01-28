@@ -41,26 +41,24 @@ public class RobotMap {
 	public static WPI_TalonSRX collectorLeftWheel;
 	public static WPI_TalonSRX collectorRightWheel;
 	public static SpeedControllerGroup collectorWheels;
+	public static DigitalInput collectorMicroSwitch;
 	private static WPI_TalonSRX elevatorLeftMotor;
 	private static WPI_TalonSRX elevatorRightMotor;
 	public static SpeedControllerGroup elevatorWheels;
-	public static DigitalInput microSwitchTop;
-	public static DigitalInput microSwitchBottom;
-	public static DigitalInput microSwitchCollector;
-	
+	public static DigitalInput elevatorMicroSwitchTop;
+	public static DigitalInput elevatorMicroSwitchBottom;
 
-	
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
 		driveTrainSecondLeft = new WPI_TalonSRX(1);
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);
-		
-		driveTrainFirstRight= new WPI_TalonSRX(2);
+
+		driveTrainFirstRight = new WPI_TalonSRX(2);
 		driveTrainSecondRight = new WPI_TalonSRX(3);
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
-		
+
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
-		
+
 		collectorLeftWheel = new WPI_TalonSRX(4);
 		collectorRightWheel = new WPI_TalonSRX(5);
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
@@ -68,5 +66,10 @@ public class RobotMap {
 		elevatorLeftMotor = new WPI_TalonSRX(6);
 		elevatorRightMotor = new WPI_TalonSRX(7);
 		elevatorWheels = new SpeedControllerGroup(elevatorLeftMotor, elevatorRightMotor);
+
+		collectorMicroSwitch = new DigitalInput(0);
+		elevatorMicroSwitchTop = new DigitalInput(1);
+		elevatorMicroSwitchBottom = new DigitalInput(2);
+
 	}
 }

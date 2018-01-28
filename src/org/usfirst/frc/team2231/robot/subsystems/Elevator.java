@@ -21,8 +21,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
 	private final SpeedControllerGroup elevatorWheels = RobotMap.elevatorWheels;
-	public final DigitalInput microSwitchTop = RobotMap.microSwitchTop;
-	public final DigitalInput microSwitchBottom = RobotMap.microSwitchBottom;
+	public final DigitalInput microSwitchTop = RobotMap.elevatorMicroSwitchTop;
+	public final DigitalInput microSwitchBottom = RobotMap.elevatorMicroSwitchBottom;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 

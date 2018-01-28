@@ -53,10 +53,18 @@ public class DriveTrain extends Subsystem {
     	rightTalons.set(right);
     }
     
+    public void setPsitionSetpoint(double setpointRight, double setpointLeft) {
+    	firstRight.set(ControlMode.Position, setpointRight);
+    	firstLeft.set(ControlMode.Position, setpointLeft);
+    	secondRight.set(ControlMode.Follower, 2);
+    	secondLeft.set(ControlMode.Follower, 0);
+    }
+    
     public boolean stopByEncoder(double distanceRight, double distanceLeft) {
     	double v;
-    	if(encoderRight.get()*wheelsRadius*3.14 < distanceRight) {
+    	if(firstRight.get()*wheelsRadius*3.14 < distanceRight) {
     		if(distanceRight>distanceLeft) {
+    			
         		v = distanceLeft/distanceRight;
         		Robot.m_driveTrain.driveByProportion(1,v);
         	}

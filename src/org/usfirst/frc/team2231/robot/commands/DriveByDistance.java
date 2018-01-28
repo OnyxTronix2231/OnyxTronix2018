@@ -2,6 +2,8 @@ package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
 
+import com.sun.management.jmx.Trace;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -21,6 +23,7 @@ public class DriveByDistance extends Command {
     public DriveByDistance(double setPoint) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	System.out.println("1");
     	requires(Robot.m_driveTrain);
     	this.setPointRight = setPoint;
     	this.setPointLeft = setPoint;
@@ -28,17 +31,17 @@ public class DriveByDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.m_driveTrain.setPsitionSetpoint(setPointRight, setPointLeft);
+    	System.out.println("2");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	Robot.m_driveTrain.driveByEncoder(setPointRight, setPointLeft);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.m_driveTrain.stopByEncoder(setPointRight, setPointLeft);
+        return Robot.m_driveTrain.areMotorsStopped();
     }
 
     // Called once after isFinished returns true

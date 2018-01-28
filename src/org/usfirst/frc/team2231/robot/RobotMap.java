@@ -49,6 +49,12 @@ public class RobotMap {
 	private static WPI_TalonSRX elevatorLeftMotor;
 	private static WPI_TalonSRX elevatorRightMotor;
 	public static SpeedControllerGroup elevatorWheels;
+	public static final double driveTrainRotationP = 0.0425;
+	public static final double driveTrainRotationI = 0;
+	public static final double driveTrainRotationD = 0.1;
+	public static final double driveTrainDistanceP = 1;
+	public static final double driveTrainDistanceI = 0;
+	public static final double driveTrainDistanceD = 0;
 
 	
 	public RobotMap() {
@@ -65,8 +71,8 @@ public class RobotMap {
 
 		driveTrainNavX = new AHRS(SPI.Port.kMXP);	
 		
-		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
-		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainRightTalons);
+		driveTrainLeftRotationPIDController = new PIDController(driveTrainRotationP, driveTrainRotationI, driveTrainRotationD, driveTrainNavX, driveTrainleftTalons);
+		driveTrainRightRotationPIDController = new PIDController(driveTrainRotationP, driveTrainRotationI, driveTrainRotationD, driveTrainNavX, driveTrainRightTalons);
 		
 		collectorLeftWheel = new WPI_TalonSRX(4);
 		collectorRightWheel = new WPI_TalonSRX(5);

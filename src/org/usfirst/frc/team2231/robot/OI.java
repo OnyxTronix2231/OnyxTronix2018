@@ -9,6 +9,8 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
+import org.usfirst.frc.team2231.robot.commands.DriveByDistance;
+import org.usfirst.frc.team2231.robot.commands.DriveToLeftScale;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.Raise;
@@ -62,20 +64,21 @@ public class OI {
 
 	public OI() {
 		driveStick = new Joystick(0);
-		buttonStick = new Joystick(1);
 		
-		raiseElevator = new JoystickButton(buttonStick, 1);
-		raiseElevator.whileHeld(new Raise());
-		lowerElevator = new JoystickButton(buttonStick, 4);
-		lowerElevator.whileHeld(new Lower());
-		
-		collectCube = new JoystickButton(buttonStick, 2);
-		collectCube.whileHeld(new Collect());
-		ejectCube = new JoystickButton(buttonStick, 3);
-		ejectCube.whileHeld(new Eject());
+//		buttonStick = new Joystick(1);
+//		
+//		raiseElevator = new JoystickButton(buttonStick, 1);
+//		raiseElevator.whileHeld(new Raise());
+//		lowerElevator = new JoystickButton(buttonStick, 4);
+//		lowerElevator.whileHeld(new Lower());
+//		
+//		collectCube = new JoystickButton(buttonStick, 2);
+//		collectCube.whileHeld(new Collect());
+//		ejectCube = new JoystickButton(buttonStick, 3);
+//		ejectCube.whileHeld(new Eject());
     
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
-		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
+		rotateByNinteyDegrees.whenPressed(new DriveByDistance(193));
 		}
 
 

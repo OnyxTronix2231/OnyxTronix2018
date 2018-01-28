@@ -28,6 +28,14 @@ public class DriveTrain extends Subsystem {
 	public static final DifferentialDrive robotDrive = Robot.m_robotMap.driveTrainRobotDrive;
 	public static final SpeedControllerGroup leftTalons = Robot.m_robotMap.driveTrainleftTalons;
 	public static final SpeedControllerGroup rightTalons = Robot.m_robotMap.driveTrainRightTalons;
+	public static PIDController driveTrainLeftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
+	public static PIDController driveTrainRightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
+	public static AHRS driveTrainNavX = Robot.m_robotMap.driveTrainNavX;
+	public static final double driveTrainDistanceP = Robot.m_robotMap.driveTrainDistanceP;
+	public static final double driveTrainDistanceI = Robot.m_robotMap.driveTrainDistanceI;
+	public static final double driveTrainDistanceD = Robot.m_robotMap.driveTrainDistanceD;
+	public static double driveTrainRightTalonsP;
+	public static double driveTrainLefttTalonsP;
 	public static final double wheelsRadius = 4;
 	
 	public static final AHRS m_navX = Robot.m_robotMap.driveTrainNavX;
@@ -64,22 +72,29 @@ public class DriveTrain extends Subsystem {
     	secondLeft.set(ControlMode.Follower, 0);
     }
     
-    public boolean stopByEncoder(double distanceRight, double distanceLeft) {
+    public void driveByEncoder(double distanceRight, double distanceLeft) {
     	double v;
-    	if(firstRight.get()*wheelsRadius*3.14 < distanceRight) {
-    		if(distanceRight>distanceLeft) {
-    			
-        		v = distanceLeft/distanceRight;
-        		Robot.m_driveTrain.driveByProportion(1,v);
-        	}
-    		else {
-    			v = distanceRight/distanceLeft;
-    			Robot.m_driveTrain.driveByProportion(v,1);
-    		}
-    		return false;
+    	System.out.println("3");
+    	if(distanceRight>distanceLeft) {
+        	v = distanceLeft/distanceRight;
+        	driveTrainRightTalonsP = driveTrainDistanceP + (v/2);
+        	driveTrainLefttTalonsP = driveTrainDistanceP - (v/2);
+        }
+    	else {
+    		v = distanceRight/distanceLeft;
+    		driveTrainRightTalonsP = driveTrainDistanceP - (v/2);
+        	driveTrainLefttTalonsP = driveTrainDistanceP + (v/2);
     	}
-    	else
-    		return true;
+    	System.out.println(v);
+    	driveTrainLeftRotationPIDController = new PIDController(driveTrainRightTalonsP, driveTrainDistanceI, driveTrainDistanceD, driveTrainNavX, leftTalons);
+		driveTrainRightRotationPIDController = new PIDController(driveTrainLefttTalonsP, driveTrainDistanceI, driveTrainDistanceD, driveTrainNavX, rightTalons);
+		setPsitionSetpoint(distanceRight, distanceLeft);
+    }
+    
+    public boolean areMotorsStopped() {
+    	boolean check = leftTalons.get( ) == 0 && rightTalons.get() == 0;
+    	System.out.println(check);
+    	return check;
     }
     
     public void resetAHRSGyro() {

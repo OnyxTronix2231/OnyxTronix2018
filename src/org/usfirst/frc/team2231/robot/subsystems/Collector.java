@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Collector extends Subsystem {
 	public static final double SPEED = 1;
 	public final SpeedControllerGroup wheels = RobotMap.collectorWheels;
-	public final DigitalInput microSwitchCollector = RobotMap.collectorMicroSwitch;
+	public final DigitalInput microSwitch = RobotMap.collectorMicroSwitch;
 	public final DoubleSolenoid holderPiston = RobotMap.collectorHolderPiston;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -34,11 +34,11 @@ public class Collector extends Subsystem {
 	}
 
 	public void setSpeed(double speed) {
-		if (isCubeCollected()) {
-			stop();
-		} else {
+//		if (isCubeCollected()) {
+//			stop();
+//		} else {
 			wheels.set(speed);
-		}
+//		}
 	}
 
 	public void stop() {
@@ -51,7 +51,7 @@ public class Collector extends Subsystem {
 	}
 
 	public boolean isCubeCollected() {
-		if (microSwitchCollector.get()) {
+		if (!microSwitch.get()) {
 			return true;
 		}
 		return false;

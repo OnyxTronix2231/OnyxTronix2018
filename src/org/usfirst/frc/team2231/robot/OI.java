@@ -7,11 +7,14 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import javax.management.openmbean.OpenDataException;
+
+import org.usfirst.frc.team2231.robot.commands.CloseHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.CollectCube;
 import org.usfirst.frc.team2231.robot.commands.Eject;
-import org.usfirst.frc.team2231.robot.commands.EjectCube;
 import org.usfirst.frc.team2231.robot.commands.Lower;
+import org.usfirst.frc.team2231.robot.commands.OpenHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.Raise;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -57,20 +60,28 @@ public class OI {
 	public JoystickButton lowerElevator;
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
+	private JoystickButton openPiston;
+	private JoystickButton closePiston;
 
 	public OI() {
 		driveStick = new Joystick(0);
 		buttonStick = new Joystick(1);
 		
 		raiseElevator = new JoystickButton(buttonStick, 1);
-		raiseElevator.whileHeld(new Raise());
+		raiseElevator.whenPressed(new Raise());
 		lowerElevator = new JoystickButton(buttonStick, 4);
 		lowerElevator.whileHeld(new Lower());
 		
 		collectCube = new JoystickButton(buttonStick, 2);
 		collectCube.whileHeld(new CollectCube());
 		ejectCube = new JoystickButton(buttonStick, 3);
-		ejectCube.whileHeld(new EjectCube());
+		ejectCube.whileHeld(new Eject());
+		
+		openPiston = new JoystickButton(buttonStick, 5);
+		openPiston.whenPressed(new OpenHolderPiston());
+		closePiston = new JoystickButton(buttonStick, 6);
+		closePiston.whenPressed(new CloseHolderPiston());
+		
 		}
 
 	public Joystick getDriveStick() {

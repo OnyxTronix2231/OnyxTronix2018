@@ -21,8 +21,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
 	private final SpeedControllerGroup elevatorWheels = RobotMap.elevatorWheels;
-	public final DigitalInput microSwitchTop = RobotMap.elevatorMicroSwitchTop;
-	public final DigitalInput microSwitchBottom = RobotMap.elevatorMicroSwitchBottom;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -32,25 +30,10 @@ public class Elevator extends Subsystem {
 	}
 
 	public void setSpeed(double speed) {
-		if (isAtTop() && speed > 0) {
-			stop();
-		}
-		if (isAtBottom() && speed < 0) {
-			stop();
-		} else {
 			elevatorWheels.set(speed);
-		}
 	}
 
 	public void stop() {
 		elevatorWheels.set(0);
-	}
-
-	public boolean isAtTop() {
-		return microSwitchTop.get();
-	}
-
-	public boolean isAtBottom() {
-		return microSwitchBottom.get();
 	}
 }

@@ -12,21 +12,28 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveByDistance extends Command {
 	double setPointRight;
 	double setPointLeft;
+	double distanceFinalRight;
+	double distanceFinalLeft;
 	double v;
-    public DriveByDistance(double setPointRight, double SetPointLeft) {
+    public DriveByDistance(double setPointRight, double setPointLeft) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.m_driveTrain);
     	this.setPointRight = setPointRight;
-    	this.setPointLeft = SetPointLeft;
+    	this.setPointLeft = setPointLeft;
+    	this.distanceFinalRight = setPointRight + Robot.m_driveTrain.getDistanceFinalRightByEncoder();
+    	this.distanceFinalLeft = setPointLeft + Robot.m_driveTrain.getDistanceFinalLeftByEncoder();
+    	System.out.println(this.distanceFinalRight + ", " + this.distanceFinalLeft);
     }
     public DriveByDistance(double setPoint) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	System.out.println("1");
     	requires(Robot.m_driveTrain);
     	this.setPointRight = setPoint;
     	this.setPointLeft = setPoint;
+    	this.distanceFinalRight = setPoint + Robot.m_driveTrain.getDistanceFinalRightByEncoder();
+    	this.distanceFinalLeft = setPoint + Robot.m_driveTrain.getDistanceFinalLeftByEncoder();
+    	System.out.println(this.distanceFinalRight + ", " + this.distanceFinalLeft);
     }
 
     // Called just before this Command runs the first time
@@ -36,7 +43,7 @@ public class DriveByDistance extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.m_driveTrain.driveByEncoder(setPointRight, setPointLeft);
+    	Robot.m_driveTrain.driveByEncoder(setPointRight, setPointLeft, distanceFinalRight, distanceFinalLeft);
     }
 
     // Make this return true when this Command no longer needs to run execute()

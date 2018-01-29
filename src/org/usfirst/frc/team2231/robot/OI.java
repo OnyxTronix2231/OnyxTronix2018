@@ -61,6 +61,7 @@ public class OI {
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
 	public JoystickButton rotateByNinteyDegrees;
+	public JoystickButton driveToLeftScale;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -78,7 +79,10 @@ public class OI {
 //		ejectCube.whileHeld(new Eject());
     
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
-		rotateByNinteyDegrees.whenPressed(new DriveByDistance(193));
+		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
+		
+		driveToLeftScale = new JoystickButton(driveStick,  6);
+		driveToLeftScale.whenPressed(new DriveToLeftScale());
 		}
 
 

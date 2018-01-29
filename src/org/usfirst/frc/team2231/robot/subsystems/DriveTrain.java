@@ -66,29 +66,39 @@ public class DriveTrain extends Subsystem {
     }
     
     public void setPsitionSetpoint(double setpointRight, double setpointLeft) {
-    	firstRight.set(ControlMode.Position, setpointRight);
-    	firstLeft.set(ControlMode.Position, setpointLeft);
+    	firstRight.set(ControlMode.Position, setpointRight * Robot.m_driveTrain.wheelsRadius * Math.PI * 2);
+    	firstLeft.set(ControlMode.Position, setpointLeft * Robot.m_driveTrain.wheelsRadius * Math.PI * 2);
     	secondRight.set(ControlMode.Follower, 2);
     	secondLeft.set(ControlMode.Follower, 0);
     }
     
-    public void driveByEncoder(double distanceRight, double distanceLeft) {
-    	double v;
+    public double getDistanceFinalRightByEncoder() {
+    	return firstRight.getSensorCollection().getQuadraturePosition();
+    }
+    
+    public double getDistanceFinalLeftByEncoder() {
+    	return firstLeft.getSensorCollection().getQuadraturePosition();
+    }
+    
+    public void driveByEncoder(double distanceRight, double distanceLeft, double distanceFinalRight, double DistanceFinalLeft) {
+    	double v, dRight, dLeft;
+    	dRight = distanceFinalRight - firstRight.getSensorCollection().getQuadraturePosition();
+    	dLeft = DistanceFinalLeft - firstLeft.getSensorCollection().getQuadraturePosition();
     	System.out.println("3");
-    	if(distanceRight>distanceLeft) {
-        	v = distanceLeft/distanceRight;
+    	if(dRight > dLeft) {
+        	v = dLeft/dRight;
         	driveTrainRightTalonsP = driveTrainDistanceP + (v/2);
         	driveTrainLefttTalonsP = driveTrainDistanceP - (v/2);
         }
     	else {
-    		v = distanceRight/distanceLeft;
+    		v = dRight/dLeft;
     		driveTrainRightTalonsP = driveTrainDistanceP - (v/2);
         	driveTrainLefttTalonsP = driveTrainDistanceP + (v/2);
     	}
-    	System.out.println(v);
+    	System.out.println(v + ", " + driveTrainRightTalonsP + ", " + driveTrainLefttTalonsP);
     	driveTrainLeftRotationPIDController = new PIDController(driveTrainRightTalonsP, driveTrainDistanceI, driveTrainDistanceD, driveTrainNavX, leftTalons);
 		driveTrainRightRotationPIDController = new PIDController(driveTrainLefttTalonsP, driveTrainDistanceI, driveTrainDistanceD, driveTrainNavX, rightTalons);
-		setPsitionSetpoint(distanceRight, distanceLeft);
+		setPsitionSetpoint(dRight, dLeft);
     }
     
     public boolean areMotorsStopped() {

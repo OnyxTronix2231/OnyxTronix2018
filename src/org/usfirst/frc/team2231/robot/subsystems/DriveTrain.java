@@ -23,7 +23,7 @@ public class DriveTrain extends Subsystem {
 
 	public static final WPI_TalonSRX firstLeft = Robot.m_robotMap.driveTrainFirstLeft;
 	public static final WPI_TalonSRX secondLeft = Robot.m_robotMap.driveTrainSecondLeft;
-	public static final WPI_TalonSRX firstRight= Robot.m_robotMap.driveTrainFirstRight;
+	public static final WPI_TalonSRX firstRight = Robot.m_robotMap.driveTrainFirstRight;
 	public static final WPI_TalonSRX secondRight = Robot.m_robotMap.driveTrainSecondRight;
 	public static final DifferentialDrive robotDrive = Robot.m_robotMap.driveTrainRobotDrive;
 	public static final SpeedControllerGroup leftTalons = Robot.m_robotMap.driveTrainleftTalons;
@@ -36,112 +36,122 @@ public class DriveTrain extends Subsystem {
 	public static final double driveTrainDistanceD = Robot.m_robotMap.driveTrainDistanceD;
 	public static double driveTrainRightTalonsP;
 	public static double driveTrainLefttTalonsP;
-	public static final double wheelsRadius = 4;
-	
+	public static double tolerance = Robot.m_robotMap.tolerance;
+	public static double toleranceRight;
+	public static double toleranceLeft;
+	public static final double wheelsRadius = 6;
+
 	public static final AHRS m_navX = Robot.m_robotMap.driveTrainNavX;
 	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
 	public static final PIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
 	public final double rotation_Absolute_Tolerence = 1;
 	// Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	// here. Call these from Commands.
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new DriveByJoystick());
-    }
-    
-    public void initPID() {
-    	firstLeft.set(ControlMode.Velocity, 3 );
-    	firstLeft.set(4);
-    }
-    
-    public void arcadeDrive(Joystick stick) {
-    	robotDrive.arcadeDrive(-stick.getRawAxis(1) * 2, stick.getRawAxis(4) * 2);
-    }
-    
-    public void driveByProportion(double right, double left) {
-    	leftTalons.set(left);
-    	rightTalons.set(right);
-    }
-    
-    public void setPsitionSetpoint(double setpointRight, double setpointLeft) {
-    	firstRight.set(ControlMode.Position, setpointRight * Robot.m_driveTrain.wheelsRadius * Math.PI * 2);
-    	firstLeft.set(ControlMode.Position, setpointLeft * Robot.m_driveTrain.wheelsRadius * Math.PI * 2);
-    	secondRight.set(ControlMode.Follower, 2);
-    	secondLeft.set(ControlMode.Follower, 0);
-    }
-    
-    public double getDistanceFinalRightByEncoder() {
-    	return firstRight.getSensorCollection().getQuadraturePosition();
-    }
-    
-    public double getDistanceFinalLeftByEncoder() {
-    	return firstLeft.getSensorCollection().getQuadraturePosition();
-    }
-    
-    public void driveByEncoder(double distanceRight, double distanceLeft, double distanceFinalRight, double DistanceFinalLeft) {
-    	double v, dRight, dLeft;
-    	dRight = distanceFinalRight - firstRight.getSensorCollection().getQuadraturePosition();
-    	dLeft = DistanceFinalLeft - firstLeft.getSensorCollection().getQuadraturePosition();
-    	System.out.println("3");
-    	if(dRight > dLeft) {
-        	v = dLeft/dRight;
-        	driveTrainRightTalonsP = driveTrainDistanceP + (v/2);
-        	driveTrainLefttTalonsP = driveTrainDistanceP - (v/2);
-        }
-    	else {
-    		v = dRight/dLeft;
-    		driveTrainRightTalonsP = driveTrainDistanceP - (v/2);
-        	driveTrainLefttTalonsP = driveTrainDistanceP + (v/2);
-    	}
-    	System.out.println(v + ", " + driveTrainRightTalonsP + ", " + driveTrainLefttTalonsP);
-    	driveTrainLeftRotationPIDController = new PIDController(driveTrainRightTalonsP, driveTrainDistanceI, driveTrainDistanceD, driveTrainNavX, leftTalons);
-		driveTrainRightRotationPIDController = new PIDController(driveTrainLefttTalonsP, driveTrainDistanceI, driveTrainDistanceD, driveTrainNavX, rightTalons);
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new DriveByJoystick());
+	}
+
+	public void initPID() {
+		firstLeft.set(ControlMode.Velocity, 3);
+		firstLeft.set(4);
+	}
+
+	public void arcadeDrive(Joystick stick) {
+		robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4));
+	}
+	
+	public void initPid() {
+		firstRight.set(ControlMode.Position, 0);
+		firstLeft.set(ControlMode.Position, 0);
+		secondRight.set(ControlMode.Follower, 2);
+		secondLeft.set(ControlMode.Follower, 0);
+	}
+
+	public void driveByProportion(double right, double left) {
+		leftTalons.set(left);
+		rightTalons.set(right);
+	}
+
+	public void setPsitionSetpoint(double setpointRight, double setpointLeft) {
+		firstRight.set(-setpointRight / (wheelsRadius * Math.PI));
+		firstLeft.set(setpointLeft / (wheelsRadius * Math.PI));
+	}
+
+	public double getDistanceFinalRightByEncoder() {
+		return firstRight.getSensorCollection().getQuadraturePosition();
+	}
+
+	public double getDistanceFinalLeftByEncoder() {
+		return firstLeft.getSensorCollection().getQuadraturePosition();
+	}
+
+	public void driveByEncoder(double distanceRight, double distanceLeft, double distanceFinalRight,double DistanceFinalLeft) {
+		double v, dRight, dLeft;
+		dRight = distanceFinalRight + firstRight.getSensorCollection().getQuadraturePosition() * wheelsRadius * Math.PI;
+		dLeft = DistanceFinalLeft - firstLeft.getSensorCollection().getQuadraturePosition() * wheelsRadius * Math.PI;
+		System.out.println(dRight +", "+ dLeft);
+		if (distanceRight > distanceLeft) {
+			v = distanceLeft / distanceRight;
+			driveTrainRightTalonsP = driveTrainDistanceP + (v / 2);
+			driveTrainLefttTalonsP = driveTrainDistanceP - (v / 2);
+		} else {
+			v = distanceRight / distanceLeft;
+			driveTrainRightTalonsP = driveTrainDistanceP - (v / 2);
+			driveTrainLefttTalonsP = driveTrainDistanceP + (v / 2);
+		}
+		System.out.println(v + ", " + driveTrainRightTalonsP + ", " + driveTrainLefttTalonsP);
+		firstLeft.config_kP(0, driveTrainDistanceP, 0);
+		firstLeft.config_kI(0, driveTrainDistanceI, 0);
+		firstLeft.config_kD(0, driveTrainDistanceD, 0);
+		firstRight.config_kP(0, driveTrainDistanceP, 0);
+		firstRight.config_kI(0, driveTrainDistanceI, 0);
+		firstRight.config_kD(0, driveTrainDistanceD, 0);
 		setPsitionSetpoint(dRight, dLeft);
-    }
-    
-    public boolean areMotorsStopped() {
-    	boolean check = leftTalons.get( ) == 0 && rightTalons.get() == 0;
-    	System.out.println(check);
-    	return check;
-    }
-    
-    public void resetAHRSGyro() {
-    	m_navX.reset();
-    }
-    
-    public double getAngle() {
-    	return m_navX.getAngle();
-    }
-    
-    public void setRotationSetpoint(double setpoint) {
-    	rightRotationPIDController.setSetpoint(setpoint);
-    	leftRotationPIDController.setSetpoint(setpoint);
-    }
-    
-    public void enableRotationPIDControllers() {
-    	rightRotationPIDController.enable();
-    	leftRotationPIDController.enable();
-    }
-    
-    public boolean isRotationPIDOnPoint() {
-    	return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget() && leftTalons.get() < 0.05;
-    }
-    
-    public void stop() {
-    	leftTalons.stopMotor();
-    	rightTalons.stopMotor();
-    }
-    
-    public void disableRotationPIDControllers() {
-    	leftRotationPIDController.disable();
-    	rightRotationPIDController.disable();
-    }
-    
-    public void setOutputRange() {
-    	leftRotationPIDController.setOutputRange(-1, 1);
-    	rightRotationPIDController.setOutputRange(-1, 1);
-    }
-}
+	}
 
+	public boolean areMotorsStopped() {
+		boolean check = leftTalons.get() == 0 && rightTalons.get() == 0;
+		System.out.println(check);
+		return check;
+	}
+
+	public void resetAHRSGyro() {
+		m_navX.reset();
+	}
+
+	public double getAngle() {
+		return m_navX.getAngle();
+	}
+
+	public void setRotationSetpoint(double setpoint) {
+		rightRotationPIDController.setSetpoint(setpoint);
+		leftRotationPIDController.setSetpoint(setpoint);
+	}
+
+	public void enableRotationPIDControllers() {
+		rightRotationPIDController.enable();
+		leftRotationPIDController.enable();
+	}
+
+	public boolean isRotationPIDOnPoint() {
+		return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget() && leftTalons.get() < 0.05;
+	}
+
+	public void stop() {
+		leftTalons.stopMotor();
+		rightTalons.stopMotor();
+	}
+
+	public void disableRotationPIDControllers() {
+		leftRotationPIDController.disable();
+		rightRotationPIDController.disable();
+	}
+
+	public void setOutputRange() {
+		leftRotationPIDController.setOutputRange(-1, 1);
+		rightRotationPIDController.setOutputRange(-1, 1);
+	}
+}

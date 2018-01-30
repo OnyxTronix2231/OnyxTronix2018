@@ -25,14 +25,16 @@ public class DriveToLeftScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
+    	addSequential(new DriveByDistance(10));
+    	
     	//addSequential(new ElevatorPitchDrop());
     	//addSequential(new Collect());
-    	addSequential(new DriveByDistance(193));
+    	//addSequential(new DriveByDistance(193));
     	//addSequential(new ElevatorPitchRaise());
-    	addSequential(new DriveByDistance(86.5, 58.5));
-    	addSequential(new DriveByDistance(133.47));
-    	addSequential(new DriveByDistance(70,98));
-    	addSequential(new DriveByDistance(-30.6, 30.6));
+    	//addSequential(new DriveByDistance(86.5, 58.5));
+    	//addSequential(new DriveByDistance(133.47));
+    	//addSequential(new DriveByDistance(70,98));
+    	//addSequential(new DriveByDistance(-30.6, 30.6));
     	//addSequential(new Raise());
     	//addSequential(new ElevatorPitchDrop());
     	addSequential(new Eject());

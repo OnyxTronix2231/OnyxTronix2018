@@ -52,9 +52,10 @@ public class RobotMap {
 	public static final double driveTrainRotationP = 0.0425;
 	public static final double driveTrainRotationI = 0;
 	public static final double driveTrainRotationD = 0.1;
-	public static final double driveTrainDistanceP = 1;
+	public static final double driveTrainDistanceP = 1.5;
 	public static final double driveTrainDistanceI = 0;
 	public static final double driveTrainDistanceD = 0;
+	public static final double tolerance = 0.5; 
 
 	
 	public RobotMap() {
@@ -81,5 +82,22 @@ public class RobotMap {
 		elevatorLeftMotor = new WPI_TalonSRX(6);
 		elevatorRightMotor = new WPI_TalonSRX(7);
 		elevatorWheels = new SpeedControllerGroup(elevatorLeftMotor, elevatorRightMotor);
+		
+		driveTrainFirstLeft.configAllowableClosedloopError(0, 1, 0);
+		driveTrainFirstRight.configAllowableClosedloopError(0, 1, 0);
+		
+
+		
+		driveTrainFirstLeft.configPeakOutputForward(tolerance, 0);
+		driveTrainFirstLeft.configPeakOutputReverse(-tolerance, 0);
+		driveTrainFirstRight.configPeakOutputForward(tolerance, 0);
+		driveTrainFirstRight.configPeakOutputReverse(-tolerance, 0);
+		
+		driveTrainFirstLeft.config_kP(0, driveTrainDistanceP, 0);
+		driveTrainFirstLeft.config_kI(0, driveTrainDistanceI, 0);
+		driveTrainFirstLeft.config_kD(0, driveTrainDistanceD, 0);
+		driveTrainFirstRight.config_kP(0, driveTrainDistanceP, 0);
+		driveTrainFirstRight.config_kI(0, driveTrainDistanceI, 0);
+		driveTrainFirstRight.config_kD(0, driveTrainDistanceD, 0);
 	}
 }

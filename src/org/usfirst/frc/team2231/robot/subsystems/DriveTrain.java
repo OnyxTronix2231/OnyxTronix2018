@@ -35,7 +35,7 @@ public class DriveTrain extends Subsystem {
 	public static final double driveTrainDistanceI = Robot.m_robotMap.driveTrainDistanceI;
 	public static final double driveTrainDistanceD = Robot.m_robotMap.driveTrainDistanceD;
 	public static double driveTrainRightTalonsP;
-	public static double driveTrainLefttTalonsP;
+	public static double driveTrainLeftTalonsP;
 	public static double tolerance = Robot.m_robotMap.tolerance;
 	public static double toleranceRight;
 	public static double toleranceLeft;
@@ -76,8 +76,8 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void setPsitionSetpoint(double setpointRight, double setpointLeft) {
-		firstRight.set(-setpointRight / (wheelsRadius * Math.PI));
-		firstLeft.set(setpointLeft / (wheelsRadius * Math.PI));
+		firstRight.set(-setpointRight);
+		firstLeft.set(setpointLeft);
 	}
 
 	public double getDistanceFinalRightByEncoder() {
@@ -90,19 +90,23 @@ public class DriveTrain extends Subsystem {
 
 	public void driveByEncoder(double distanceRight, double distanceLeft, double distanceFinalRight,double DistanceFinalLeft) {
 		double v, dRight, dLeft;
-		dRight = distanceFinalRight + firstRight.getSensorCollection().getQuadraturePosition() * wheelsRadius * Math.PI;
-		dLeft = DistanceFinalLeft - firstLeft.getSensorCollection().getQuadraturePosition() * wheelsRadius * Math.PI;
-		System.out.println(dRight +", "+ dLeft);
+		dRight = distanceFinalRight + firstRight.getSensorCollection().getQuadraturePosition();
+		dLeft = DistanceFinalLeft - firstLeft.getSensorCollection().getQuadraturePosition();
 		if (distanceRight > distanceLeft) {
 			v = distanceLeft / distanceRight;
-			driveTrainRightTalonsP = driveTrainDistanceP + (v / 2);
-			driveTrainLefttTalonsP = driveTrainDistanceP - (v / 2);
-		} else {
+			driveTrainRightTalonsP = driveTrainDistanceP * (1.5 - (v / 2));
+			driveTrainLeftTalonsP = driveTrainDistanceP * (0.5 + (v / 2));
+		} 
+		else {
 			v = distanceRight / distanceLeft;
-			driveTrainRightTalonsP = driveTrainDistanceP - (v / 2);
-			driveTrainLefttTalonsP = driveTrainDistanceP + (v / 2);
+			driveTrainRightTalonsP = driveTrainDistanceP * (0.5 + (v / 2));
+			driveTrainLeftTalonsP = driveTrainDistanceP * (1.5 - (v / 2));
 		}
-		System.out.println(v + ", " + driveTrainRightTalonsP + ", " + driveTrainLefttTalonsP);
+		System.out.println("the lower speed: " + v);
+		System.out.println("distance left in the right side" + dRight);
+		System.out.println("distance left in the left side" + dLeft);
+		System.out.println("P from PID right: " + driveTrainRightTalonsP);
+		System.out.println("P from PID left: " + driveTrainLeftTalonsP);
 		firstLeft.config_kP(0, driveTrainDistanceP, 0);
 		firstLeft.config_kI(0, driveTrainDistanceI, 0);
 		firstLeft.config_kD(0, driveTrainDistanceD, 0);

@@ -11,6 +11,7 @@ import javax.management.openmbean.OpenDataException;
 
 import org.usfirst.frc.team2231.robot.commands.CloseHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.Collect;
+import org.usfirst.frc.team2231.robot.commands.CollectButBetter;
 import org.usfirst.frc.team2231.robot.commands.CollectCube;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.Lower;
@@ -68,12 +69,12 @@ public class OI {
 		buttonStick = new Joystick(1);
 		
 		raiseElevator = new JoystickButton(buttonStick, 1);
-		raiseElevator.whenPressed(new Raise());
+		raiseElevator.whileHeld(new Raise());
 		lowerElevator = new JoystickButton(buttonStick, 4);
 		lowerElevator.whileHeld(new Lower());
 		
 		collectCube = new JoystickButton(buttonStick, 2);
-		collectCube.whileHeld(new CollectCube());
+		collectCube.whileHeld(new CollectButBetter());
 		ejectCube = new JoystickButton(buttonStick, 3);
 		ejectCube.whileHeld(new Eject());
 		

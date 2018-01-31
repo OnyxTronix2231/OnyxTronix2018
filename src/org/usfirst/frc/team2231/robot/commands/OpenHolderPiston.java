@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 public class OpenHolderPiston extends InstantCommand {
 
     public OpenHolderPiston() {
-        super();
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

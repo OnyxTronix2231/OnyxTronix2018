@@ -17,7 +17,6 @@ public class Collect extends ConveyWithCollector {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		System.out.println(Robot.m_collector.microSwitch.get());
 	}
 	@Override
 	protected boolean isFinished() {

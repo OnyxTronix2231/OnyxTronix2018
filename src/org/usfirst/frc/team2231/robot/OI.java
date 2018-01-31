@@ -7,12 +7,8 @@
 
 package org.usfirst.frc.team2231.robot;
 
-import javax.management.openmbean.OpenDataException;
-
 import org.usfirst.frc.team2231.robot.commands.CloseHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.Collect;
-import org.usfirst.frc.team2231.robot.commands.CollectButBetter;
-import org.usfirst.frc.team2231.robot.commands.CollectCube;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.OpenHolderPiston;
@@ -20,7 +16,6 @@ import org.usfirst.frc.team2231.robot.commands.Raise;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -74,7 +69,7 @@ public class OI {
 		lowerElevator.whileHeld(new Lower());
 		
 		collectCube = new JoystickButton(buttonStick, 2);
-		collectCube.whileHeld(new CollectButBetter());
+		collectCube.whileHeld(new Collect());
 		ejectCube = new JoystickButton(buttonStick, 3);
 		ejectCube.whileHeld(new Eject());
 		

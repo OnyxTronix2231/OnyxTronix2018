@@ -34,11 +34,7 @@ public class Collector extends Subsystem {
 	}
 
 	public void setSpeed(double speed) {
-//		if (isCubeCollected()) {
-//			stop();
-//		} else {
 			wheels.set(speed);
-//		}
 	}
 
 	public void stop() {

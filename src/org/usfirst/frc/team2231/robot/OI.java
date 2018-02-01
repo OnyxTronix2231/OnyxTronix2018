@@ -7,10 +7,13 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.commands.CloseHolderPiston;
+import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
+import org.usfirst.frc.team2231.robot.commands.OpenHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.Raise;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -47,6 +50,8 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+
+	
 	private Joystick driveStick;
 	private Joystick buttonStick;
 
@@ -55,6 +60,9 @@ public class OI {
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
 	public JoystickButton elevatorPitch;
+	public JoystickButton rotateByNinteyDegrees;
+	private JoystickButton openPiston;
+	private JoystickButton closePiston;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -72,7 +80,17 @@ public class OI {
 		
 		elevatorPitch = new JoystickButton(buttonStick, 7);
 		elevatorPitch.whenPressed(new EvelatorPitchDrop());
+    
+		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
+		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
+		
+		openPiston = new JoystickButton(buttonStick, 5);
+		openPiston.whenPressed(new OpenHolderPiston());
+		closePiston = new JoystickButton(buttonStick, 6);
+		closePiston.whenPressed(new CloseHolderPiston());
+		
 		}
+
 
 	public Joystick getDriveStick() {
 		return driveStick;

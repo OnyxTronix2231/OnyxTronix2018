@@ -1,10 +1,5 @@
 package org.usfirst.frc.team2231.robot.commands;
 
-import org.usfirst.frc.team2231.robot.Robot;
-
-/**
- *
- */
 public class Collect extends ConveyWithCollector {
 	
 
@@ -12,15 +7,5 @@ public class Collect extends ConveyWithCollector {
 
 	public Collect() {
 		super(maxSpeed);
-	}
-
-	@Override
-	protected void execute() {
-		// TODO Auto-generated method stub
-	}
-	@Override
-	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return Robot.m_collector.isCubeCollected();
 	}
 }

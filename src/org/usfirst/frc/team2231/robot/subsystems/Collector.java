@@ -47,10 +47,7 @@ public class Collector extends Subsystem {
 	}
 
 	public boolean isCubeCollected() {
-		if (!microSwitch.get()) {
-			return true;
-		}
-		return false;
+		return !microswitch.get();
 	}
 	
 	public void changeHolderPistonPosition(DoubleSolenoid.Value value) {

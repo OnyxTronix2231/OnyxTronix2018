@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
  *
  */
 public class EvelatorPitchDrop extends TimedCommand {
+	private static final double SPEED = 1;
 
     public EvelatorPitchDrop() {
 		super(0.5);
 	}
 
-	private static final double SPEED = 1;
 
 
     // Called just before this Command runs the first time

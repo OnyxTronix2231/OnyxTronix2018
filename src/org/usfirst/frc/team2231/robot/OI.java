@@ -7,15 +7,16 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.commands.CloseHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.Lower;
+import org.usfirst.frc.team2231.robot.commands.OpenHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.Raise;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -59,6 +60,8 @@ public class OI {
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
 	public JoystickButton rotateByNinteyDegrees;
+	private JoystickButton openPiston;
+	private JoystickButton closePiston;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -76,6 +79,12 @@ public class OI {
     
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
 		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
+		
+		openPiston = new JoystickButton(buttonStick, 5);
+		openPiston.whenPressed(new OpenHolderPiston());
+		closePiston = new JoystickButton(buttonStick, 6);
+		closePiston.whenPressed(new CloseHolderPiston());
+		
 		}
 
 

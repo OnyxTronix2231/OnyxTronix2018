@@ -9,6 +9,8 @@ package org.usfirst.frc.team2231.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import com.kauailabs.navx.frc.AHRS.SerialDataType;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SPI;
@@ -46,20 +48,21 @@ public class RobotMap {
 	public static PIDController driveTrainLeftRotationPIDController;
 	public static PIDController driveTrainRightRotationPIDController;
 	public static SpeedControllerGroup collectorWheels;
+	public static DigitalInput collectorMicroSwitch;
 	private static WPI_TalonSRX elevatorLeftMotor;
 	private static WPI_TalonSRX elevatorRightMotor;
 	public static SpeedControllerGroup elevatorWheels;
+	public static DoubleSolenoid collectorHolderPiston;
 
-	
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
 		driveTrainSecondLeft = new WPI_TalonSRX(1);
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);
-		
-		driveTrainFirstRight= new WPI_TalonSRX(2);
+
+		driveTrainFirstRight = new WPI_TalonSRX(2);
 		driveTrainSecondRight = new WPI_TalonSRX(3);
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
-		
+
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
 		
 
@@ -67,13 +70,16 @@ public class RobotMap {
 		
 		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
 		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainRightTalons);
-		
+
 		collectorLeftWheel = new WPI_TalonSRX(4);
 		collectorRightWheel = new WPI_TalonSRX(5);
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
+		collectorHolderPiston = new DoubleSolenoid(0, 1);
 
 		elevatorLeftMotor = new WPI_TalonSRX(6);
 		elevatorRightMotor = new WPI_TalonSRX(7);
 		elevatorWheels = new SpeedControllerGroup(elevatorLeftMotor, elevatorRightMotor);
+
+		collectorMicroSwitch = new DigitalInput(1);
 	}
 }

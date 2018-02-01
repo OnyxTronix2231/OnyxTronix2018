@@ -28,13 +28,18 @@ public class Collector extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
+	@Override
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 	}
 
-	public void setSpeed(double speed) {
+	public void setSpeed(final double speed) {
+		if (isCubeCollected() && speed > 0) {
+			stop();
+		} else {
 			wheels.set(speed);
+		}
 	}
 
 	public void stop() {
@@ -45,12 +50,12 @@ public class Collector extends Subsystem {
 		return wheels.get() != 0;
 
 	}
-
-	public boolean isCubeCollected() {
-		return !microswitch.get();
-	}
 	
-	public void changeHolderPistonPosition(DoubleSolenoid.Value value) {
+	public boolean isCubeCollected() {
+		return !microSwitch.get();
+	}
+
+	public void changeHolderPistonPosition(final DoubleSolenoid.Value value) {
 		holderPiston.set(value);
 	}
 }

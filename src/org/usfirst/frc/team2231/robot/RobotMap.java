@@ -52,6 +52,7 @@ public class RobotMap {
 	private static WPI_TalonSRX elevatorLeftMotor;
 	private static WPI_TalonSRX elevatorRightMotor;
 	public static SpeedControllerGroup elevatorWheels;
+	public static WPI_TalonSRX elevatorPitchMotor;
 	public static DoubleSolenoid collectorHolderPiston;
 
 	public RobotMap() {
@@ -79,6 +80,8 @@ public class RobotMap {
 		elevatorLeftMotor = new WPI_TalonSRX(6);
 		elevatorRightMotor = new WPI_TalonSRX(7);
 		elevatorWheels = new SpeedControllerGroup(elevatorLeftMotor, elevatorRightMotor);
+		
+		elevatorPitchMotor = new WPI_TalonSRX(8);
 
 		collectorMicroSwitch = new DigitalInput(1);
 	}

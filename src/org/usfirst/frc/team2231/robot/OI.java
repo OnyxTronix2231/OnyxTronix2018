@@ -11,10 +11,10 @@ import org.usfirst.frc.team2231.robot.commands.CloseHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.Eject;
+import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.OpenHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.Raise;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -59,6 +59,7 @@ public class OI {
 	public JoystickButton lowerElevator;
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
+	public JoystickButton elevatorPitch;
 	public JoystickButton rotateByNinteyDegrees;
 	private JoystickButton openPiston;
 	private JoystickButton closePiston;
@@ -76,6 +77,9 @@ public class OI {
 		collectCube.whileHeld(new Collect());
 		ejectCube = new JoystickButton(buttonStick, 3);
 		ejectCube.whileHeld(new Eject());
+		
+		elevatorPitch = new JoystickButton(buttonStick, 7);
+		elevatorPitch.whenPressed(new EvelatorPitchDrop());
     
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
 		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));

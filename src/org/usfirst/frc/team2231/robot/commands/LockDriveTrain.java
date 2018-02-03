@@ -12,7 +12,7 @@ public class LockDriveTrain extends RotateByPID {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return Robot.m_oi.getLeftStick(Robot.m_oi.getDriveStick()) > 0
-				&& Robot.m_oi.getRightStick(Robot.m_oi.getDriveStick()) > 0;
+		return Math.abs(Robot.m_oi.getLeftStick(Robot.m_oi.getDriveStick())) > 0.2
+				|| Math.abs(Robot.m_oi.getRightStick(Robot.m_oi.getDriveStick())) > 0.2;
 	}
 }

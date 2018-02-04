@@ -59,6 +59,12 @@ public class DriveTrain extends Subsystem {
     	leftRotationPIDController.enable();
     }
     
+    public void setRotationTolerance() 
+    {
+    	leftRotationPIDController.setAbsoluteTolerance(rotation_Absolute_Tolerence);
+    	rightRotationPIDController.setAbsoluteTolerance(rotation_Absolute_Tolerence);
+    }
+    
     public boolean isRotationPIDOnPoint() {
     	return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget() && leftTalons.get() < 0.05;
     }
@@ -77,5 +83,6 @@ public class DriveTrain extends Subsystem {
     	leftRotationPIDController.setOutputRange(-1, 1);
     	rightRotationPIDController.setOutputRange(-1, 1);
     }
+    
 }
 

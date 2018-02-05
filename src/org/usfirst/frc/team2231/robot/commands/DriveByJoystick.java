@@ -22,6 +22,10 @@ public class DriveByJoystick extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.m_driveTrain.arcadeDrive(Robot.m_oi.getDriveStick());
+    	System.out.println("FirstLeft: " + Robot.m_driveTrain.firstLeft.get());
+    	System.out.println("FirstRight: " + Robot.m_driveTrain.firstRight.get());
+    	System.out.println("SecondLeft: " + Robot.m_driveTrain.secondLeft.get());
+    	System.out.println("SecondRight: " + Robot.m_driveTrain.secondRight.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()

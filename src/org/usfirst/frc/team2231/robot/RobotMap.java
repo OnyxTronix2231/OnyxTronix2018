@@ -63,8 +63,8 @@ public class RobotMap {
 		
 		driveTrainFirstRight= new WPI_TalonSRX(2);
 		driveTrainSecondRight = new WPI_TalonSRX(3);
+//		driveTrainFirstRight.setSensorPhase(true);
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
-		
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
 		
 

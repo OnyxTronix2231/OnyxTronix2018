@@ -80,13 +80,24 @@ public class DriveTrain extends Subsystem {
     	rightRotationPIDController.setOutputRange(-1, 1);
     }
     
+    public void resetEncoder() {
+    	firstLeft.getSensorCollection().setQuadraturePosition(0, 0);
+    	firstRight.getSensorCollection().setQuadraturePosition(0, 0);
+    	}
+    
     public void setPositionSetpoint(double setpoint) {
     	firstLeft.set(ControlMode.Position, setpoint);
-    	firstRight.set(ControlMode.Position, setpoint);
+    	firstRight.set(ControlMode.Position, -setpoint);
+    	secondLeft.set(ControlMode.Follower, firstLeft.getDeviceID());
+    	secondRight.set(ControlMode.Follower, firstRight.getDeviceID());
+    	System.out.println("Right Side position: " + firstRight.getSensorCollection().getQuadraturePosition());
+    	System.out.println("Left Side position: " + firstLeft.getSensorCollection().getQuadraturePosition());
+    	System.out.println("Right Error: " + firstRight.getClosedLoopError(0));
+    	System.out.println("Left Error: " + firstLeft.getClosedLoopError(0));
     }
     
-    public double getPositionError() {
-    	return firstLeft.getClosedLoopError(0);
+    public boolean getPositionError() {
+    	return Math.abs(firstLeft.getClosedLoopError(0)) < 1  && Math.abs(firstRight.getClosedLoopError(0)) < 1;
     }
 }
 

@@ -18,7 +18,7 @@ public class DriveByEncoder extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	Robot.m_driveTrain.resetEncoder();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,7 +28,7 @@ public class DriveByEncoder extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(Robot.m_driveTrain.getPositionError()) < 1;
+        return Robot.m_driveTrain.getPositionError();
     }
 
     // Called once after isFinished returns true
@@ -38,5 +38,6 @@ public class DriveByEncoder extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

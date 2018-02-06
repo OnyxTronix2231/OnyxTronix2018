@@ -94,13 +94,13 @@ public class DriveTrain extends Subsystem {
 		dLeft = DistanceFinalLeft - firstLeft.getSensorCollection().getQuadraturePosition();
 		if (distanceRight > distanceLeft) {
 			v = distanceLeft / distanceRight;
-			driveTrainRightTalonsP = driveTrainDistanceP * (1.5 - (v / 2));
-			driveTrainLeftTalonsP = driveTrainDistanceP * (0.5 + (v / 2));
+			driveTrainRightTalonsP = driveTrainDistanceP * (1 - ((1-v) / 2));
+			driveTrainLeftTalonsP = driveTrainDistanceP * (1 + ((1-v) / 2));
 		} 
 		else {
 			v = distanceRight / distanceLeft;
-			driveTrainRightTalonsP = driveTrainDistanceP * (0.5 + (v / 2));
-			driveTrainLeftTalonsP = driveTrainDistanceP * (1.5 - (v / 2));
+			driveTrainRightTalonsP = driveTrainDistanceP * (0.5 + ((1-v) / 2));
+			driveTrainLeftTalonsP = driveTrainDistanceP * (1.5 - ((1-v) / 2));
 		}
 		System.out.println("the lower speed: " + v);
 		System.out.println("distance left in the right side" + dRight);

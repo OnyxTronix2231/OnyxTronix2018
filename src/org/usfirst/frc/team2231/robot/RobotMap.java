@@ -78,7 +78,7 @@ public class RobotMap {
     	driveTrainFirstRight.config_kP(0, 1, 0);
     	driveTrainFirstRight.config_kI(0, 0, 0);
     	driveTrainFirstRight.config_kD(0, 0, 0);
-    	driveTrainFirstLeft.configAllowableClosedloopError(0, 1, 0);
+    	driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
 			
 		collectorLeftWheel = new WPI_TalonSRX(4);
 		collectorRightWheel = new WPI_TalonSRX(5);

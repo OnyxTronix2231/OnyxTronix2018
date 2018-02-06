@@ -86,6 +86,7 @@ public class DriveTrain extends Subsystem {
     	}
     
     public void setPositionSetpoint(double setpoint) {
+//    	setpoint = setpoint*Math.PI*6;
     	firstLeft.set(ControlMode.Position, setpoint);
     	firstRight.set(ControlMode.Position, -setpoint);
     	secondLeft.set(ControlMode.Follower, firstLeft.getDeviceID());
@@ -97,7 +98,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public boolean getPositionError() {
-    	return Math.abs(firstLeft.getClosedLoopError(0)) < 1  && Math.abs(firstRight.getClosedLoopError(0)) < 1;
+    	return Math.abs(firstLeft.getClosedLoopError(0)) < 5  && Math.abs(firstRight.getClosedLoopError(0)) < 5;
     }
 }
 

@@ -17,6 +17,7 @@ import org.usfirst.frc.team2231.robot.commands.Raise;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -79,7 +80,7 @@ public class OI {
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
 		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
 		driveTenMeters = new JoystickButton(driveStick, 6);
-		driveTenMeters.whenPressed(new DriveByEncoder(100));
+		driveTenMeters.whenPressed(new DriveByEncoder(SmartDashboard.getNumber("Distance", 1500)));
 		}
 
 

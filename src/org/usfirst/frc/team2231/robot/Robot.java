@@ -49,6 +49,7 @@ public class Robot extends TimedRobot {
 		m_elevatorPitch = new ElevatorPitch();
 		m_oi = new OI();
 		CameraServer.getInstance().startAutomaticCapture();
+		CameraServer.getInstance().startAutomaticCapture(1);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
 

@@ -8,8 +8,9 @@
 package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.commands.CloseHolderPiston;
-import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
+import org.usfirst.frc.team2231.robot.commands.RotateByPID;
 import org.usfirst.frc.team2231.robot.commands.Collect;
+import org.usfirst.frc.team2231.robot.commands.CollectCube;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
@@ -51,7 +52,6 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 
-	
 	private Joystick driveStick;
 	private Joystick buttonStick;
 
@@ -63,39 +63,41 @@ public class OI {
 	public JoystickButton rotateByNinteyDegrees;
 	private JoystickButton openPiston;
 	private JoystickButton closePiston;
+	private JoystickButton collectCubeWithMicroswitch;
 
 	public OI() {
 		driveStick = new Joystick(0);
 		buttonStick = new Joystick(1);
-		
+
 		raiseElevator = new JoystickButton(buttonStick, 1);
 		raiseElevator.whileHeld(new Raise());
 		lowerElevator = new JoystickButton(buttonStick, 4);
 		lowerElevator.whileHeld(new Lower());
-		
+
 		collectCube = new JoystickButton(buttonStick, 2);
 		collectCube.whileHeld(new Collect());
 		ejectCube = new JoystickButton(buttonStick, 3);
 		ejectCube.whileHeld(new Eject());
-		
+
 		elevatorPitch = new JoystickButton(buttonStick, 7);
 		elevatorPitch.whenPressed(new EvelatorPitchDrop());
-    
+
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
 		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
-		
+
 		openPiston = new JoystickButton(buttonStick, 5);
 		openPiston.whenPressed(new OpenHolderPiston());
 		closePiston = new JoystickButton(buttonStick, 6);
 		closePiston.whenPressed(new CloseHolderPiston());
-		
-		}
 
+		collectCubeWithMicroswitch = new JoystickButton(driveStick, 2);
+		collectCubeWithMicroswitch.whileHeld(new CollectCube());
+	}
 
 	public Joystick getDriveStick() {
 		return driveStick;
 	}
-	
+
 	public Joystick getButtonStick() {
 		return buttonStick;
 	}

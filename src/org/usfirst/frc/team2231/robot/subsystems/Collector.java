@@ -10,8 +10,7 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
-import org.usfirst.frc.team2231.robot.RobotMap;
-
+import org.usfirst.frc.team2231.robot.Robot;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -21,10 +20,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Collector extends Subsystem {
-	public static final double SPEED = 1;
-	public final SpeedControllerGroup wheels = RobotMap.collectorWheels;
-	public final DigitalInput microSwitch = RobotMap.collectorMicroSwitch;
-	public final DoubleSolenoid holderPiston = RobotMap.collectorHolderPiston;
+	private boolean isCubeCollected = false;
+	private static final double SPEED = 1;
+	private final SpeedControllerGroup wheels = Robot.m_robotMap.collectorWheels;
+	private final DigitalInput microSwitch = Robot.m_robotMap.collectorMicroSwitch;
+	private final DoubleSolenoid holderPiston = Robot.m_robotMap.collectorHolderPiston;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -35,7 +35,7 @@ public class Collector extends Subsystem {
 	}
 
 	public void setSpeed(final double speed) {
-		if (isCubeCollected() && speed > 0) {
+		if (isMicoSwitchPressed() && speed > 0) {
 			stop();
 		} else {
 			wheels.set(speed);
@@ -51,11 +51,19 @@ public class Collector extends Subsystem {
 
 	}
 	
-	public boolean isCubeCollected() {
+	public boolean isMicoSwitchPressed() {
 		return !microSwitch.get();
 	}
 
 	public void changeHolderPistonPosition(final DoubleSolenoid.Value value) {
 		holderPiston.set(value);
+	}
+
+	public boolean isCubeCollected() {
+		return isCubeCollected;
+	}
+
+	public void setCubeCollected(boolean isCubeCollected) {
+		this.isCubeCollected = isCubeCollected;
 	}
 }

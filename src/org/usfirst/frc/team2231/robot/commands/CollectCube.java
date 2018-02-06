@@ -26,5 +26,6 @@ public class CollectCube extends CommandGroup {
         // arm.
     	addSequential(new OpenHolderPiston());
     	addSequential(new Collect());
+    	addSequential(new CloseHolderPiston());
     }
 }

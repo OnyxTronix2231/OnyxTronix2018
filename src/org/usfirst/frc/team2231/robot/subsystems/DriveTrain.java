@@ -30,6 +30,13 @@ public class DriveTrain extends Subsystem {
 	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
 	public static final PIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
 	public final double rotation_Absolute_Tolerence = 1;
+	
+	public static final double driveTrainDistanceP = Robot.m_robotMap.driveTrainDistanceP;
+	public static final double driveTrainDistanceI = Robot.m_robotMap.driveTrainDistanceI;
+	public static final double driveTrainDistanceD = Robot.m_robotMap.driveTrainDistanceD;
+	public static double driveTrainRightTalonsP;
+	public static double driveTrainLeftTalonsP;
+
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -86,6 +93,7 @@ public class DriveTrain extends Subsystem {
     	}
     
     public void setPositionSetpoint(double setpoint) {
+    	setpoint *= Math.PI * 6 * 2.54;
     	firstLeft.set(ControlMode.Position, setpoint);
     	firstRight.set(ControlMode.Position, -setpoint);
     	secondLeft.set(ControlMode.Follower, firstLeft.getDeviceID());
@@ -99,5 +107,40 @@ public class DriveTrain extends Subsystem {
     public boolean getPositionError() {
     	return Math.abs(firstLeft.getClosedLoopError(0)) < 1  && Math.abs(firstRight.getClosedLoopError(0)) < 1;
     }
+    
+    public void setPsitionSetpoint(double setpointRight, double setpointLeft) {
+		firstRight.set(setpointRight);
+		firstLeft.set(setpointLeft);
+	}
+
+    
+    public void driveInCircleByEncoder(double distanceRight, double distanceLeft) {
+		double v, dRight, dLeft;
+		dRight = distanceRight - firstRight.getSensorCollection().getQuadraturePosition();
+		dLeft = distanceLeft - firstLeft.getSensorCollection().getQuadraturePosition();
+		if (dRight > dLeft) {
+			v = dLeft / dRight;
+			driveTrainRightTalonsP = driveTrainDistanceP * (1 - ((1-v) / 2));
+			driveTrainLeftTalonsP = driveTrainDistanceP * (1 + ((1-v) / 2));
+		} 
+		else {
+			v = dRight / dLeft;
+			driveTrainRightTalonsP = driveTrainDistanceP * (1 + ((1-v) / 2));
+			driveTrainLeftTalonsP = driveTrainDistanceP * (1 - ((1-v) / 2));
+		}
+		System.out.println("the lower speed: " + v);
+		System.out.println("distance left in the right side: " + dRight);
+		System.out.println("distance left in the left side: " + dLeft);
+		System.out.println("P from PID right: " + driveTrainRightTalonsP);
+		System.out.println("P from PID left: " + driveTrainLeftTalonsP);
+		firstLeft.config_kP(0, driveTrainDistanceP, 0);
+		firstLeft.config_kI(0, driveTrainDistanceI, 0);
+		firstLeft.config_kD(0, driveTrainDistanceD, 0);
+		firstRight.config_kP(0, driveTrainDistanceP, 0);
+		firstRight.config_kI(0, driveTrainDistanceI, 0);
+		firstRight.config_kD(0, driveTrainDistanceD, 0);
+		setPsitionSetpoint(dRight, dLeft);
+	}
+
 }
 

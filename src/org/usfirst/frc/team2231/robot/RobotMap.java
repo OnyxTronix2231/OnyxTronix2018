@@ -54,6 +54,9 @@ public class RobotMap {
 	private static WPI_TalonSRX elevatorLeftMotor;
 	private static WPI_TalonSRX elevatorRightMotor;
 	public static SpeedControllerGroup elevatorWheels;
+	public static double driveTrainDistanceP = 1 ;
+	public static double driveTrainDistanceI = 0 ;
+	public static double driveTrainDistanceD = 0 ;
 
 	
 	public RobotMap() {
@@ -72,12 +75,12 @@ public class RobotMap {
 		
 		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
 		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainRightTalons);
-    	driveTrainFirstLeft.config_kP(0, 1, 0);
-    	driveTrainFirstLeft.config_kI(0, 0, 0);
-    	driveTrainFirstLeft.config_kD(0, 0, 0);
-    	driveTrainFirstRight.config_kP(0, 1, 0);
-    	driveTrainFirstRight.config_kI(0, 0, 0);
-    	driveTrainFirstRight.config_kD(0, 0, 0);
+    	driveTrainFirstLeft.config_kP(0, driveTrainDistanceP, 0);
+    	driveTrainFirstLeft.config_kI(0, driveTrainDistanceI, 0);
+    	driveTrainFirstLeft.config_kD(0, driveTrainDistanceD, 0);
+    	driveTrainFirstRight.config_kP(0, driveTrainDistanceP, 0);
+    	driveTrainFirstRight.config_kI(0, driveTrainDistanceI, 0);
+    	driveTrainFirstRight.config_kD(0, driveTrainDistanceD, 0);
     	driveTrainFirstLeft.configAllowableClosedloopError(0, 1, 0);
 			
 		collectorLeftWheel = new WPI_TalonSRX(4);

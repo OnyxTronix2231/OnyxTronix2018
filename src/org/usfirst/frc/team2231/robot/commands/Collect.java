@@ -13,6 +13,15 @@ public class Collect extends ConveyWithCollector {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return Robot.m_collector.isCubeCollected();
+		System.out.println(Robot.m_collector.isMicoSwitchPressed());
+		return Robot.m_collector.isMicoSwitchPressed();
+	}
+
+	@Override
+	protected void end() {
+		super.end();
+		// TODO Auto-generated method stub
+		System.out.println("Collect.end()");
+		Robot.m_collector.setCubeCollected(Robot.m_collector.isMicoSwitchPressed());
 	}
 }

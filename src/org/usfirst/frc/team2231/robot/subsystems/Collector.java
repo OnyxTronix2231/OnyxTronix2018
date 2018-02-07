@@ -11,6 +11,8 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.commands.CollectWhenMicroSwitchIsNotPressed;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -32,6 +34,8 @@ public class Collector extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new CollectWhenMicroSwitchIsNotPressed());
+
 	}
 
 	public void setSpeed(final double speed) {
@@ -65,5 +69,6 @@ public class Collector extends Subsystem {
 
 	public void setCubeCollected(boolean isCubeCollected) {
 		this.isCubeCollected = isCubeCollected;
+		System.out.println(isCubeCollected);
 	}
 }

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -27,5 +28,6 @@ public class CollectCube extends CommandGroup {
     	addSequential(new OpenHolderPiston());
     	addSequential(new Collect());
     	addSequential(new CloseHolderPiston());
+    	addSequential(new WaitCommand(30));
     }
 }

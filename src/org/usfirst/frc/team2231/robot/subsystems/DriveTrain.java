@@ -98,11 +98,11 @@ public class DriveTrain extends Subsystem {
     }
     
     public boolean getPositionError() {
-    	return Math.abs(firstLeft.getClosedLoopError(0)) < 5  && Math.abs(firstRight.getClosedLoopError(0)) < 5;
+    	return Math.abs(firstLeft.getClosedLoopError(0)) < convertToEncoderValue(1) && Math.abs(firstRight.getClosedLoopError(0)) < convertToEncoderValue(1);
     }
     
     public double convertToEncoderValue(double distanceInCentimeters) {
-    	return distanceInCentimeters / (2 * Math.PI * 3 * 2.54) * 256;
+    	return distanceInCentimeters / (2 * Math.PI * 3 * 2.54) * 102;
     }
 }
 

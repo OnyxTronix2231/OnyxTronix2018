@@ -110,6 +110,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		Robot.m_driveTrain.firstLeft.getSensorCollection().setQuadraturePosition(0, 0);
 	}
 
 	/**
@@ -118,6 +119,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		System.out.println(Robot.m_driveTrain.firstLeft.getSensorCollection().getQuadraturePosition());
 	}
 
 	/**

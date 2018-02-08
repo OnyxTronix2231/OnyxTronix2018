@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.Elevator;
@@ -50,6 +52,7 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		CameraServer.getInstance().startAutomaticCapture();
 		CameraServer.getInstance().startAutomaticCapture(1);
+		SmartDashboard.putBoolean("Cube collected", m_collector.isMicoSwitchPressed());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
 
@@ -121,6 +124,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putBoolean("Cube collected", m_collector.isMicoSwitchPressed());
 	}
 
 	/**

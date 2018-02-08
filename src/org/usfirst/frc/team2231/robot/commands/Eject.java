@@ -17,7 +17,6 @@ public class Eject extends ConveyWithCollector {
 	protected void interrupted() {
 		// TODO Auto-generated method stub
 		super.interrupted();
-		System.out.println("Eject.interrupted()");
 		Robot.m_collector.setCubeCollected(Robot.m_collector.isMicoSwitchPressed());
 	}
 }

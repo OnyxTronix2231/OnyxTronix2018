@@ -7,14 +7,14 @@
 
 package org.usfirst.frc.team2231.robot;
 
-import org.usfirst.frc.team2231.robot.commands.CloseHolderPiston;
+import org.usfirst.frc.team2231.robot.commands.OpenCollector;
 import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.CollectCube;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
-import org.usfirst.frc.team2231.robot.commands.OpenHolderPiston;
+import org.usfirst.frc.team2231.robot.commands.CloseCollector;
 import org.usfirst.frc.team2231.robot.commands.Raise;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -88,11 +88,11 @@ public class OI {
 		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
 		
 		openPiston = new JoystickButton(driveStick, 5);
-		openPiston.whenPressed(new CloseHolderPiston());
+		openPiston.whenPressed(new OpenCollector());
 		closePiston = new JoystickButton(driveStick, 6);
-		closePiston.whenPressed(new OpenHolderPiston());
+		closePiston.whenPressed(new CloseCollector());
 		operatorClosePiston = new JoystickButton(buttonStick, 6);
-		operatorClosePiston.whenPressed(new CloseHolderPiston());
+		operatorClosePiston.whenPressed(new OpenCollector());
 		
 		collectCube = new JoystickButton(buttonStick, 8);
 		collectCube.whileHeld(new CollectCube());

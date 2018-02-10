@@ -12,7 +12,6 @@ package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.commands.CollectWhenMicroSwitchIsNotPressed;
-
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -22,8 +21,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Collector extends Subsystem {
-	private boolean isCubeCollected = false;
-	private static final double SPEED = 1;
+	private boolean m_isCubeCollected = false;
 	private final SpeedControllerGroup wheels = Robot.m_robotMap.collectorWheels;
 	private final DigitalInput microSwitch = Robot.m_robotMap.collectorMicroSwitch;
 	private final DoubleSolenoid holderPiston = Robot.m_robotMap.collectorHolderPiston;
@@ -35,7 +33,6 @@ public class Collector extends Subsystem {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new CollectWhenMicroSwitchIsNotPressed());
-
 	}
 
 	public void setSpeed(final double speed) {
@@ -64,11 +61,11 @@ public class Collector extends Subsystem {
 	}
 
 	public boolean isCubeCollected() {
-		return isCubeCollected;
+		return m_isCubeCollected;
 	}
 
 	public void setCubeCollected(boolean isCubeCollected) {
-		this.isCubeCollected = isCubeCollected;
+		this.m_isCubeCollected = isCubeCollected;
 		System.out.println(isCubeCollected);
 	}
 }

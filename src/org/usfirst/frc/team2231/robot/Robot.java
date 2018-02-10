@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.Elevator;
@@ -34,6 +32,7 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
 	public static Elevator m_elevator;
 	public static ElevatorPitch m_elevatorPitch;
+	public static SmartDashboardUpdater m_smartDashboardUpdater;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -50,9 +49,10 @@ public class Robot extends TimedRobot {
 		m_elevator = new Elevator();
 		m_elevatorPitch = new ElevatorPitch();
 		m_oi = new OI();
+		m_smartDashboardUpdater = new SmartDashboardUpdater();
 		CameraServer.getInstance().startAutomaticCapture();
 		CameraServer.getInstance().startAutomaticCapture(1);
-		SmartDashboard.putBoolean("Cube collected", m_collector.isMicoSwitchPressed());
+		m_smartDashboardUpdater.UpdateDashboard();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
 
@@ -63,8 +63,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
-	}
+    }
 
 	@Override
 	public void disabledPeriodic() {
@@ -124,7 +123,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putBoolean("Cube collected", m_collector.isMicoSwitchPressed());
+		m_smartDashboardUpdater.UpdateDashboard();
 	}
 
 	/**

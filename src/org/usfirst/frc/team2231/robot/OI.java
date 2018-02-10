@@ -64,7 +64,7 @@ public class OI {
 	public JoystickButton rotateByNinteyDegrees;
 	private JoystickButton openCollector;
 	private JoystickButton closeCollector;
-	private JoystickButton operatorClosePiston;
+	private JoystickButton operatorOpenCollector;
 	private JoystickButton collectCube;
 
 	public OI() {
@@ -91,8 +91,8 @@ public class OI {
 		openCollector.whenPressed(new OpenCollector());
 		closeCollector = new JoystickButton(driveStick, 6);
 		closeCollector.whenPressed(new CloseCollector());
-		operatorClosePiston = new JoystickButton(buttonStick, 6);
-		operatorClosePiston.whenPressed(new OpenCollector());
+		operatorOpenCollector = new JoystickButton(buttonStick, 6);
+		operatorOpenCollector.whenPressed(new OpenCollector());
 		
 		collectCube = new JoystickButton(buttonStick, 8);
 		collectCube.whileHeld(new CollectCube());

@@ -72,10 +72,10 @@ public class RobotMap {
 		
 		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
 		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainRightTalons);
-    	driveTrainFirstLeft.config_kP(0, 4, 0);
+    	driveTrainFirstLeft.config_kP(0, 1, 0);
     	driveTrainFirstLeft.config_kI(0, 0, 0);
     	driveTrainFirstLeft.config_kD(0, 0, 0);
-    	driveTrainFirstRight.config_kP(0, 4, 0);
+    	driveTrainFirstRight.config_kP(0, 1, 0);
     	driveTrainFirstRight.config_kI(0, 0, 0);
     	driveTrainFirstRight.config_kD(0, 0, 0);
     	driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);

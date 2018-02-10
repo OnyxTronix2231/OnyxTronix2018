@@ -12,6 +12,8 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import com.kauailabs.navx.frc.AHRS.SerialDataType;
+
+import OnyxTronix.LineTracker;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -48,7 +50,7 @@ public class RobotMap {
 	public static PIDController driveTrainLeftRotationPIDController;
 	public static PIDController driveTrainRightRotationPIDController;
 	public static SpeedControllerGroup collectorWheels;
-	public static DigitalInput collectorMicroSwitch;
+	public LineTracker collectorLineTracker;
 	private static WPI_TalonSRX elevatorLeftMotor;
 	private static WPI_TalonSRX elevatorRightMotor;
 	public static SpeedControllerGroup elevatorWheels;
@@ -83,6 +85,6 @@ public class RobotMap {
 		
 		elevatorPitchMotor = new WPI_TalonSRX(8);
 
-		collectorMicroSwitch = new DigitalInput(1);
+		collectorLineTracker = new LineTracker(2, 4);
 	}
 }

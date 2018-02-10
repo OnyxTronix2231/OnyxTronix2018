@@ -16,7 +16,8 @@ public class OpenCollector extends InstantCommand {
     }
 
     // Called once when the command executes
-    protected void initialize() {
+    @Override
+	protected void initialize() {
     	Robot.m_collector.changeHolderPistonPosition(Value.kForward);
     }
 

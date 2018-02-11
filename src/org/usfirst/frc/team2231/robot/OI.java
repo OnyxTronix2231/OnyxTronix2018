@@ -16,11 +16,11 @@ import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.OpenHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.Raise;
+import org.usfirst.frc.team2231.robot.commands.DriveToRightSwitchFromMiddle;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -86,7 +86,7 @@ public class OI {
 		elevatorPitch.whenPressed(new EvelatorPitchDrop());
     
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
-		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
+		rotateByNinteyDegrees.whenPressed(new DriveToRightSwitchFromMiddle());
 		
 		openPiston = new JoystickButton(buttonStick, 5);
 		openPiston.whenPressed(new OpenHolderPiston());

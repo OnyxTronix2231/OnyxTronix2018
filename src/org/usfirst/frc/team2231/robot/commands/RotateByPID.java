@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
@@ -18,6 +19,7 @@ public class RotateByPID extends Command {
     	Robot.m_driveTrain.setRotationSetpoint(Robot.m_driveTrain.getAngle() + m_setpoint);
     	Robot.m_driveTrain.setOutputRange();
     	Robot.m_driveTrain.enableRotationPIDControllers();
+    	System.out.println(Robot.m_driveTrain.getAngle());
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -74,12 +74,12 @@ public class RobotMap {
 
 		driveTrainNavX = new AHRS(SPI.Port.kMXP);	
 		
-		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
-		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainRightTalons);
-		driveTrainFirstLeft.config_kP(0, 1, 0);
+		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0, driveTrainNavX, driveTrainleftTalons);
+		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0, driveTrainNavX, driveTrainRightTalons);
+		driveTrainFirstLeft.config_kP(0, 2, 0);
 		driveTrainFirstLeft.config_kI(0, 0, 0);
 		driveTrainFirstLeft.config_kD(0, 0, 0);
-		driveTrainFirstRight.config_kP(0, 1, 0);
+		driveTrainFirstRight.config_kP(0, 2, 0);
 		driveTrainFirstRight.config_kI(0, 0, 0);
 		driveTrainFirstRight.config_kD(0, 0, 0);
 		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);

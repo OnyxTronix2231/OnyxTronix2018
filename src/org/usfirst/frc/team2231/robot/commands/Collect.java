@@ -12,12 +12,12 @@ public class Collect extends ConveyWithCollector {
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.m_collector.isMicoSwitchPressed();
+		return Robot.m_collector.isMicroSwitchPressed();
 	}
 
 	@Override
 	protected void end() {
 		super.end();
-		Robot.m_collector.setCubeCollected(Robot.m_collector.isMicoSwitchPressed());
+		Robot.m_collector.setCubeCollected(Robot.m_collector.isMicroSwitchPressed());
 	}
 }

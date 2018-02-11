@@ -14,6 +14,6 @@ public class CollectWhenMicroSwitchIsNotPressed extends ConditionalCommand {
 	@Override
 	protected boolean condition() {
 		// TODO Auto-generated method stub
-		return Robot.m_collector.isCubeCollected() && !Robot.m_collector.isMicoSwitchPressed();
+		return Robot.m_collector.isCubeCollected() && !Robot.m_collector.isMicroSwitchPressed();
 	}
 }

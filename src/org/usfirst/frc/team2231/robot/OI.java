@@ -11,6 +11,7 @@ import org.usfirst.frc.team2231.robot.commands.CloseHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.DriveByEncoder;
+import org.usfirst.frc.team2231.robot.commands.DriveFromRightTorightSwitch;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
@@ -63,7 +64,7 @@ public class OI {
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
 	public JoystickButton elevatorPitch;
-	public JoystickButton rotateByNinteyDegrees;
+	public JoystickButton driveFromRightToRightSwitch;
 	public JoystickButton driveTenMeters;
 	private JoystickButton openPiston;
 	private JoystickButton closePiston;
@@ -85,8 +86,9 @@ public class OI {
 		elevatorPitch = new JoystickButton(buttonStick, 7);
 		elevatorPitch.whenPressed(new EvelatorPitchDrop());
     
-		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
-		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
+		driveFromRightToRightSwitch = new JoystickButton(driveStick, 5);
+		driveFromRightToRightSwitch.whenPressed(new DriveFromRightTorightSwitch());
+		
 		
 		openPiston = new JoystickButton(buttonStick, 5);
 		openPiston.whenPressed(new OpenHolderPiston());

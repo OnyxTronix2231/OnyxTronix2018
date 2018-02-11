@@ -68,7 +68,6 @@ public class RobotMap {
 
 		driveTrainFirstRight = new WPI_TalonSRX(2);
 		driveTrainSecondRight = new WPI_TalonSRX(3);
-//		driveTrainFirstRight.setSensorPhase(true);
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
 		
@@ -77,13 +76,13 @@ public class RobotMap {
 		
 		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
 		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainRightTalons);
-    driveTrainFirstLeft.config_kP(0, 1, 0);
-    driveTrainFirstLeft.config_kI(0, 0, 0);
-    driveTrainFirstLeft.config_kD(0, 0, 0);
-    driveTrainFirstRight.config_kP(0, 1, 0);
-    driveTrainFirstRight.config_kI(0, 0, 0);
-    driveTrainFirstRight.config_kD(0, 0, 0);
-    driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
+		driveTrainFirstLeft.config_kP(0, 1, 0);
+		driveTrainFirstLeft.config_kI(0, 0, 0);
+		driveTrainFirstLeft.config_kD(0, 0, 0);
+		driveTrainFirstRight.config_kP(0, 1, 0);
+		driveTrainFirstRight.config_kI(0, 0, 0);
+		driveTrainFirstRight.config_kD(0, 0, 0);
+		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
 		collectorLeftWheel = new WPI_TalonSRX(4);
 		collectorRightWheel = new WPI_TalonSRX(5);
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);

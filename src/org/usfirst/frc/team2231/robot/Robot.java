@@ -116,7 +116,6 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
-		Robot.m_driveTrain.firstLeft.getSensorCollection().setQuadraturePosition(0, 0);
 	}
 
 	/**

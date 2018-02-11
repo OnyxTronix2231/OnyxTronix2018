@@ -29,6 +29,7 @@ public class DriveTrain extends Subsystem {
 	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
 	public static final PIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
 	public final double rotation_Absolute_Tolerence = 1;
+	public final double wheelRadius = 3;
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -107,7 +108,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public double convertToEncoderValue(double distanceInCentimeters) {
-    	distanceInCentimeters /= 2 * Math.PI * 3;
+    	distanceInCentimeters /= 2 * Math.PI * wheelRadius;
     	distanceInCentimeters *= 300;
     	return distanceInCentimeters;
     }

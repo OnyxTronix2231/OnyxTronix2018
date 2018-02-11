@@ -1,36 +1,34 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveByJoystick extends Command {
+public class DriveByEncoder extends Command {
+	double m_setpoint;
 
-    public DriveByJoystick() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public DriveByEncoder(double setpoint) {
+        m_setpoint = setpoint;
     	requires(Robot.m_driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.m_driveTrain.resetEncoder();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.m_driveTrain.arcadeDrive(Robot.m_oi.getDriveStick());
-    	System.out.println("FirstLeft: " + Robot.m_driveTrain.firstLeft.get());
-    	System.out.println("FirstRight: " + Robot.m_driveTrain.firstRight.get());
-    	System.out.println("SecondLeft: " + Robot.m_driveTrain.secondLeft.get());
-    	System.out.println("SecondRight: " + Robot.m_driveTrain.secondRight.get());
+    	Robot.m_driveTrain.setPositionSetpoint(m_setpoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.m_driveTrain.getPositionError();
     }
 
     // Called once after isFinished returns true
@@ -40,5 +38,6 @@ public class DriveByJoystick extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

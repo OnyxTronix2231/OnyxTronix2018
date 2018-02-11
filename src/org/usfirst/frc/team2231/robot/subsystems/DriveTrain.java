@@ -3,6 +3,7 @@ package org.usfirst.frc.team2231.robot.subsystems;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -28,6 +29,7 @@ public class DriveTrain extends Subsystem {
 	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
 	public static final PIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
 	public final double rotation_Absolute_Tolerence = 1;
+	public final double wheelRadius = 3;
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -84,5 +86,31 @@ public class DriveTrain extends Subsystem {
     	rightRotationPIDController.setOutputRange(-1, 1);
     }
     
+    public void resetEncoder() {
+    	firstLeft.getSensorCollection().setQuadraturePosition(0, 0);
+    	firstRight.getSensorCollection().setQuadraturePosition(0, 0);
+    	}
+    
+    public void setPositionSetpoint(double setpoint) {
+    	setpoint = convertToEncoderValue(setpoint);
+    	firstLeft.set(ControlMode.Position, setpoint);
+    	firstRight.set(ControlMode.Position, -setpoint);
+    	secondLeft.set(ControlMode.Follower, firstLeft.getDeviceID());
+    	secondRight.set(ControlMode.Follower, firstRight.getDeviceID());
+    	System.out.println("Right Side position: " + firstRight.getSensorCollection().getQuadraturePosition());
+    	System.out.println("Left Side position: " + firstLeft.getSensorCollection().getQuadraturePosition());
+    	System.out.println("Right Error: " + firstRight.getClosedLoopError(0));
+    	System.out.println("Left Error: " + firstLeft.getClosedLoopError(0));
+    }
+    
+    public boolean getPositionError() {
+    	return Math.abs(firstLeft.getClosedLoopError(0)) < 30 && Math.abs(firstRight.getClosedLoopError(0)) < 30;
+    }
+    
+    public double convertToEncoderValue(double distanceInCentimeters) {
+    	distanceInCentimeters /= 2 * Math.PI * wheelRadius;
+    	distanceInCentimeters *= 300;
+    	return distanceInCentimeters;
+    }
 }
 

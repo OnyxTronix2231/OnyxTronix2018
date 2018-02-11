@@ -1,8 +1,5 @@
 package org.usfirst.frc.team2231.robot.commands;
 
-/**
- *
- */
 public class Collect extends ConveyWithCollector {
 	
 
@@ -11,5 +8,4 @@ public class Collect extends ConveyWithCollector {
 	public Collect() {
 		super(maxSpeed);
 	}
-
 }

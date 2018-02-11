@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -16,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.Elevator;
+import org.usfirst.frc.team2231.robot.subsystems.ElevatorPitch;
 import org.usfirst.frc.team2231.robot.OI;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,6 +33,7 @@ public class Robot extends TimedRobot {
 	public static RobotMap m_robotMap;
 	public static OI m_oi;
 	public static Elevator m_elevator;
+	public static ElevatorPitch m_elevatorPitch;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -45,7 +48,10 @@ public class Robot extends TimedRobot {
 		m_driveTrain = new DriveTrain();
 		m_collector = new Collector();
 		m_elevator = new Elevator();
+		m_elevatorPitch = new ElevatorPitch();
 		m_oi = new OI();
+		CameraServer.getInstance().startAutomaticCapture();
+		CameraServer.getInstance().startAutomaticCapture(1);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putNumber("Distance", 1500);
 	}

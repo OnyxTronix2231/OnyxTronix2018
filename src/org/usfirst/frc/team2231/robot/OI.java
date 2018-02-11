@@ -7,17 +7,19 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.commands.CloseHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.DriveByEncoder;
 import org.usfirst.frc.team2231.robot.commands.Eject;
+import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
+import org.usfirst.frc.team2231.robot.commands.OpenHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.Raise;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -60,8 +62,11 @@ public class OI {
 	public JoystickButton lowerElevator;
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
+	public JoystickButton elevatorPitch;
 	public JoystickButton rotateByNinteyDegrees;
 	public JoystickButton driveTenMeters;
+	private JoystickButton openPiston;
+	private JoystickButton closePiston;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -76,11 +81,20 @@ public class OI {
 		collectCube.whileHeld(new Collect());
 		ejectCube = new JoystickButton(buttonStick, 3);
 		ejectCube.whileHeld(new Eject());
+		
+		elevatorPitch = new JoystickButton(buttonStick, 7);
+		elevatorPitch.whenPressed(new EvelatorPitchDrop());
     
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
 		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
 		driveTenMeters = new JoystickButton(driveStick, 6);
 		driveTenMeters.whenPressed(new DriveByEncoder(SmartDashboard.getNumber("Distance", 290)));
+		
+		openPiston = new JoystickButton(buttonStick, 5);
+		openPiston.whenPressed(new OpenHolderPiston());
+		closePiston = new JoystickButton(buttonStick, 6);
+		closePiston.whenPressed(new CloseHolderPiston());
+		
 		}
 
 

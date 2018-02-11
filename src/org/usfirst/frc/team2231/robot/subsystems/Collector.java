@@ -36,7 +36,7 @@ public class Collector extends Subsystem {
 	}
 
 	public void setSpeed(final double speed) {
-		if (isMicoSwitchPressed() && speed > 0) {
+		if (isMicroSwitchPressed() && speed > 0) {
 			stop();
 		} else {
 			wheels.set(speed);
@@ -52,7 +52,7 @@ public class Collector extends Subsystem {
 
 	}
 	
-	public boolean isMicoSwitchPressed() {
+	public boolean isMicroSwitchPressed() {
 		return !microSwitch.get();
 	}
 

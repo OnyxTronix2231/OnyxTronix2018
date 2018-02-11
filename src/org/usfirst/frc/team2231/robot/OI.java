@@ -87,8 +87,6 @@ public class OI {
     
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
 		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
-		driveTenMeters = new JoystickButton(driveStick, 6);
-		driveTenMeters.whenPressed(new DriveByEncoder(SmartDashboard.getNumber("Distance", 290)));
 		
 		openPiston = new JoystickButton(buttonStick, 5);
 		openPiston.whenPressed(new OpenHolderPiston());

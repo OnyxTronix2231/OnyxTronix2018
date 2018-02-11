@@ -11,8 +11,7 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.RobotMap;
-
+import org.usfirst.frc.team2231.robot.commands.CollectWhenMicroSwitchIsNotPressed;
 import OnyxTronix.LineTracker;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -23,10 +22,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Collector extends Subsystem {
-	public static final double SPEED = 1;
-	public final SpeedControllerGroup wheels = RobotMap.collectorWheels;
+	private boolean m_isCubeCollected = false;
+	private final SpeedControllerGroup wheels = Robot.m_robotMap.collectorWheels;
+	private final DigitalInput microSwitch = Robot.m_robotMap.collectorMicroSwitch;
 	public final LineTracker lineTracker = Robot.m_robotMap.collectorLineTracker;
-	public final DoubleSolenoid holderPiston = RobotMap.collectorHolderPiston;
+	private final DoubleSolenoid holderPiston = Robot.m_robotMap.collectorHolderPiston;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -34,10 +34,11 @@ public class Collector extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new CollectWhenMicroSwitchIsNotPressed());
 	}
 
 	public void setSpeed(final double speed) {
-		if (isCubeCollected() && speed > 0) {
+		if (isMicroSwitchPressed() && speed > 0) {
 			stop();
 		} else {
 			wheels.set(speed);
@@ -53,11 +54,20 @@ public class Collector extends Subsystem {
 
 	}
 	
-	public boolean isCubeCollected() {
+	public boolean isMicroSwitchPressed() {
 		return lineTracker.isPressed();
 	}
 
 	public void changeHolderPistonPosition(final DoubleSolenoid.Value value) {
 		holderPiston.set(value);
+	}
+
+	public boolean isCubeCollected() {
+		return m_isCubeCollected;
+	}
+
+	public void setCubeCollected(boolean isCubeCollected) {
+		this.m_isCubeCollected = isCubeCollected;
+		System.out.println(isCubeCollected);
 	}
 }

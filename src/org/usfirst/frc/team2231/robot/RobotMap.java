@@ -10,9 +10,9 @@ package org.usfirst.frc.team2231.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import com.kauailabs.navx.frc.AHRS.SerialDataType;
 
 
 import OnyxTronix.LineTracker;
@@ -51,15 +51,14 @@ public class RobotMap {
 	public static AHRS driveTrainNavX;
 	public static PIDController driveTrainLeftRotationPIDController;
 	public static PIDController driveTrainRightRotationPIDController;
-	public static PIDController driveTrainLeftDrivePIDController;
-	public static PIDController driveTrainRightDrivePIDController;
-	public static SpeedControllerGroup collectorWheels;
+	public SpeedControllerGroup collectorWheels;
+	public DigitalInput collectorMicroSwitch;
+	private WPI_TalonSRX elevatorLeftMotor;
+	private WPI_TalonSRX elevatorRightMotor;
 	public LineTracker collectorLineTracker;
-	private static WPI_TalonSRX elevatorLeftMotor;
-	private static WPI_TalonSRX elevatorRightMotor;
-	public static SpeedControllerGroup elevatorWheels;
-	public static WPI_TalonSRX elevatorPitchMotor;
-	public static DoubleSolenoid collectorHolderPiston;
+	public SpeedControllerGroup elevatorWheels;
+	public WPI_TalonSRX elevatorPitchMotor;
+	public DoubleSolenoid collectorHolderPiston;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);

@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import OnyxTronix.LineTracker;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -46,18 +47,18 @@ public class RobotMap {
 	public static DifferentialDrive driveTrainRobotDrive;
 	public static SpeedControllerGroup driveTrainleftTalons;
 	public static SpeedControllerGroup driveTrainRightTalons;
-	public static WPI_TalonSRX collectorLeftWheel;
-	public static WPI_TalonSRX collectorRightWheel;
+	public static SpeedController collectorLeftWheel;
+	public static SpeedController collectorRightWheel;
 	public static AHRS driveTrainNavX;
 	public static PIDController driveTrainLeftRotationPIDController;
 	public static PIDController driveTrainRightRotationPIDController;
 	public SpeedControllerGroup collectorWheels;
 	public DigitalInput collectorMicroSwitch;
-	private WPI_TalonSRX elevatorLeftMotor;
-	private WPI_TalonSRX elevatorRightMotor;
+	private SpeedController elevatorLeftMotor;
+	private SpeedController elevatorRightMotor;
 	public LineTracker collectorLineTracker;
 	public SpeedControllerGroup elevatorWheels;
-	public WPI_TalonSRX elevatorPitchMotor;
+	public SpeedController elevatorPitchMotor;
 	public DoubleSolenoid collectorHolderPiston;
 
 	public RobotMap() {

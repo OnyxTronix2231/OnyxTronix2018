@@ -97,10 +97,6 @@ public class DriveTrain extends Subsystem {
     	firstRight.set(ControlMode.Position, -setpoint);
     	secondLeft.set(ControlMode.Follower, firstLeft.getDeviceID());
     	secondRight.set(ControlMode.Follower, firstRight.getDeviceID());
-    	System.out.println("Right Side position: " + firstRight.getSensorCollection().getQuadraturePosition());
-    	System.out.println("Left Side position: " + firstLeft.getSensorCollection().getQuadraturePosition());
-    	System.out.println("Right Error: " + firstRight.getClosedLoopError(0));
-    	System.out.println("Left Error: " + firstLeft.getClosedLoopError(0));
     }
     
     public boolean getPositionError() {

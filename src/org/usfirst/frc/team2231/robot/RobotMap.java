@@ -40,10 +40,10 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	public static WPI_TalonSRX driveTrainFirstLeft;
 	public static WPI_TalonSRX driveTrainSecondLeft;
-	public static WPI_TalonSRX driveTrainThirdLeft;
+	public WPI_TalonSRX driveTrainThirdLeft;
 	public static WPI_TalonSRX driveTrainFirstRight;
 	public static WPI_TalonSRX driveTrainSecondRight;
-	public static WPI_TalonSRX driveTrainThirdRight;
+	public WPI_TalonSRX driveTrainThirdRight;
 	public static DifferentialDrive driveTrainRobotDrive;
 	public static SpeedControllerGroup driveTrainleftTalons;
 	public static SpeedControllerGroup driveTrainRightTalons;

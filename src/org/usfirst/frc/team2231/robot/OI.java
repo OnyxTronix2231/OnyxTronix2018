@@ -67,6 +67,7 @@ public class OI {
 	public JoystickButton driveTenMeters;
 	private JoystickButton openPiston;
 	private JoystickButton closePiston;
+	private JoystickButton driveToLeftSwitchFromMiddle;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -93,6 +94,7 @@ public class OI {
 		closePiston = new JoystickButton(buttonStick, 6);
 		closePiston.whenPressed(new CloseHolderPiston());
 		
+		driveToLeftSwitchFromMiddle = new JoystickButton(driveStick, 6);
 		}
 
 

@@ -40,10 +40,10 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	public static WPI_TalonSRX driveTrainFirstLeft;
 	public static WPI_TalonSRX driveTrainSecondLeft;
-//	public static WPI_TalonSRX driveTrainThirdLeft;
+	public static WPI_TalonSRX driveTrainThirdLeft;
 	public static WPI_TalonSRX driveTrainFirstRight;
 	public static WPI_TalonSRX driveTrainSecondRight;
-//	public static WPI_TalonSRX driveTrainThirdRight;
+	public static WPI_TalonSRX driveTrainThirdRight;
 	public static DifferentialDrive driveTrainRobotDrive;
 	public static SpeedControllerGroup driveTrainleftTalons;
 	public static SpeedControllerGroup driveTrainRightTalons;
@@ -54,8 +54,10 @@ public class RobotMap {
 	public static PIDController driveTrainRightRotationPIDController;
 	public SpeedControllerGroup collectorWheels;
 	public DigitalInput collectorMicroSwitch;
-	private SpeedController elevatorLeftMotor;
-	private SpeedController elevatorRightMotor;
+	private SpeedController elevatorFirstMotor;
+	private SpeedController elevatorSecondMotor;
+	private SpeedController elevatorThirdMotor;
+	private SpeedController elevatorFourthMotor;
 	public LineTracker collectorLineTracker;
 	public SpeedControllerGroup elevatorWheels;
 	public SpeedController elevatorPitchMotor;
@@ -64,10 +66,12 @@ public class RobotMap {
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
 		driveTrainSecondLeft = new WPI_TalonSRX(1);
+		driveTrainThirdLeft = new WPI_TalonSRX(2);
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);
 
-		driveTrainFirstRight = new WPI_TalonSRX(2);
-		driveTrainSecondRight = new WPI_TalonSRX(3);
+		driveTrainFirstRight = new WPI_TalonSRX(3);
+		driveTrainSecondRight = new WPI_TalonSRX(4);
+		driveTrainThirdRight = new WPI_TalonSRX(5);
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
 		
@@ -83,16 +87,19 @@ public class RobotMap {
 		driveTrainFirstRight.config_kI(0, 0, 0);
 		driveTrainFirstRight.config_kD(0, 0, 0);
 		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
-		collectorLeftWheel = new WPI_TalonSRX(4);
-		collectorRightWheel = new WPI_TalonSRX(5);
+		
+		collectorLeftWheel = new WPI_TalonSRX(6);
+		collectorRightWheel = new WPI_TalonSRX(7);
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
 		collectorHolderPiston = new DoubleSolenoid(0, 1);
 
-		elevatorLeftMotor = new WPI_TalonSRX(6);
-		elevatorRightMotor = new WPI_TalonSRX(7);
-		elevatorWheels = new SpeedControllerGroup(elevatorLeftMotor, elevatorRightMotor);
+		elevatorFirstMotor = new WPI_TalonSRX(8);
+		elevatorSecondMotor = new WPI_TalonSRX(9);
+		elevatorThirdMotor = new WPI_TalonSRX(10);
+		elevatorFourthMotor = new WPI_TalonSRX(11);
+		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor, elevatorFourthMotor);
 		
-		elevatorPitchMotor = new WPI_TalonSRX(8);
+		elevatorPitchMotor = new WPI_TalonSRX(12);
 
 		collectorLineTracker = new LineTracker(2, 4);
 	}

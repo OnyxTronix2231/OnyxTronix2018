@@ -61,7 +61,8 @@ public class RobotMap {
 	public LineTracker collectorLineTracker;
 	public SpeedControllerGroup elevatorWheels;
 	public SpeedController elevatorPitchMotor;
-	public DoubleSolenoid collectorHolderPiston;
+	public DoubleSolenoid collectorHolderPistonLeft;
+	public DoubleSolenoid collectorHolderPistonRight;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -91,7 +92,8 @@ public class RobotMap {
 		collectorLeftWheel = new WPI_TalonSRX(6);
 		collectorRightWheel = new WPI_TalonSRX(7);
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
-		collectorHolderPiston = new DoubleSolenoid(0, 1);
+		collectorHolderPistonLeft = new DoubleSolenoid(0, 1);
+		collectorHolderPistonRight = new DoubleSolenoid(2, 3);
 
 		elevatorFirstMotor = new WPI_TalonSRX(8);
 		elevatorSecondMotor = new WPI_TalonSRX(9);

@@ -26,7 +26,8 @@ public class Collector extends Subsystem {
 	private final SpeedControllerGroup wheels = Robot.m_robotMap.collectorWheels;
 	private final DigitalInput microSwitch = Robot.m_robotMap.collectorMicroSwitch;
 	public final LineTracker lineTracker = Robot.m_robotMap.collectorLineTracker;
-	private final DoubleSolenoid holderPiston = Robot.m_robotMap.collectorHolderPiston;
+	private final DoubleSolenoid holderPistonLeft = Robot.m_robotMap.collectorHolderPistonLeft;
+	private final DoubleSolenoid holderPistonRight = Robot.m_robotMap.collectorHolderPistonRight;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -59,7 +60,8 @@ public class Collector extends Subsystem {
 	}
 
 	public void changeHolderPistonPosition(final DoubleSolenoid.Value value) {
-		holderPiston.set(value);
+		holderPistonLeft.set(value);
+		holderPistonRight.set(value);
 	}
 
 	public boolean isCubeCollected() {

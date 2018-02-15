@@ -21,7 +21,6 @@ import org.usfirst.frc.team2231.robot.subsystems.Elevator;
 import org.usfirst.frc.team2231.robot.subsystems.ElevatorPitch;
 
 import java.text.FieldPosition;
-
 import org.usfirst.frc.team2231.robot.OI;
 
 /**

@@ -8,16 +8,17 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class OpenHolderPiston extends InstantCommand {
+public class OpenCollector extends InstantCommand {
 
-    public OpenHolderPiston() {
+    public OpenCollector() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called once when the command executes
-    protected void initialize() {
-    	Robot.m_collector.changeHolderPistonPosition(Value.kReverse);
+    @Override
+	protected void initialize() {
+    	Robot.m_collector.changeHolderPistonPosition(Value.kForward);
     }
 
 }

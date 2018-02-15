@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -24,7 +25,9 @@ public class CollectCube extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new OpenHolderPiston());
+    	addSequential(new OpenCollector());
     	addSequential(new Collect());
+    	addSequential(new CloseCollector());
+    	addSequential(new WaitCommand(30));
     }
 }

@@ -39,6 +39,7 @@ public class Robot extends TimedRobot {
 	public static Elevator m_elevator;
 	public static ElevatorPitch m_elevatorPitch;
 	public static FieldPositions m_fieldPositions;
+	public static SmartDashboardUpdater m_smartDashboardUpdater;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -55,8 +56,10 @@ public class Robot extends TimedRobot {
 		m_elevator = new Elevator();
 		m_elevatorPitch = new ElevatorPitch();
 		m_oi = new OI();
+		m_smartDashboardUpdater = new SmartDashboardUpdater();
 		CameraServer.getInstance().startAutomaticCapture();
 		CameraServer.getInstance().startAutomaticCapture(1);
+		m_smartDashboardUpdater.UpdateDashboard();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putNumber("Distance", 1500);
 	}
@@ -68,8 +71,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
-	}
+    }
 
 	@Override
 	public void disabledPeriodic() {
@@ -132,6 +134,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		m_smartDashboardUpdater.UpdateDashboard();
 	}
 
 	/**

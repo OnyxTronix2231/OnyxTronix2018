@@ -10,14 +10,15 @@ package org.usfirst.frc.team2231.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import com.kauailabs.navx.frc.AHRS.SerialDataType;
 
 
 import OnyxTronix.LineTracker;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -37,29 +38,26 @@ public class RobotMap {
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
-	public static WPI_TalonSRX driveTrainFirstLeft;
-	public static WPI_TalonSRX driveTrainSecondLeft;
-//	public static WPI_TalonSRX driveTrainThirdLeft;
-	public static WPI_TalonSRX driveTrainFirstRight;
-	public static WPI_TalonSRX driveTrainSecondRight;
-//	public static WPI_TalonSRX driveTrainThirdRight;
-	public static DifferentialDrive driveTrainRobotDrive;
-	public static SpeedControllerGroup driveTrainleftTalons;
-	public static SpeedControllerGroup driveTrainRightTalons;
-	public static WPI_TalonSRX collectorLeftWheel;
-	public static WPI_TalonSRX collectorRightWheel;
-	public static AHRS driveTrainNavX;
-	public static PIDController driveTrainLeftRotationPIDController;
-	public static PIDController driveTrainRightRotationPIDController;
-	public static PIDController driveTrainLeftDrivePIDController;
-	public static PIDController driveTrainRightDrivePIDController;
-	public static SpeedControllerGroup collectorWheels;
+	public WPI_TalonSRX driveTrainFirstLeft;
+	public WPI_TalonSRX driveTrainSecondLeft;
+	public WPI_TalonSRX driveTrainFirstRight;
+	public WPI_TalonSRX driveTrainSecondRight;
+	public DifferentialDrive driveTrainRobotDrive;
+	public SpeedControllerGroup driveTrainleftTalons;
+	public SpeedControllerGroup driveTrainRightTalons;
+	public SpeedController collectorLeftWheel;
+	public SpeedController collectorRightWheel;
+	public AHRS driveTrainNavX;
+	public PIDController driveTrainLeftRotationPIDController;
+	public PIDController driveTrainRightRotationPIDController;
+	public SpeedControllerGroup collectorWheels;
+	public DigitalInput collectorMicroSwitch;
+	private SpeedController elevatorLeftMotor;
+	private SpeedController elevatorRightMotor;
 	public LineTracker collectorLineTracker;
-	private static WPI_TalonSRX elevatorLeftMotor;
-	private static WPI_TalonSRX elevatorRightMotor;
-	public static SpeedControllerGroup elevatorWheels;
-	public static WPI_TalonSRX elevatorPitchMotor;
-	public static DoubleSolenoid collectorHolderPiston;
+	public SpeedControllerGroup elevatorWheels;
+	public SpeedController elevatorPitchMotor;
+	public DoubleSolenoid collectorHolderPiston;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);

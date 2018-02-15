@@ -8,10 +8,9 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc.team2231.robot.subsystems;
 
-import org.usfirst.frc.team2231.robot.RobotMap;
+import org.usfirst.frc.team2231.robot.Robot;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -20,11 +19,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-    private final SpeedControllerGroup elevatorWheels = RobotMap.elevatorWheels;
+    private final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
-    public void initDefaultCommand() {
+    @Override
+	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }

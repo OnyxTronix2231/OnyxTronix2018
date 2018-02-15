@@ -24,8 +24,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Collector extends Subsystem {
 	private boolean m_isCubeCollected = false;
 	private final SpeedControllerGroup wheels = Robot.m_robotMap.collectorWheels;
-	private final DigitalInput microSwitch = Robot.m_robotMap.collectorMicroSwitch;
-	public final LineTracker lineTracker = Robot.m_robotMap.collectorLineTracker;
+	private final LineTracker lineTracker = Robot.m_robotMap.collectorLineTracker;
 	private final DoubleSolenoid holderPistonLeft = Robot.m_robotMap.collectorHolderPistonLeft;
 	private final DoubleSolenoid holderPistonRight = Robot.m_robotMap.collectorHolderPistonRight;
 	// Put methods for controlling this subsystem

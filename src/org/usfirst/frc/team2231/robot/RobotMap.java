@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
@@ -58,6 +59,8 @@ public class RobotMap {
 	public SpeedControllerGroup elevatorWheels;
 	public SpeedController elevatorPitchMotor;
 	public DoubleSolenoid collectorHolderPiston;
+	public AnalogInput elevatorAnalogSensor;
+	public PIDController elevatorPIDController;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -89,9 +92,11 @@ public class RobotMap {
 		elevatorLeftMotor = new WPI_TalonSRX(6);
 		elevatorRightMotor = new WPI_TalonSRX(7);
 		elevatorWheels = new SpeedControllerGroup(elevatorLeftMotor, elevatorRightMotor);
+		elevatorPIDController = new PIDController(0, 0, 0, elevatorAnalogSensor, elevatorWheels);
 		
 		elevatorPitchMotor = new WPI_TalonSRX(8);
 
 		collectorLineTracker = new LineTracker(2, 4);
+		elevatorAnalogSensor = new AnalogInput(0);
 	}
 }

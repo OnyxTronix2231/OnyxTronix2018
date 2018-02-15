@@ -53,7 +53,6 @@ public class RobotMap {
 	public PIDController driveTrainLeftRotationPIDController;
 	public PIDController driveTrainRightRotationPIDController;
 	public SpeedControllerGroup collectorWheels;
-	public DigitalInput collectorMicroSwitch;
 	private SpeedController elevatorFirstMotor;
 	private SpeedController elevatorSecondMotor;
 	private SpeedController elevatorThirdMotor;

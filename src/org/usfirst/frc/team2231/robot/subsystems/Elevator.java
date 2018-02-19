@@ -11,6 +11,14 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.Robot;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -20,6 +28,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
     private final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
+    private final WPI_TalonSRX firstMotor = Robot.m_robotMap.elevatorFirstMotor;
+    private final WPI_VictorSPX secondMotor = Robot.m_robotMap.elevatorSecondMotor;
+    private final WPI_VictorSPX thirdMotor = Robot.m_robotMap.elevatorThirdMotor;
+    private final WPI_VictorSPX fourthMotor = Robot.m_robotMap.elevatorFourthMotor;
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
@@ -29,9 +42,12 @@ public class Elevator extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
 
-    public void setSpeed(double speed){
-    	elevatorWheels.set(speed);
-    }
+    public void setSpeed(double speed) {
+    	firstMotor.set(speed);
+    	secondMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+    	thirdMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+    	fourthMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+}
     
     public void stop() {
     	elevatorWheels.set(0);

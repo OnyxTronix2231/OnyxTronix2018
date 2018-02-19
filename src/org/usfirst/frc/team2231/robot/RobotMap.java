@@ -67,6 +67,7 @@ public class RobotMap {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
 		driveTrainSecondLeft = new WPI_TalonSRX(1);
 		driveTrainThirdLeft = new WPI_TalonSRX(2);
+		
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);
 
 		driveTrainFirstRight = new WPI_TalonSRX(3);
@@ -78,8 +79,8 @@ public class RobotMap {
 
 		driveTrainNavX = new AHRS(SPI.Port.kMXP);	
 		
-		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
-		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainRightTalons);
+		driveTrainLeftRotationPIDController = new PIDController(0.01, 0, 0, driveTrainNavX, driveTrainleftTalons);
+		driveTrainRightRotationPIDController = new PIDController(0.19, 0, 0.035, driveTrainNavX, driveTrainRightTalons);
 		driveTrainFirstLeft.config_kP(0, 1, 0);
 		driveTrainFirstLeft.config_kI(0, 0, 0);
 		driveTrainFirstLeft.config_kD(0, 0, 0);

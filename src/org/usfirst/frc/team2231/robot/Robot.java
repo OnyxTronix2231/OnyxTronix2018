@@ -43,7 +43,6 @@ public class Robot extends TimedRobot {
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
-
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
@@ -57,11 +56,13 @@ public class Robot extends TimedRobot {
 		m_elevatorPitch = new ElevatorPitch();
 		m_oi = new OI();
 		m_smartDashboardUpdater = new SmartDashboardUpdater();
-		CameraServer.getInstance().startAutomaticCapture();
-		CameraServer.getInstance().startAutomaticCapture(1);
+//		CameraServer.getInstance().startAutomaticCapture();
+//		CameraServer.getInstance().startAutomaticCapture(1);
 		m_smartDashboardUpdater.UpdateDashboard();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putNumber("Distance", 1500);
+		SmartDashboard.putNumber("Rotation_P", 0.026);
+		SmartDashboard.putNumber("Rotation_I", 0);
+		SmartDashboard.putNumber("Rotation_D", 0.03);
 	}
 
 	/**
@@ -135,7 +136,10 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		m_smartDashboardUpdater.UpdateDashboard();
+		System.out.println("Left " + Robot.m_driveTrain.firstLeft.getSensorCollection().getQuadraturePosition());
+		System.out.println("Right " + Robot.m_driveTrain.firstRight.getSensorCollection().getQuadraturePosition());
 	}
+	
 
 	/**
 	 * This function is called periodically during test mode.

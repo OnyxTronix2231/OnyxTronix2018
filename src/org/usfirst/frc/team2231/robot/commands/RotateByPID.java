@@ -15,8 +15,10 @@ public class RotateByPID extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.m_driveTrain.setRotationSetpoint(Robot.m_driveTrain.getAngle() + m_setpoint);
+    	Robot.m_driveTrain.resetAHRSGyro();
+    	Robot.m_driveTrain.setRotationSetpoint(m_setpoint);
     	Robot.m_driveTrain.setOutputRange();
+    	Robot.m_driveTrain.setPID();
     	Robot.m_driveTrain.setRotationTolerance();
     	Robot.m_driveTrain.enableRotationPIDControllers();
     	
@@ -24,7 +26,10 @@ public class RotateByPID extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	System.out.println(Robot.m_driveTrain.leftRotationPIDController.getP());
+    	System.out.println(Robot.m_driveTrain.leftRotationPIDController.getI());
+    	System.out.println(Robot.m_driveTrain.leftRotationPIDController.getD());
+    	System.out.println(Robot.m_driveTrain.leftRotationPIDController.getError());
     }
 
     // Make this return true when this Command no longer needs to run execute()

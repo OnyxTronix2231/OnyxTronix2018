@@ -17,6 +17,8 @@ import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
 import org.usfirst.frc.team2231.robot.commands.Raise;
+import org.usfirst.frc.team2231.robot.commands.ResetEncoders;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
@@ -69,6 +71,7 @@ public class OI {
 	private JoystickButton closeCollector;
 	private JoystickButton operatorOpenCollector;
 	private JoystickButton collectCube;
+	private JoystickButton driveByDistance;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -100,6 +103,8 @@ public class OI {
 		collectCube = new JoystickButton(buttonStick, 8);
 		collectCube.whileHeld(new CollectCube());
 		
+		driveByDistance = new JoystickButton(driveStick, 7);
+		driveByDistance.whenPressed(new DriveByEncoder(200));
 		}
 
 

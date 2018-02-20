@@ -122,7 +122,9 @@ public class Robot extends TimedRobot {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
-		// this line or comment it out.
+		// this line or comment it out.\][
+		
+		
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
@@ -135,8 +137,10 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		m_smartDashboardUpdater.UpdateDashboard();
-		System.out.println("Up " + Robot.m_robotMap.elevatorFirstMotor.getSensorCollection().isRevLimitSwitchClosed());
-		System.out.println("Down " + Robot.m_robotMap.elevatorFirstMotor.getSensorCollection().isFwdLimitSwitchClosed());
+		Robot.m_robotMap.elevatorSecondMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
+		Robot.m_robotMap.elevatorThirdMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
+		Robot.m_robotMap.elevatorFourthMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
+		System.out.println("Encoder " + Robot.m_robotMap.elevatorPitchMotor.getSensorCollection().getQuadraturePosition());
 	}
 
 	/**

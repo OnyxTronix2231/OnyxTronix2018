@@ -64,7 +64,7 @@ public class RobotMap {
 	public WPI_VictorSPX elevatorFourthMotor;
 	public LineTracker collectorLineTracker;
 	public SpeedControllerGroup elevatorWheels;
-	public SpeedController elevatorPitchMotor;
+	public WPI_TalonSRX elevatorPitchMotor;
 	public DoubleSolenoid collectorHolderPistonLeft;
 	public DoubleSolenoid collectorHolderPistonRight;
 	public DigitalInput elevatorUpperMicroswitch;
@@ -82,7 +82,6 @@ public class RobotMap {
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
 		
-
 		driveTrainNavX = new AHRS(SPI.Port.kMXP);	
 		
 		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
@@ -95,10 +94,11 @@ public class RobotMap {
 		driveTrainFirstRight.config_kD(0, 0, 0);
 		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
 		
-		collectorLeftWheel = new WPI_TalonSRX(6);
-		collectorRightWheel = new WPI_TalonSRX(7);
+		collectorLeftWheel = new WPI_VictorSPX(6);
+		collectorRightWheel = new WPI_VictorSPX(7);
+		collectorRightWheel.setInverted(true);
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
-		collectorHolderPistonLeft = new DoubleSolenoid(0, 1);
+		collectorHolderPistonLeft = new DoubleSolenoid(0, 7);
 		collectorHolderPistonRight = new DoubleSolenoid(2, 3);
 
 		elevatorFirstMotor = new WPI_TalonSRX(8);
@@ -106,12 +106,14 @@ public class RobotMap {
 		elevatorThirdMotor = new WPI_VictorSPX(10);
 		elevatorFourthMotor = new WPI_VictorSPX(11);
 		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor, elevatorFourthMotor);
-		elevatorFirstMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
-		elevatorFirstMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
-		elevatorFirstMotor.overrideLimitSwitchesEnable(true);
+		elevatorFirstMotor.setInverted(true);
+		elevatorSecondMotor.setInverted(true);
+		elevatorThirdMotor.setInverted(true);
+		elevatorFourthMotor.setInverted(true);
 		
 		
 		elevatorPitchMotor = new WPI_TalonSRX(12);
+		
 
 		collectorLineTracker = new LineTracker(2, 4);
 	}

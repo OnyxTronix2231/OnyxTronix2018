@@ -15,8 +15,11 @@ import org.usfirst.frc.team2231.robot.commands.DriveByEncoder;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
+import org.usfirst.frc.team2231.robot.commands.LowerElevatorPitch;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
 import org.usfirst.frc.team2231.robot.commands.Raise;
+import org.usfirst.frc.team2231.robot.commands.RaiseElevatorPitch;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
@@ -69,14 +72,16 @@ public class OI {
 	private JoystickButton closeCollector;
 	private JoystickButton operatorOpenCollector;
 	private JoystickButton collectCube;
+	private JoystickButton elevatorUp;
+	private JoystickButton operatorCloseCollector;
 
 	public OI() {
 		driveStick = new Joystick(0);
 		buttonStick = new Joystick(1);
 		
-		raiseElevator = new JoystickButton(buttonStick, 1);
+		raiseElevator = new JoystickButton(buttonStick, 4);
 		raiseElevator.whileHeld(new Raise());
-		lowerElevator = new JoystickButton(buttonStick, 4);
+		lowerElevator = new JoystickButton(buttonStick, 1);
 		lowerElevator.whileHeld(new Lower());
 		
 		collect = new JoystickButton(buttonStick, 2);
@@ -85,7 +90,9 @@ public class OI {
 		ejectCube.whileHeld(new Eject());
 		
 		elevatorPitch = new JoystickButton(buttonStick, 7);
-		elevatorPitch.whenPressed(new EvelatorPitchDrop());
+		elevatorPitch.whileHeld(new LowerElevatorPitch());
+		elevatorUp = new JoystickButton(buttonStick, 8);
+		elevatorUp.whileHeld(new RaiseElevatorPitch());
     
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 8);
 		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
@@ -96,9 +103,9 @@ public class OI {
 		closeCollector.whenPressed(new CloseCollector());
 		operatorOpenCollector = new JoystickButton(buttonStick, 6);
 		operatorOpenCollector.whenPressed(new OpenCollector());
+		operatorCloseCollector = new JoystickButton(buttonStick, 5);
+		operatorCloseCollector.whenPressed(new CloseCollector());
 		
-		collectCube = new JoystickButton(buttonStick, 8);
-		collectCube.whileHeld(new CollectCube());
 		
 		}
 

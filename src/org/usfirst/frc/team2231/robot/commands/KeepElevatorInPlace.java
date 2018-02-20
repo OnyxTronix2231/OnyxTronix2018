@@ -4,13 +4,15 @@ import org.usfirst.frc.team2231.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ChangeCubeElevation extends Command {
-	private double m_maxSpeed;
-	
+/**
+ *
+ */
+public class KeepElevatorInPlace extends Command {
 
-    public ChangeCubeElevation(double maxSpeed) {
-    	m_maxSpeed = maxSpeed;
-        requires(Robot.m_elevator);
+    public KeepElevatorInPlace() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.m_elevator);
     }
 
     // Called just before this Command runs the first time
@@ -19,7 +21,12 @@ public class ChangeCubeElevation extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.m_elevator.setSpeed(m_maxSpeed);
+    	if  (!Robot.m_robotMap.elevatorFirstMotor.getSensorCollection().isFwdLimitSwitchClosed()) {
+    		Robot.m_robotMap.elevatorFirstMotor.set(0.07);
+//    		Robot.m_robotMap.elevatorSecondMotor.set(0.07);
+//    		Robot.m_robotMap.elevatorThirdMotor.set(0.07);
+//    		Robot.m_robotMap.elevatorFourthMotor.set(0.07);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -29,12 +36,11 @@ public class ChangeCubeElevation extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.m_elevator.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }
+

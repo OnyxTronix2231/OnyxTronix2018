@@ -43,10 +43,24 @@ public class Elevator extends Subsystem {
     }
 
     public void setSpeed(double speed) {
-    	firstMotor.set(speed);
-    	secondMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
-    	thirdMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
-    	fourthMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+    	if (firstMotor.getSensorCollection().isFwdLimitSwitchClosed() && speed < 0) {
+    		firstMotor.set(0);
+        	secondMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+        	thirdMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+        	fourthMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+    	}
+    	else if (firstMotor.getSensorCollection().isRevLimitSwitchClosed() && speed > 0) {
+    		firstMotor.set(0);
+    		secondMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+    		thirdMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+    		fourthMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+    	}
+    	else {
+    		firstMotor.set(speed);
+        	secondMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+        	thirdMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+        	fourthMotor.set(ControlMode.Follower, firstMotor.getDeviceID());
+    	}
 }
     
     public void stop() {

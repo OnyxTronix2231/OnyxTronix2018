@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
+import com.sun.prism.ps.ShaderFactory;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -52,8 +53,8 @@ public class RobotMap {
 	public WPI_TalonSRX driveTrainThirdRight;
 	public SpeedControllerGroup driveTrainleftTalons;
 	public SpeedControllerGroup driveTrainRightTalons;
-	public SpeedController collectorLeftWheel;
-	public SpeedController collectorRightWheel;
+	public WPI_VictorSPX collectorLeftWheel;
+	public WPI_VictorSPX collectorRightWheel;
 	public AHRS driveTrainNavX;
 	public PIDController driveTrainLeftRotationPIDController;
 	public PIDController driveTrainRightRotationPIDController;

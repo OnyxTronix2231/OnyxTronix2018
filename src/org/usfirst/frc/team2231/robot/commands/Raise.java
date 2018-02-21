@@ -6,7 +6,7 @@ import org.usfirst.frc.team2231.robot.Robot;
  *
  */
 public class Raise extends ChangeCubeElevation {
-	public static final double maxSpeed = 0.3;
+	public static final double maxSpeed = 0.7;
 
     public Raise() {
         super(maxSpeed);

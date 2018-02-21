@@ -106,6 +106,7 @@ public class RobotMap {
 		elevatorThirdMotor = new WPI_VictorSPX(10);
 		elevatorFourthMotor = new WPI_VictorSPX(11);
 		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor, elevatorFourthMotor);
+		elevatorFirstMotor.overrideLimitSwitchesEnable(true);
 		elevatorFirstMotor.setInverted(true);
 		elevatorSecondMotor.setInverted(true);
 		elevatorThirdMotor.setInverted(true);

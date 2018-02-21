@@ -16,7 +16,7 @@ public class Collect extends ConveyWithCollector {
 		super.execute();
 		System.out.println("Left " + Robot.m_robotMap.collectorLeftWheel.get());
 		System.out.println("Right " + Robot.m_robotMap.collectorRightWheel.get());
-	}
+	}																																																													
 //	@Override
 //	protected boolean isFinished() {
 //		return Robot.m_collector.isMicroSwitchPressed();

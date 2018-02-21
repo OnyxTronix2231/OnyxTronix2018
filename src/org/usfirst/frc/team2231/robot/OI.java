@@ -15,9 +15,9 @@ import org.usfirst.frc.team2231.robot.commands.DriveByEncoder;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
+import org.usfirst.frc.team2231.robot.commands.Blah;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
 import org.usfirst.frc.team2231.robot.commands.Raise;
-import org.usfirst.frc.team2231.robot.commands.ResetEncoders;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -91,7 +91,7 @@ public class OI {
 		elevatorPitch.whenPressed(new EvelatorPitchDrop());
     
 		rotateByNinteyDegrees = new JoystickButton(driveStick, 8);
-		rotateByNinteyDegrees.whenPressed(new RotateByPID(90));
+		rotateByNinteyDegrees.whileHeld(new RotateByPID(0));
 		
 		openCollector = new JoystickButton(driveStick, 5);
 		openCollector.whenPressed(new OpenCollector());

@@ -34,8 +34,8 @@ public class RotateByPID extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.m_driveTrain.isRotationPIDOnPoint();
-//    	return false;
+//        return Robot.m_driveTrain.isRotationPIDOnPoint();
+    	return false;
     }
 
     // Called once after isFinished returns true

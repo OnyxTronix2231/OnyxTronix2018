@@ -136,8 +136,8 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		m_smartDashboardUpdater.UpdateDashboard();
-		System.out.println("Left " + Robot.m_driveTrain.firstLeft.getSensorCollection().getQuadraturePosition());
-		System.out.println("Right " + Robot.m_driveTrain.firstRight.getSensorCollection().getQuadraturePosition());
+//		System.out.println("Left " + Robot.m_driveTrain.firstLeft.getSensorCollection().getQuadraturePosition());
+//		System.out.println("Right " + Robot.m_driveTrain.firstRight.getSensorCollection().getQuadraturePosition());
 	}
 	
 

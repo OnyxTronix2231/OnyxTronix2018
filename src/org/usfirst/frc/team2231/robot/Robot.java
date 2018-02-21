@@ -60,9 +60,12 @@ public class Robot extends TimedRobot {
 //		CameraServer.getInstance().startAutomaticCapture(1);
 		m_smartDashboardUpdater.UpdateDashboard();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putNumber("Rotation_P", 0.026);
+		SmartDashboard.putNumber("Rotation_P", 0.055);
 		SmartDashboard.putNumber("Rotation_I", 0);
-		SmartDashboard.putNumber("Rotation_D", 0.03);
+		SmartDashboard.putNumber("Rotation_D", 0.1);
+		SmartDashboard.putNumber("Distance_P", 2);
+		SmartDashboard.putNumber("Distance_I", 0);
+		SmartDashboard.putNumber("Distance_D", 0);
 	}
 
 	/**
@@ -127,6 +130,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		Robot.m_driveTrain.resetEncoder();
 	}
 
 	/**

@@ -98,10 +98,10 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void setPositionOutputRange() {
-		firstLeft.configPeakOutputForward(0.80, 0);
-		firstLeft.configPeakOutputReverse(-0.80, 0);
-		firstRight.configPeakOutputForward(0.80, 0);
-		firstRight.configPeakOutputReverse(-0.80, 0);
+		firstLeft.configPeakOutputForward(0.50, 0);
+		firstLeft.configPeakOutputReverse(-0.50, 0);
+		firstRight.configPeakOutputForward(0.50, 0);
+		firstRight.configPeakOutputReverse(-0.50, 0);
 
 	}
 	
@@ -130,7 +130,7 @@ public class DriveTrain extends Subsystem {
 
 	public double convertToEncoderValue(double distanceInCentimeters) {
 		distanceInCentimeters /= 2 * Math.PI * wheelRadius;
-		distanceInCentimeters *= 272;
+		distanceInCentimeters *= 281.847;
 		return distanceInCentimeters;
 	}
 
@@ -141,5 +141,14 @@ public class DriveTrain extends Subsystem {
 		rightRotationPIDController.setP(SmartDashboard.getNumber("Rotation_P", 0));
 		rightRotationPIDController.setI(SmartDashboard.getNumber("Rotation_I", 0));
 		rightRotationPIDController.setD(SmartDashboard.getNumber("Rotation_D", 0));
+	}
+	
+	public void setPositionPID( ) {
+		firstLeft.config_kP(0, SmartDashboard.getNumber("Distance_P", 0), 0);
+		firstLeft.config_kI(0, SmartDashboard.getNumber("Distance_I", 0), 0);
+		firstLeft.config_kD(0, SmartDashboard.getNumber("Distance_D", 0), 0);
+		firstLeft.config_kP(0, SmartDashboard.getNumber("Distance_P", 0), 0);
+		firstLeft.config_kI(0, SmartDashboard.getNumber("Distance_I", 0), 0);
+		firstLeft.config_kD(0, SmartDashboard.getNumber("Distance_D", 0), 0);
 	}
 }

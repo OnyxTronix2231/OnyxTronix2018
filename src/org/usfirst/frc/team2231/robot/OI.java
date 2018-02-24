@@ -11,6 +11,7 @@ import org.usfirst.frc.team2231.robot.commands.CloseHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.RotateByPID; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.DriveByEncoder;
+import org.usfirst.frc.team2231.robot.commands.DriveToLeftSwitchFromLeft;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.Lower;
@@ -67,6 +68,8 @@ public class OI {
 	public JoystickButton driveTenMeters;
 	private JoystickButton openPiston;
 	private JoystickButton closePiston;
+	
+	private JoystickButton autonomousLeftSwitch;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -93,6 +96,8 @@ public class OI {
 		closePiston = new JoystickButton(buttonStick, 6);
 		closePiston.whenPressed(new CloseHolderPiston());
 		
+		autonomousLeftSwitch = new JoystickButton(buttonStick, 8);
+		autonomousLeftSwitch.whenPressed(new DriveToLeftSwitchFromLeft());
 		}
 
 

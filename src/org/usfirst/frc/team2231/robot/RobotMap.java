@@ -14,7 +14,6 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-
 import OnyxTronix.LineTracker;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SPI;
@@ -62,11 +61,15 @@ public class RobotMap {
 	public SpeedController elevatorPitchMotor;
 	public DoubleSolenoid collectorHolderPistonLeft;
 	public DoubleSolenoid collectorHolderPistonRight;
+	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0);
+	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
+	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
 		driveTrainSecondLeft = new WPI_TalonSRX(1);
 		driveTrainThirdLeft = new WPI_TalonSRX(2);
+
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);
 
 		driveTrainFirstRight = new WPI_TalonSRX(3);
@@ -74,20 +77,21 @@ public class RobotMap {
 		driveTrainThirdRight = new WPI_TalonSRX(5);
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
-		
 
-		driveTrainNavX = new AHRS(SPI.Port.kMXP);	
-		
-		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
-		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainRightTalons);
-		driveTrainFirstLeft.config_kP(0, 1, 0);
+		driveTrainNavX = new AHRS(SPI.Port.kMXP);
+
+		driveTrainLeftRotationPIDController = new PIDController(rotationRugRobotA.getP(), rotationRugRobotA.getI(),
+				rotationRugRobotA.getD(), driveTrainNavX, driveTrainleftTalons);
+		driveTrainRightRotationPIDController = new PIDController(rotationRugRobotA.getP(), rotationRugRobotA.getI(),
+				rotationRugRobotA.getD(), driveTrainNavX, driveTrainRightTalons);
+		driveTrainFirstLeft.config_kP(0, 6, 0);
 		driveTrainFirstLeft.config_kI(0, 0, 0);
 		driveTrainFirstLeft.config_kD(0, 0, 0);
-		driveTrainFirstRight.config_kP(0, 1, 0);
+		driveTrainFirstRight.config_kP(0, 6, 0);
 		driveTrainFirstRight.config_kI(0, 0, 0);
 		driveTrainFirstRight.config_kD(0, 0, 0);
 		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
-		
+
 		collectorLeftWheel = new WPI_TalonSRX(6);
 		collectorRightWheel = new WPI_TalonSRX(7);
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
@@ -98,8 +102,9 @@ public class RobotMap {
 		elevatorSecondMotor = new WPI_TalonSRX(9);
 		elevatorThirdMotor = new WPI_TalonSRX(10);
 		elevatorFourthMotor = new WPI_TalonSRX(11);
-		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor, elevatorFourthMotor);
-		
+		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor,
+				elevatorFourthMotor);
+
 		elevatorPitchMotor = new WPI_TalonSRX(12);
 
 		collectorLineTracker = new LineTracker(2, 4);

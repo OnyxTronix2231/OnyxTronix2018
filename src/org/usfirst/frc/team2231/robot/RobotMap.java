@@ -62,6 +62,15 @@ public class RobotMap {
 	public SpeedController elevatorPitchMotor;
 	public DoubleSolenoid collectorHolderPistonLeft;
 	public DoubleSolenoid collectorHolderPistonRight;
+	private final double RotationRugRobotA_P = 0.05;
+	private final double RotationRugRobotA_I = 0;
+	private final double RotationRugRobotA_D = 0;
+	private final double RotationFloorRobotB_P = 0.0425;
+	private final double RotationFloorRobotB_I = 0;
+	private final double RotationFloorRobotB_D = 0.1;
+	private final double RotationRugRobotB_P = 0.19;
+	private final double RotationRugRobotB_I = 0;
+	private final double RotationRugRobotB_D = 0.035;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -79,8 +88,8 @@ public class RobotMap {
 
 		driveTrainNavX = new AHRS(SPI.Port.kMXP);	
 		
-		driveTrainLeftRotationPIDController = new PIDController(0.05, 0, 0, driveTrainNavX, driveTrainleftTalons);
-		driveTrainRightRotationPIDController = new PIDController(0.05, 0, 0, driveTrainNavX, driveTrainRightTalons);
+		driveTrainLeftRotationPIDController = new PIDController(RotationRugRobotA_P, RotationRugRobotA_I, RotationRugRobotA_D, driveTrainNavX, driveTrainleftTalons);
+		driveTrainRightRotationPIDController = new PIDController(RotationRugRobotA_P,RotationRugRobotA_I, RotationRugRobotA_D, driveTrainNavX, driveTrainRightTalons);
 		driveTrainFirstLeft.config_kP(0, 6, 0);
 		driveTrainFirstLeft.config_kI(0, 0, 0);
 		driveTrainFirstLeft.config_kD(0, 0, 0);

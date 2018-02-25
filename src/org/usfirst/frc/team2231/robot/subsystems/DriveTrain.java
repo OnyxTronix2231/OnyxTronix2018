@@ -30,7 +30,7 @@ public class DriveTrain extends Subsystem {
 	public static final AHRS m_navX = Robot.m_robotMap.driveTrainNavX;
 	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
 	public static final PIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
-	public final double m_rotation_Absolute_Tolerence = 1;
+	public final double m_rotationAbsoluteTolerence = 1;
 	public final double wheelRadius = 2;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.

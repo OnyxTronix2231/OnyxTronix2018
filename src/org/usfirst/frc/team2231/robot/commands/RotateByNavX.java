@@ -5,10 +5,10 @@ import org.usfirst.frc.team2231.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RotateByPID extends Command {
+public class RotateByNavX extends Command {
 	double m_setpoint;
 
-    public RotateByPID(double setpoint) {
+    public RotateByNavX(double setpoint) {
     	this.m_setpoint = setpoint;
     	requires(Robot.m_driveTrain);
     }
@@ -26,10 +26,6 @@ public class RotateByPID extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println(Robot.m_driveTrain.leftRotationPIDController.getP());
-    	System.out.println(Robot.m_driveTrain.leftRotationPIDController.getI());
-    	System.out.println(Robot.m_driveTrain.leftRotationPIDController.getD());
-    	System.out.println(Robot.m_driveTrain.leftRotationPIDController.getError());
     }
 
     // Make this return true when this Command no longer needs to run execute()

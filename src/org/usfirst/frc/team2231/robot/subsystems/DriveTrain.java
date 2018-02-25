@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -30,9 +29,8 @@ public class DriveTrain extends Subsystem {
 	public static final SpeedControllerGroup rightTalons = Robot.m_robotMap.driveTrainRightTalons;
 	public static final AHRS m_navX = Robot.m_robotMap.driveTrainNavX;
 	public static final PIDController leftRotationPIDController = Robot.m_robotMap.driveTrainLeftRotationPIDController;
-	public static final PIDController rightRotationPIDController =
-			Robot.m_robotMap.driveTrainRightRotationPIDController;
-	public final double rotation_Absolute_Tolerence = 1;
+	public static final PIDController rightRotationPIDController = Robot.m_robotMap.driveTrainRightRotationPIDController;
+	public final double m_rotation_Absolute_Tolerence = 1;
 	public final double wheelRadius = 2;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -45,7 +43,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void arcadeDrive(final Joystick stick) {
-		robotDrive.arcadeDrive(-stick.getRawAxis(1) * 0.99, stick.getRawAxis(4) * 0.99);
+		robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4) * 0.7);
 	}
 
 	public void resetAHRSGyro() {
@@ -67,13 +65,11 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void setRotationTolerance() {
-		leftRotationPIDController.setAbsoluteTolerance(rotation_Absolute_Tolerence);
-		rightRotationPIDController.setAbsoluteTolerance(rotation_Absolute_Tolerence);
+		leftRotationPIDController.setAbsoluteTolerance(m_rotation_Absolute_Tolerence);
+		rightRotationPIDController.setAbsoluteTolerance(m_rotation_Absolute_Tolerence);
 	}
 
 	public boolean isRotationPIDOnPoint() {
-		System.out.println(rightRotationPIDController.onTarget() + ", " + leftRotationPIDController.onTarget() + ", "
-				+ leftTalons.get());
 		return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget() && leftTalons.get() < 0.05;
 	}
 
@@ -104,7 +100,7 @@ public class DriveTrain extends Subsystem {
 		firstRight.configPeakOutputReverse(-0.50, 0);
 
 	}
-	
+
 	public void resetPositionOutputRange() {
 		firstLeft.configPeakOutputForward(1, 0);
 		firstLeft.configPeakOutputReverse(-1, 0);
@@ -118,10 +114,6 @@ public class DriveTrain extends Subsystem {
 		firstRight.set(ControlMode.Position, -setpoint);
 		secondLeft.set(ControlMode.Follower, firstLeft.getDeviceID());
 		secondRight.set(ControlMode.Follower, firstRight.getDeviceID());
-		System.out.println("Left " + firstLeft.getSensorCollection().getQuadraturePosition());
-		System.out.println("Right " + firstRight.getSensorCollection().getQuadraturePosition());
-		System.out.println("Left Error " + firstLeft.getClosedLoopError(0));
-		System.out.println("Right Error " + firstRight.getClosedLoopError(0));
 	}
 
 	public boolean getPositionError() {
@@ -132,23 +124,5 @@ public class DriveTrain extends Subsystem {
 		distanceInCentimeters /= 2 * Math.PI * wheelRadius;
 		distanceInCentimeters *= 281.847;
 		return distanceInCentimeters;
-	}
-
-	public void setPID() {
-		leftRotationPIDController.setP(SmartDashboard.getNumber("Rotation_P", 0));
-		leftRotationPIDController.setI(SmartDashboard.getNumber("Rotation_I", 0));
-		leftRotationPIDController.setD(SmartDashboard.getNumber("Rotation_D", 0));
-		rightRotationPIDController.setP(SmartDashboard.getNumber("Rotation_P", 0));
-		rightRotationPIDController.setI(SmartDashboard.getNumber("Rotation_I", 0));
-		rightRotationPIDController.setD(SmartDashboard.getNumber("Rotation_D", 0));
-	}
-	
-	public void setPositionPID( ) {
-		firstLeft.config_kP(0, SmartDashboard.getNumber("Distance_P", 0), 0);
-		firstLeft.config_kI(0, SmartDashboard.getNumber("Distance_I", 0), 0);
-		firstLeft.config_kD(0, SmartDashboard.getNumber("Distance_D", 0), 0);
-		firstLeft.config_kP(0, SmartDashboard.getNumber("Distance_P", 0), 0);
-		firstLeft.config_kI(0, SmartDashboard.getNumber("Distance_I", 0), 0);
-		firstLeft.config_kD(0, SmartDashboard.getNumber("Distance_D", 0), 0);
 	}
 }

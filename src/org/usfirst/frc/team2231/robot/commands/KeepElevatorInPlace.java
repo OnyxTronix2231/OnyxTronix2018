@@ -23,9 +23,6 @@ public class KeepElevatorInPlace extends Command {
     protected void execute() {
     	if  (!Robot.m_robotMap.elevatorFirstMotor.getSensorCollection().isFwdLimitSwitchClosed()) {
     		Robot.m_robotMap.elevatorFirstMotor.set(0.07);
-//    		Robot.m_robotMap.elevatorSecondMotor.set(0.07);
-//    		Robot.m_robotMap.elevatorThirdMotor.set(0.07);
-//    		Robot.m_robotMap.elevatorFourthMotor.set(0.07);
     	}
     }
 

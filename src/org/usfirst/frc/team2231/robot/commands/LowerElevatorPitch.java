@@ -17,12 +17,11 @@ public class LowerElevatorPitch extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.m_elevatorPitch.setSpeed(-0.2);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.m_elevatorPitch.setSpeed(-0.2);
-    	System.out.println("Lower");
     }
 
     // Make this return true when this Command no longer needs to run execute()

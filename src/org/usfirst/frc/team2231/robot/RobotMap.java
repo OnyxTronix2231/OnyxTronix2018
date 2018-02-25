@@ -108,6 +108,9 @@ public class RobotMap {
 		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor, elevatorFourthMotor);
 		elevatorFirstMotor.overrideLimitSwitchesEnable(true);
 		elevatorWheels.setInverted(true);
+		elevatorSecondMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
+		elevatorThirdMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
+		elevatorFourthMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
 		
 		
 		elevatorPitchMotor = new WPI_TalonSRX(12);

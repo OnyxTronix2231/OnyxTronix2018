@@ -137,9 +137,6 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		m_smartDashboardUpdater.UpdateDashboard();
-		Robot.m_robotMap.elevatorSecondMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
-		Robot.m_robotMap.elevatorThirdMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
-		Robot.m_robotMap.elevatorFourthMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
 	}
 
 	/**

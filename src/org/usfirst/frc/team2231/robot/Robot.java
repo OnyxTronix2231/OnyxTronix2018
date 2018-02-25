@@ -130,7 +130,6 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
-		Robot.m_driveTrain.resetEncoder();
 	}
 
 	/**
@@ -140,8 +139,6 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		m_smartDashboardUpdater.UpdateDashboard();
-		System.out.println("Left " + Robot.m_driveTrain.firstLeft.getSensorCollection().getQuadraturePosition());
-		System.out.println("Right " + Robot.m_driveTrain.firstRight.getSensorCollection().getQuadraturePosition());
 	}
 	
 

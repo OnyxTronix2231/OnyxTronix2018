@@ -9,14 +9,7 @@ public class Collect extends ConveyWithCollector {
 	public Collect() {
 		super(maxSpeed);
 	}
-//
-	@Override
-	protected void execute() {
-		// TODO Auto-generated method stub
-		super.execute();
-		System.out.println("Left " + Robot.m_robotMap.collectorLeftWheel.get());
-		System.out.println("Right " + Robot.m_robotMap.collectorRightWheel.get());
-	}																																																													
+																																																														
 //	@Override
 //	protected boolean isFinished() {
 //		return Robot.m_collector.isMicroSwitchPressed();

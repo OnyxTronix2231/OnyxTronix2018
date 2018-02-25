@@ -45,22 +45,11 @@ public class Elevator extends Subsystem {
     }
 
     public void setSpeed(double speed) {
-    	//if (firstMotor.getSensorCollection().isFwdLimitSwitchClosed() && speed < 0) {
-//    	elevatorWheels.set(0);
-//    	}	
-//    	else if (firstMotor.getSensorCollection().isRevLimitSwitchClosed() & speed > 0) {
     		firstMotor.set(speed);
     		secondMotor.follow(firstMotor);
     		thirdMotor.follow(firstMotor);
     		fourthMotor.follow(firstMotor);
     	}
-//    	else {
-    	
-//    	}
-//    	firstMotor.set(speed);
-//    	secondMotor.set(speed);
-//    	thirdMotor.set(speed);
-//    	fourthMotor.set(speed);
     
     public void stop() {
     	elevatorWheels.set(0);

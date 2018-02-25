@@ -15,10 +15,8 @@ public class RotateByNavX extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.m_driveTrain.resetAHRSGyro();
-    	Robot.m_driveTrain.setRotationSetpoint(m_setpoint);
+    	Robot.m_driveTrain.setRotationSetpoint(Robot.m_driveTrain.getAngle() + m_setpoint);
     	Robot.m_driveTrain.setOutputRange();
-    	Robot.m_driveTrain.setPID();
     	Robot.m_driveTrain.setRotationTolerance();
     	Robot.m_driveTrain.enableRotationPIDControllers();
     	
@@ -31,7 +29,6 @@ public class RotateByNavX extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return Robot.m_driveTrain.isRotationPIDOnPoint();
-//    	return false;
     }
 
     // Called once after isFinished returns true

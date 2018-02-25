@@ -13,7 +13,6 @@ package org.usfirst.frc.team2231.robot.subsystems;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.commands.CollectWhenMicroSwitchIsNotPressed;
 import OnyxTronix.LineTracker;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -38,11 +37,11 @@ public class Collector extends Subsystem {
 	}
 
 	public void setSpeed(final double speed) {
-		if (isMicroSwitchPressed() && speed > 0) {
-			stop();
-		} else {
+//		if (isMicroSwitchPressed() && speed > 0) {
+//			stop();
+//		} else {
 			wheels.set(speed);
-		}
+//		}
 	}
 
 	public void stop() {

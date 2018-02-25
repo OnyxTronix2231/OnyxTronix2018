@@ -7,6 +7,11 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.subsystems.Collector;
+import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2231.robot.subsystems.Elevator;
+import org.usfirst.frc.team2231.robot.subsystems.ElevatorPitch;
+
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -14,14 +19,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team2231.robot.subsystems.Collector;
-import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team2231.robot.subsystems.Elevator;
-import org.usfirst.frc.team2231.robot.subsystems.ElevatorPitch;
-
-import java.text.FieldPosition;
-import org.usfirst.frc.team2231.robot.OI;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -59,7 +56,7 @@ public class Robot extends TimedRobot {
 		m_smartDashboardUpdater = new SmartDashboardUpdater();
 		CameraServer.getInstance().startAutomaticCapture();
 		CameraServer.getInstance().startAutomaticCapture(1);
-		m_smartDashboardUpdater.UpdateDashboard();
+		m_smartDashboardUpdater.updateDashboard();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putNumber("Distance", 1500);
 	}
@@ -122,7 +119,9 @@ public class Robot extends TimedRobot {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
-		// this line or comment it out.
+		// this line or comment it out.\][
+		
+		
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
@@ -134,7 +133,11 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		m_smartDashboardUpdater.UpdateDashboard();
+		m_smartDashboardUpdater.updateDashboard();
+		Robot.m_robotMap.elevatorSecondMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
+		Robot.m_robotMap.elevatorThirdMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
+		Robot.m_robotMap.elevatorFourthMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
+		System.out.println("Encoder " + Robot.m_robotMap.elevatorPitchMotor.getSensorCollection().getQuadraturePosition());
 	}
 
 	/**

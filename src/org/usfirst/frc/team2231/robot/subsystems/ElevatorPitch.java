@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.Robot;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import org.usfirst.frc.team2231.robot.commands.KeepPitchInPlace;
 
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,6 +18,7 @@ public class ElevatorPitch extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new KeepPitchInPlace());
     }
     
     public void setSpeed(final double speed){

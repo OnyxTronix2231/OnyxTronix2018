@@ -11,6 +11,11 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.commands.KeepElevatorInPlace;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -19,7 +24,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-    private final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
+    public final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
+    public final WPI_TalonSRX firstMotor = Robot.m_robotMap.elevatorFirstMotor;
+    public final WPI_VictorSPX secondMotor = Robot.m_robotMap.elevatorSecondMotor;
+    public final WPI_VictorSPX thirdMotor = Robot.m_robotMap.elevatorThirdMotor;
+    public final WPI_VictorSPX fourthMotor = Robot.m_robotMap.elevatorFourthMotor;
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
@@ -27,11 +37,26 @@ public class Elevator extends Subsystem {
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new KeepElevatorInPlace());
     }
 
-    public void setSpeed(double speed){
-    	elevatorWheels.set(speed);
-    }
+    public void setSpeed(double speed) {
+    	//if (firstMotor.getSensorCollection().isFwdLimitSwitchClosed() && speed < 0) {
+//    	elevatorWheels.set(0);
+//    	}	
+//    	else if (firstMotor.getSensorCollection().isRevLimitSwitchClosed() & speed > 0) {
+    		firstMotor.set(speed);
+    		secondMotor.follow(firstMotor);
+    		thirdMotor.follow(firstMotor);
+    		fourthMotor.follow(firstMotor);
+    	}
+//    	else {
+    	
+//    	}
+//    	firstMotor.set(speed);
+//    	secondMotor.set(speed);
+//    	thirdMotor.set(speed);
+//    	fourthMotor.set(speed);
     
     public void stop() {
     	elevatorWheels.set(0);

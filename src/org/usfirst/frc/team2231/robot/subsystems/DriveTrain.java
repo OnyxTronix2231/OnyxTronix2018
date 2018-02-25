@@ -110,5 +110,13 @@ public class DriveTrain extends Subsystem {
     	distanceInCentimeters *= 300;
     	return distanceInCentimeters;
     }
+    
+    public double getLeftEncoderPosition() {
+    return firstLeft.getSensorCollection().getQuadraturePosition();
+    }
+    
+    public double getRightEncoderPosition() {
+        return firstRight.getSensorCollection().getQuadraturePosition();
+        }
 }
 

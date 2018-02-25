@@ -59,7 +59,7 @@ public class RobotMap {
 	private SpeedController elevatorFourthMotor;
 	public LineTracker collectorLineTracker;
 	public SpeedControllerGroup elevatorWheels;
-	public SpeedController elevatorPitchMotor;
+	public WPI_TalonSRX elevatorPitchMotor;
 	public DoubleSolenoid collectorHolderPistonLeft;
 	public DoubleSolenoid collectorHolderPistonRight;
 
@@ -100,7 +100,12 @@ public class RobotMap {
 		elevatorFourthMotor = new WPI_TalonSRX(11);
 		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor, elevatorFourthMotor);
 		
+		//Please note! Encoder values run between 0 to ~-4100 from bottom to top
 		elevatorPitchMotor = new WPI_TalonSRX(12);
+		elevatorPitchMotor.config_kP(0, 1, 0);
+		elevatorPitchMotor.config_kI(0, 0, 0);
+		elevatorPitchMotor.config_kD(0, 0, 0);
+		elevatorPitchMotor.configAllowableClosedloopError(0, 3, 0);
 
 		collectorLineTracker = new LineTracker(2, 4);
 	}

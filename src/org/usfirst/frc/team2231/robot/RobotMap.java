@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
@@ -64,6 +65,7 @@ public class RobotMap {
 	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0);
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
+	public AnalogInput potentionmeter;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -108,5 +110,7 @@ public class RobotMap {
 		elevatorPitchMotor = new WPI_TalonSRX(12);
 
 		collectorLineTracker = new LineTracker(2, 4);
+		
+		potentionmeter = new AnalogInput(2);
 	}
 }

@@ -40,7 +40,6 @@ public class Robot extends TimedRobot {
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
-
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
@@ -58,7 +57,6 @@ public class Robot extends TimedRobot {
 		CameraServer.getInstance().startAutomaticCapture(1);
 		m_smartDashboardUpdater.updateDashboard();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putNumber("Distance", 1500);
 	}
 
 	/**
@@ -139,6 +137,7 @@ public class Robot extends TimedRobot {
 		Robot.m_robotMap.elevatorFourthMotor.follow(Robot.m_robotMap.elevatorFirstMotor);
 //		System.out.println("Encoder " + Robot.m_robotMap.elevatorPitchMotor.getSensorCollection().getQuadraturePosition());
 	}
+	
 
 	/**
 	 * This function is called periodically during test mode.

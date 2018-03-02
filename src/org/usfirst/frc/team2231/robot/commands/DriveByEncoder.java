@@ -3,6 +3,8 @@ package org.usfirst.frc.team2231.robot.commands;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -19,6 +21,7 @@ public class DriveByEncoder extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.m_driveTrain.resetEncoder();
+    	Robot.m_driveTrain.setPositionOutputRange();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,11 +31,12 @@ public class DriveByEncoder extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.m_driveTrain.getPositionError();
+    	return Robot.m_driveTrain.getPositionError();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.m_driveTrain.resetPositionOutputRange();
     }
 
     // Called when another command which requires one or more of the same

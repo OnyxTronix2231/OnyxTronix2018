@@ -15,7 +15,10 @@ import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.LowerElevatorPitch;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
 import org.usfirst.frc.team2231.robot.commands.Raise;
+<<<<<<< HEAD
 import org.usfirst.frc.team2231.robot.commands.RaiseElevatorPitch;
+=======
+>>>>>>> PotentionmeterClass
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

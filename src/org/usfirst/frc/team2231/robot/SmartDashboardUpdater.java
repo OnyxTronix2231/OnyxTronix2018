@@ -3,7 +3,8 @@ package org.usfirst.frc.team2231.robot;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Sendable;
+import edu.wpi.first.wpilibj.smartdashboard.SendableBuilderImpl;
 
 public class SmartDashboardUpdater {
 
@@ -17,19 +18,19 @@ public class SmartDashboardUpdater {
 	private NetworkTableEntry errorGraphEncoders;
 	private NetworkTableEntry leftEncoder;
 	private NetworkTableEntry rightEncoder;
-	
+
 	private NetworkTableEntry pidRotation;
 	private NetworkTableEntry gyro;
 	private NetworkTableEntry navXErrorGraph;
-	
+
 	private NetworkTableEntry pidElevator;
 	private NetworkTableEntry elevatorHeight;
 	private NetworkTableEntry errorGraphElevator;
-	
+
 	private NetworkTableEntry pidPitch;
 	private NetworkTableEntry errorGraphElevatorPitch;
 	private NetworkTableEntry angle;
-	
+
 	private NetworkTableEntry pdp;
 	private NetworkTableEntry driveTrainFirstLeft;
 	private NetworkTableEntry driveTrainSecondLeft;
@@ -43,7 +44,9 @@ public class SmartDashboardUpdater {
 	private NetworkTableEntry collectorRight;
 	private NetworkTableEntry collectorLeft;
 
-	public void createDashboard() {
+	private static SendableBuilderImpl m_sendableBuilder;
+
+	public SmartDashboardUpdater() {
 		NetworkTableInstance defaultInst = NetworkTableInstance.getDefault();
 		NetworkTable driversTable = defaultInst.getTable("Drivers");
 		upperMicroswitch = driversTable.getEntry("upperMicroSwitch");
@@ -72,7 +75,7 @@ public class SmartDashboardUpdater {
 		pidPitch = pidElevatorPitch.getEntry("PID");
 		errorGraphElevatorPitch = pidElevatorPitch.getEntry("Error Graph");
 		angle = pidElevatorPitch.getEntry("Angle");
-		
+
 		NetworkTable electronicTable = defaultInst.getTable("Electronic");
 		pdp = electronicTable.getEntry("PDP");
 		driveTrainFirstLeft = electronicTable.getEntry("Drive Train First Left ID-0");
@@ -86,34 +89,35 @@ public class SmartDashboardUpdater {
 		collectorRight = electronicTable.getEntry("Collector Right ID-7");
 		collectorLeft = electronicTable.getEntry("Collector Left ID-6");
 
+		m_sendableBuilder = new SendableBuilderImpl();
 	}
 
 	public void updateDashboard() {
-		
-//		upperMicroswitch.setBoolean();
-//		lowerMicroswitch.setBoolean();
+		// upperMicroswitch.setBoolean();
+		// lowerMicroswitch.setBoolean();
+		putData(pidRotation.getName(), Robot.m_robotMap.driveTrainLeftRotationPIDController,
+				pidRotation.getInstance().getTable("PID Rotation"));
 		cubeCollected.setBoolean(Robot.m_collector.isCubeCollected());
 		leftEncoderPosition.setDouble(Robot.m_driveTrain.getLeftEncoderPosition());
 		rightEncoderPosition.setDouble(Robot.m_driveTrain.getRightEncoderPosition());
-				
-//		pidEncoders.set
-//		errorGraphEncoders.setDouble();
+
+		// pidEncoders.set
+		// errorGraphEncoders.setDouble();
 		leftEncoder.setDouble(Robot.m_driveTrain.getLeftEncoderPosition());
 		rightEncoder.setDouble(Robot.m_driveTrain.getRightEncoderPosition());
-		
-//		pidRotation.set
+
 		gyro.setDouble(Robot.m_driveTrain.getAngle());
 		navXErrorGraph.setDouble(Robot.m_driveTrain.getAngle());
-		
-//		pidElevator.set
-//		elevatorHeight.setDouble();
-//		errorGraphElevator.setDouble();
-		
-//		pidPitch.set
-//		errorGraphElevatorPitch.setDouble();
-//		angle.setDouble();
-		
-//		pdp.set
+
+		putData(pidElevator.getName(), Robot.m_robotMap.elevatorFirstMotor, pidElevator.getInstance().getTable("PID"));
+		// elevatorHeight.setDouble();
+		// errorGraphElevator.setDouble();
+
+		putData(pidPitch.getName(), Robot.m_robotMap.elevatorPitchMotor, pidPitch.getInstance().getTable("PID"));
+		// errorGraphElevatorPitch.setDouble();
+		// angle.setDouble();
+
+		// pdp.set
 		if (!Robot.m_robotMap.driveTrainFirstLeft.isAlive())
 			driveTrainFirstLeft.setBoolean(false);
 		if (!Robot.m_robotMap.driveTrainSecondLeft.isAlive())
@@ -136,5 +140,15 @@ public class SmartDashboardUpdater {
 			collectorRight.setBoolean(false);
 		if (!Robot.m_robotMap.collectorLeftWheel.isAlive())
 			collectorLeft.setBoolean(false);
+	}
+
+	public static synchronized void putData(String key, Sendable data, NetworkTable table) {
+		System.out.println("getting subtable" + table.getPath() + " and key " + key);
+		System.out.println("entry path is " + table.getPath());
+		m_sendableBuilder.setTable(table);
+		data.initSendable(m_sendableBuilder);
+		m_sendableBuilder.updateTable();
+		m_sendableBuilder.startListeners();
+		table.getEntry(".name").setString(key);
 	}
 }

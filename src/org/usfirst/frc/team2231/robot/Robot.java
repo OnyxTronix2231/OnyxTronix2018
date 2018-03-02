@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
 	public static RobotMap m_robotMap;
 	public static OI m_oi;
 	public static Elevator m_elevator;
+	public static Potentionmeter m_potentionmeter;
 	public static ElevatorPitch m_elevatorPitch;
 	public static FieldPositions m_fieldPositions;
 	public static SmartDashboardUpdater m_smartDashboardUpdater;
@@ -51,6 +52,7 @@ public class Robot extends TimedRobot {
 		m_collector = new Collector();
 		m_elevator = new Elevator();
 		m_elevatorPitch = new ElevatorPitch();
+		m_potentionmeter = new Potentionmeter();
 		m_oi = new OI();
 		m_smartDashboardUpdater = new SmartDashboardUpdater();
 		CameraServer.getInstance().startAutomaticCapture();

@@ -110,7 +110,7 @@ public class SmartDashboardUpdater {
 		navXErrorGraph.setDouble(Robot.m_driveTrain.getAngle());
 
 		putData(pidElevator.getName(), Robot.m_robotMap.elevatorFirstMotor, pidElevator.getInstance().getTable("PID"));
-		// elevatorHeight.setDouble();
+		elevatorHeight.setDouble(Robot.m_potentionmeter.getAngle());
 		// errorGraphElevator.setDouble();
 
 		putData(pidPitch.getName(), Robot.m_robotMap.elevatorPitchMotor, pidPitch.getInstance().getTable("PID"));

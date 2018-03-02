@@ -116,7 +116,7 @@ public class RobotMap {
 		elevatorPitchMotor = new WPI_TalonSRX(12);
 		
 
-		collectorLineTracker = new LineTracker(2, 4);
+//		collectorLineTracker = new LineTracker(2, 4);
 		
 		potentionmeter = new AnalogInput(2);
 	}

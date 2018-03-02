@@ -68,7 +68,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public boolean isRotationPIDOnPoint() {
-    	return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget() && leftTalons.get() < 0.05;
+    	return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget() && Math.abs(Robot.m_driveTrain.m_navX.getRawGyroZ()) < 0.1;
     }
     
     public void stop() {
@@ -99,8 +99,8 @@ public class DriveTrain extends Subsystem {
     	secondRight.set(ControlMode.Follower, firstRight.getDeviceID());
     	System.out.println("Right Side position: " + firstRight.getSensorCollection().getQuadraturePosition());
     	System.out.println("Left Side position: " + firstLeft.getSensorCollection().getQuadraturePosition());
-    	System.out.println("Right Error: " + firstRight.getClosedLoopError(0));
-    	System.out.println("Left Error: " + firstLeft.getClosedLoopError(0));
+    	System.out.println("Right Error: " + convertToEncoderValue(firstRight.getClosedLoopError(0)));
+    	System.out.println("Left Error: " + convertToEncoderValue(firstLeft.getClosedLoopError(0)));
     }
     
     public boolean getPositionError() {
@@ -109,7 +109,7 @@ public class DriveTrain extends Subsystem {
     
     public double convertToEncoderValue(double distanceInCentimeters) {
     	distanceInCentimeters /= 2 * Math.PI * wheelRadius;
-    	distanceInCentimeters *= 300;
+    	distanceInCentimeters *= 300 * 1.66;
     	return distanceInCentimeters;
     }
 }

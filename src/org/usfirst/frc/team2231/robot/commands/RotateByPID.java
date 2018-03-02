@@ -15,7 +15,8 @@ public class RotateByPID extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.m_driveTrain.setRotationSetpoint(Robot.m_driveTrain.getAngle() + m_setpoint);
+    	Robot.m_driveTrain.resetAHRSGyro();
+    	Robot.m_driveTrain.setRotationSetpoint(m_setpoint);
     	Robot.m_driveTrain.setOutputRange();
     	Robot.m_driveTrain.setRotationTolerance();
     	Robot.m_driveTrain.enableRotationPIDControllers();

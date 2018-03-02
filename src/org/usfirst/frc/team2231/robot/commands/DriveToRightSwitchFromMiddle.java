@@ -24,10 +24,14 @@ public class DriveToRightSwitchFromMiddle extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new DriveByEncoder(40.5));
+    	addSequential(new DriveByEncoder(40));
+    	addSequential(new DriveByEncoder(40));
     	addSequential(new RotateByPID(90));
-    	addSequential(new DriveByEncoder(96.5));
+    	addSequential(new DriveByEncoder(246));
+    	addSequential(new DriveByEncoder(246));
     	addSequential(new RotateByPID(-90));
-    	addSequential(new DriveByEncoder(279.5));
+    	addSequential(new DriveByEncoder(346));
+    	addSequential(new DriveByEncoder(346));
+    	addSequential(new RotateByPID(-90));
     }
 }

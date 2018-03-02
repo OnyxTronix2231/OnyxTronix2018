@@ -18,6 +18,7 @@ import org.usfirst.frc.team2231.robot.commands.OpenHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.Raise;
 import org.usfirst.frc.team2231.robot.commands.DriveToRightSwitchFromMiddle;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -63,11 +64,13 @@ public class OI {
 	public JoystickButton collectCube;
 	public JoystickButton ejectCube;
 	public JoystickButton elevatorPitch;
-	public JoystickButton rotateByNinteyDegrees;
+	public JoystickButton driveRightFromMiddle;
 	public JoystickButton driveTenMeters;
 	private JoystickButton openPiston;
 	private JoystickButton closePiston;
 	private JoystickButton driveToLeftSwitchFromMiddle;
+	private JoystickButton drive10Meters;
+	private JoystickButton Rotate90deg;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -86,15 +89,19 @@ public class OI {
 		elevatorPitch = new JoystickButton(buttonStick, 7);
 		elevatorPitch.whenPressed(new EvelatorPitchDrop());
     
-		rotateByNinteyDegrees = new JoystickButton(driveStick, 5);
-		rotateByNinteyDegrees.whenPressed(new DriveToRightSwitchFromMiddle());
+		driveRightFromMiddle = new JoystickButton(driveStick, 7);
+		driveRightFromMiddle.whenPressed(new DriveToRightSwitchFromMiddle());
 		
 		openPiston = new JoystickButton(buttonStick, 5);
 		openPiston.whenPressed(new OpenHolderPiston());
 		closePiston = new JoystickButton(buttonStick, 6);
 		closePiston.whenPressed(new CloseHolderPiston());
 		
-		driveToLeftSwitchFromMiddle = new JoystickButton(driveStick, 6);
+		drive10Meters = new JoystickButton(driveStick, 1);
+		drive10Meters.whenPressed(new DriveByEncoder(732));
+		
+		Rotate90deg = new JoystickButton(driveStick, 2);
+		Rotate90deg.whenPressed(new RotateByPID(90));
 		}
 
 

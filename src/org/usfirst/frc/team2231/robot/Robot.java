@@ -124,6 +124,10 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+//		System.out.println(Robot.m_driveTrain.firstLeft.getSensorCollection().getQuadraturePosition());
+//		System.out.println(Robot.m_driveTrain.firstRight.getSensorCollection().getQuadraturePosition());
+//		System.out.println(Robot.m_driveTrain.secondLeft.getSensorCollection().getQuadraturePosition());
+//		System.out.println(Robot.m_driveTrain.secondRight.getSensorCollection().getQuadraturePosition());
 	}
 
 	/**

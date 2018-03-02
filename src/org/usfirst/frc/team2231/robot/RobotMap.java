@@ -62,26 +62,33 @@ public class RobotMap {
 	public static DoubleSolenoid collectorHolderPiston;
 
 	public RobotMap() {
-		driveTrainFirstLeft = new WPI_TalonSRX(0);
-		driveTrainSecondLeft = new WPI_TalonSRX(1);
+		driveTrainFirstLeft = new WPI_TalonSRX(1);
+		driveTrainSecondLeft = new WPI_TalonSRX(0);
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);
 
-		driveTrainFirstRight = new WPI_TalonSRX(2);
-		driveTrainSecondRight = new WPI_TalonSRX(3);
+		driveTrainFirstRight = new WPI_TalonSRX(3);
+		driveTrainSecondRight = new WPI_TalonSRX(4);
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
-		
-
+		driveTrainRobotDrive.setSafetyEnabled(false);
 		driveTrainNavX = new AHRS(SPI.Port.kMXP);	
 		
 		driveTrainLeftRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainleftTalons);
 		driveTrainRightRotationPIDController = new PIDController(0.0425, 0, 0.1, driveTrainNavX, driveTrainRightTalons);
-		driveTrainFirstLeft.config_kP(0, 1, 0);
+		driveTrainFirstLeft.config_kP(0, 3, 0);
 		driveTrainFirstLeft.config_kI(0, 0, 0);
 		driveTrainFirstLeft.config_kD(0, 0, 0);
-		driveTrainFirstRight.config_kP(0, 1, 0);
+		driveTrainFirstRight.config_kP(0, 3, 0);
 		driveTrainFirstRight.config_kI(0, 0, 0);
 		driveTrainFirstRight.config_kD(0, 0, 0);
+		driveTrainFirstLeft.configNominalOutputForward(0, 0);
+		driveTrainFirstLeft.configNominalOutputReverse(0, 0);
+		driveTrainSecondLeft.configNominalOutputForward(0, 0);
+		driveTrainSecondLeft.configNominalOutputReverse(0, 0);
+		driveTrainFirstRight.configNominalOutputForward(0, 0);
+		driveTrainFirstRight.configNominalOutputReverse(0, 0);
+		driveTrainSecondRight.configNominalOutputForward(0, 0);
+		driveTrainSecondRight.configNominalOutputReverse(0, 0);
 		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
 		collectorLeftWheel = new WPI_TalonSRX(4);
 		collectorRightWheel = new WPI_TalonSRX(5);

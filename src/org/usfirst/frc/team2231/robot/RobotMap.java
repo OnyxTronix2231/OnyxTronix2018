@@ -16,10 +16,10 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-import OnyxTronix.LineTracker;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -61,13 +61,13 @@ public class RobotMap {
 	public WPI_VictorSPX elevatorSecondMotor;
 	public WPI_VictorSPX elevatorThirdMotor;
 	public WPI_VictorSPX elevatorFourthMotor;
-	public LineTracker collectorLineTracker;
 	public SpeedControllerGroup elevatorWheels;
 	public WPI_TalonSRX elevatorPitchMotor;
 	public DoubleSolenoid collectorHolderPistonLeft;
 	public DoubleSolenoid collectorHolderPistonRight;
 	public DigitalInput elevatorUpperMicroswitch;
 	public DigitalInput elevatorLowerMicroswitch;
+	public AnalogInput elevatorPotentiometer;
 	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0);
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
@@ -112,13 +112,10 @@ public class RobotMap {
 		elevatorFourthMotor = new WPI_VictorSPX(11);
 		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor,
 				elevatorFourthMotor);
-//		elevatorFirstMotor.overrideLimitSwitchesEnable(true);
 		elevatorWheels.setInverted(true);
+		elevatorPotentiometer = new AnalogInput(2);
 		
 
 		elevatorPitchMotor = new WPI_TalonSRX(12);
-		
-
-		collectorLineTracker = new LineTracker(2, 4);
 	}
 }

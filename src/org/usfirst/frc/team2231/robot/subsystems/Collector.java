@@ -11,7 +11,6 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.commands.CollectWhenMicroSwitchIsNotPressed;
 import OnyxTronix.LineTracker;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -24,7 +23,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Collector extends Subsystem {
 	private boolean m_isCubeCollected = false;
 	private final SpeedControllerGroup wheels = Robot.m_robotMap.collectorWheels;
-	private final LineTracker lineTracker = Robot.m_robotMap.collectorLineTracker;
 	private final DoubleSolenoid holderPistonLeft = Robot.m_robotMap.collectorHolderPistonLeft;
 	private final DoubleSolenoid holderPistonRight = Robot.m_robotMap.collectorHolderPistonRight;
 	// Put methods for controlling this subsystem
@@ -34,7 +32,6 @@ public class Collector extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new CollectWhenMicroSwitchIsNotPressed());
 	}
 
 	public void setSpeed(final double speed) {
@@ -48,10 +45,6 @@ public class Collector extends Subsystem {
 	public boolean isCollecting() {
 		return wheels.get() != 0;
 
-	}
-	
-	public boolean isMicroSwitchPressed() {
-		return lineTracker.isPressed();
 	}
 
 	public void changeHolderPistonPosition(final DoubleSolenoid.Value value) {

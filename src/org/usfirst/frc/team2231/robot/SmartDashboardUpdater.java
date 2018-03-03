@@ -143,8 +143,8 @@ public class SmartDashboardUpdater {
 	}
 
 	public static synchronized void putData(String key, Sendable data, NetworkTable table) {
-		System.out.println("getting subtable" + table.getPath() + " and key " + key);
-		System.out.println("entry path is " + table.getPath());
+//		System.out.println("getting subtable" + table.getPath() + " and key " + key);
+//		System.out.println("entry path is " + table.getPath());
 		m_sendableBuilder.setTable(table);
 		data.initSendable(m_sendableBuilder);
 		m_sendableBuilder.updateTable();

@@ -7,8 +7,13 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import java.awt.Window.Type;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -52,15 +57,17 @@ public class RobotMap {
 	public PIDController driveTrainLeftRotationPIDController;
 	public PIDController driveTrainRightRotationPIDController;
 	public SpeedControllerGroup collectorWheels;
-	private SpeedController elevatorFirstMotor;
-	private SpeedController elevatorSecondMotor;
-	private SpeedController elevatorThirdMotor;
-	private SpeedController elevatorFourthMotor;
+	public WPI_TalonSRX elevatorFirstMotor;
+	public WPI_VictorSPX elevatorSecondMotor;
+	public WPI_VictorSPX elevatorThirdMotor;
+	public WPI_VictorSPX elevatorFourthMotor;
 	public LineTracker collectorLineTracker;
 	public SpeedControllerGroup elevatorWheels;
-	public SpeedController elevatorPitchMotor;
+	public WPI_TalonSRX elevatorPitchMotor;
 	public DoubleSolenoid collectorHolderPistonLeft;
 	public DoubleSolenoid collectorHolderPistonRight;
+	public DigitalInput elevatorUpperMicroswitch;
+	public DigitalInput elevatorLowerMicroswitch;
 	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0);
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
@@ -92,20 +99,25 @@ public class RobotMap {
 		driveTrainFirstRight.config_kD(0, 0, 0);
 		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
 
-		collectorLeftWheel = new WPI_TalonSRX(6);
-		collectorRightWheel = new WPI_TalonSRX(7);
+		collectorLeftWheel = new WPI_VictorSPX(6);
+		collectorRightWheel = new WPI_VictorSPX(7);
+		collectorRightWheel.setInverted(true);
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
-		collectorHolderPistonLeft = new DoubleSolenoid(0, 1);
+		collectorHolderPistonLeft = new DoubleSolenoid(0, 7);
 		collectorHolderPistonRight = new DoubleSolenoid(2, 3);
 
 		elevatorFirstMotor = new WPI_TalonSRX(8);
-		elevatorSecondMotor = new WPI_TalonSRX(9);
-		elevatorThirdMotor = new WPI_TalonSRX(10);
-		elevatorFourthMotor = new WPI_TalonSRX(11);
+		elevatorSecondMotor = new WPI_VictorSPX(9);
+		elevatorThirdMotor = new WPI_VictorSPX(10);
+		elevatorFourthMotor = new WPI_VictorSPX(11);
 		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor,
 				elevatorFourthMotor);
+//		elevatorFirstMotor.overrideLimitSwitchesEnable(true);
+		elevatorWheels.setInverted(true);
+		
 
 		elevatorPitchMotor = new WPI_TalonSRX(12);
+		
 
 		collectorLineTracker = new LineTracker(2, 4);
 	}

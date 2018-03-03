@@ -38,11 +38,7 @@ public class Collector extends Subsystem {
 	}
 
 	public void setSpeed(final double speed) {
-		if (isMicroSwitchPressed() && speed > 0) {
-			stop();
-		} else {
 			wheels.set(speed);
-		}
 	}
 
 	public void stop() {

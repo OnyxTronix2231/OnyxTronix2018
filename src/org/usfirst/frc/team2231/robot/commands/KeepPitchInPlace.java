@@ -17,7 +17,7 @@ public class KeepPitchInPlace extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.m_elevatorPitch.setSpeed(-0.1);
+    	Robot.m_elevatorPitch.setSpeed(0.1);
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -116,5 +116,6 @@ public class RobotMap {
 		
 
 		elevatorPitchMotor = new WPI_TalonSRX(12);
+		elevatorPitchMotor.setInverted(true);
 	}
 }

@@ -112,7 +112,6 @@ public class RobotMap {
 		elevatorFourthMotor = new WPI_VictorSPX(11);
 		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor,
 				elevatorFourthMotor);
-		elevatorWheels.setInverted(true);
 		elevatorPotentiometer = new AnalogInput(2);
 		
 

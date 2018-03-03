@@ -21,7 +21,7 @@ public class KeepElevatorInPlace extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		Robot.m_elevator.elevatorWheels.set(0.07);
+    		Robot.m_elevator.elevatorWheels.set(-0.07);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -11,7 +11,6 @@ import org.usfirst.frc.team2231.robot.commands.OpenCollector;
 import org.usfirst.frc.team2231.robot.commands.RotateByNavX; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.Eject;
-import org.usfirst.frc.team2231.robot.commands.LiftElevatorUsingPotentiometer;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.LowerElevatorPitch;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
@@ -70,7 +69,6 @@ public class OI {
 	private JoystickButton collectCube;
 	private JoystickButton elevatorUp;
 	private JoystickButton operatorCloseCollector;
-	private JoystickButton potentionmeterPID;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -90,6 +88,9 @@ public class OI {
 		elevatorPitch.whileHeld(new LowerElevatorPitch());
 		elevatorUp = new JoystickButton(buttonStick, 8);
 		elevatorUp.whileHeld(new RaiseElevatorPitch());
+    
+		rotateByNinteyDegrees = new JoystickButton(driveStick, 8);
+		rotateByNinteyDegrees.whenPressed(new RotateByNavX(90));
 		
 		openCollector = new JoystickButton(driveStick, 5);
 		openCollector.whenPressed(new OpenCollector());
@@ -100,8 +101,7 @@ public class OI {
 		operatorCloseCollector = new JoystickButton(buttonStick, 5);
 		operatorCloseCollector.whenPressed(new CloseCollector());
 		
-		potentionmeterPID = new JoystickButton(driveStick, 8);
-		potentionmeterPID.whenPressed(new LiftElevatorUsingPotentiometer(90));
+		
 		}
 
 

@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
 		m_collector = new Collector();
 		m_elevator = new Elevator();
 		m_elevatorPitch = new ElevatorPitch();
-		m_potentionmeter = new Potentionmeter(2);
+		m_potentionmeter = new Potentionmeter();
 		m_oi = new OI();
 		m_smartDashboardUpdater = new SmartDashboardUpdater();
 		CameraServer.getInstance().startAutomaticCapture();

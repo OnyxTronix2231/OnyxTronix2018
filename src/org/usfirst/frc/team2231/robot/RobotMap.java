@@ -66,7 +66,6 @@ public class RobotMap {
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
 	public AnalogInput potentionmeter;
-	public PIDController elevatorPIDController;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -120,8 +119,5 @@ public class RobotMap {
 //		collectorLineTracker = new LineTracker(2, 4);
 		
 		potentionmeter = new AnalogInput(2);
-		
-		elevatorPIDController = new PIDController(0.1, 0, 0, Robot.m_potentionmeter, driveTrainleftTalons);
-		elevatorPIDController.setSetpoint(90);
 	}
 }

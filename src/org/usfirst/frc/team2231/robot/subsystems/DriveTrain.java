@@ -65,12 +65,12 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void setRotationTolerance() {
-		leftRotationPIDController.setAbsoluteTolerance(m_rotation_Absolute_Tolerence);
-		rightRotationPIDController.setAbsoluteTolerance(m_rotation_Absolute_Tolerence);
+		leftRotationPIDController.setAbsoluteTolerance(m_rotationAbsoluteTolerence);
+		rightRotationPIDController.setAbsoluteTolerance(m_rotationAbsoluteTolerence);
 	}
 
 	public boolean isRotationPIDOnPoint() {
-		return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget() && leftTalons.get() < 0.05;
+		return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget() && Math.abs(Robot.m_driveTrain.m_navX.getRawGyroZ()) < 0.1;
 	}
 
 	public void stop() {
@@ -122,7 +122,7 @@ public class DriveTrain extends Subsystem {
 
 	public double convertToEncoderValue(double distanceInCentimeters) {
 		distanceInCentimeters /= 2 * Math.PI * wheelRadius;
-		distanceInCentimeters *= 281.847;
+		distanceInCentimeters *= 300 * 1.66;
 		return distanceInCentimeters;
 	}
 }

@@ -7,7 +7,7 @@ import org.usfirst.frc.team2231.robot.Robot;
  */
 public class Eject extends ConveyWithCollector {
 
-	private static final int maxSpeed = -1;
+	private static final double maxSpeed = -0.1;
 
 	public Eject() {
 		super(maxSpeed);

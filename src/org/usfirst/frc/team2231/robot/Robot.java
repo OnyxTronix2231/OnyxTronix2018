@@ -31,6 +31,7 @@ import org.usfirst.frc.team2231.robot.commands.DriveToLeftScaleFromTheLeft;
 import org.usfirst.frc.team2231.robot.commands.DriveToLeftSwitchFromTheLeft;
 import org.usfirst.frc.team2231.robot.commands.DriveToRightScaleFromTheRight;
 import org.usfirst.frc.team2231.robot.commands.DriveToRightSwitchFromTheRight;
+import org.usfirst.frc.team2231.robot.commands.GetFieldPosition;
 import org.usfirst.frc.team2231.robot.commands.PassAutoLineFromLeft;
 import org.usfirst.frc.team2231.robot.commands.PassAutoLineFromMiddle;
 import org.usfirst.frc.team2231.robot.commands.PassAutoLineFromRight;
@@ -55,6 +56,7 @@ public class Robot extends TimedRobot {
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	Command getFieldPosition;
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
@@ -106,6 +108,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		getFieldPosition = new GetFieldPosition();
+		getFieldPosition.start();
 		m_autonomousCommand = m_chooser.getSelected();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");

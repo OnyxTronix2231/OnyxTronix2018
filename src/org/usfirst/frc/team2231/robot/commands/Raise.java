@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2231.robot.commands;
 
+import org.usfirst.frc.team2231.robot.Robot;
+
 /**
  *
  */
@@ -9,5 +11,4 @@ public class Raise extends ChangeCubeElevation {
     public Raise() {
         super(maxSpeed);
     }
-    
 }

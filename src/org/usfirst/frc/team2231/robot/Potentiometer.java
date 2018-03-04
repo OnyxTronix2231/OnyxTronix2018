@@ -15,9 +15,9 @@ public class Potentiometer extends AnalogInput implements PIDSource {
 	public double m_maxmumHeight;
 	public double potentiometerHeight;
 
-	public Potentiometer(double minimumPotentiometer, double maximumPotentiometer, double minimumHeight,
+	public Potentiometer(int port, double minimumPotentiometer, double maximumPotentiometer, double minimumHeight,
 			double maximumHeight) {
-		super(2);
+		super(port);
 		m_minimumPotentionmeter = minimumPotentiometer;
 		m_maximumPotentionmeter = maximumPotentiometer;
 		m_minimumHeight = minimumHeight;

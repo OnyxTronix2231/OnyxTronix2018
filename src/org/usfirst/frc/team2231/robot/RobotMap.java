@@ -112,6 +112,6 @@ public class RobotMap {
 
 		collectorLineTracker = new LineTracker(2, 4);
 		
-		potentiometer = new Potentiometer(0.0366, 1.351, 26, 198);
+		potentiometer = new Potentiometer(2, 0.0366, 1.351, 26, 198);
 	}
 }

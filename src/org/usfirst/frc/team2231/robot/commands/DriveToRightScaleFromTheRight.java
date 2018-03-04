@@ -19,23 +19,27 @@ public class DriveToRightScaleFromTheRight extends CommandGroup {
         // use addParallel()
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
+        // Command1 and Commnand2 will run in parallel.
 
         // A command group will require all of the subsystems that each member
         // would require.
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addParallel(new RaiseElevatorScaleAutonomous());
+    	addParallel(new Raise(), 3);
     	addParallel(new EvelatorPitchDrop());
+    	addSequential(new DriveByEncoder(822));
     	addSequential(new DriveByEncoder(822));
     	addSequential(new RotateByNavX(90));
     	addSequential(new DriveByEncoder(15));
+    	addSequential(new DriveByEncoder(15));
     	addSequential(new Eject());
     	addParallel(new OpenCollector());
-    	addParallel(new LowerBySpeed(0.25), 4);
+    	addParallel(new Lower(), 4);
+    	addSequential(new DriveByEncoder(-30));
     	addSequential(new DriveByEncoder(-30));
     	addSequential(new RotateByNavX(60));
+    	addSequential(new DriveByEncoder(150));
     	addSequential(new DriveByEncoder(150));
     }
 }

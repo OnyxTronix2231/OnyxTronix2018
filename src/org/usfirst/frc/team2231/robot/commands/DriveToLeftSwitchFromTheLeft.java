@@ -24,7 +24,7 @@ public class DriveToLeftSwitchFromTheLeft extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addParallel(new RaiseBySpeed(0.4), 3);
+    	addParallel(new Raise(), 3);
     	addParallel(new EvelatorPitchDrop());
     	addSequential(new DriveByEncoder(366));
     	addSequential(new DriveByEncoder(366));
@@ -33,9 +33,11 @@ public class DriveToLeftSwitchFromTheLeft extends CommandGroup {
     	addSequential(new DriveByEncoder(10));
        	addParallel(new Eject(), 1.5);
     	addParallel(new OpenCollector());
-    	addSequential(new LowerBySpeed(0.25), 4);
+    	addSequential(new Lower(), 4);
+    	addSequential(new DriveByEncoder(-20));
     	addSequential(new DriveByEncoder(-20));
     	addSequential(new RotateByNavX(-90));
+    	addSequential(new DriveByEncoder(-70));
     	addSequential(new DriveByEncoder(-70));
     }
 }

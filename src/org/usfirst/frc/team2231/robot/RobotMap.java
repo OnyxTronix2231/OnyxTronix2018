@@ -43,6 +43,7 @@ public class RobotMap {
 	public WPI_TalonSRX driveTrainThirdLeft;
 	public WPI_TalonSRX driveTrainFirstRight;
 	public WPI_TalonSRX driveTrainSecondRight;
+	
 	public DifferentialDrive driveTrainRobotDrive;
 	public WPI_TalonSRX driveTrainThirdRight;
 	public SpeedControllerGroup driveTrainleftTalons;
@@ -65,7 +66,7 @@ public class RobotMap {
 	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0);
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
-	public AnalogInput potentionmeter;
+	public Potentiometer potentiometer;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -73,7 +74,7 @@ public class RobotMap {
 		driveTrainThirdLeft = new WPI_TalonSRX(2);
 
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);
-
+		
 		driveTrainFirstRight = new WPI_TalonSRX(3);
 		driveTrainSecondRight = new WPI_TalonSRX(4);
 		driveTrainThirdRight = new WPI_TalonSRX(5);
@@ -111,6 +112,6 @@ public class RobotMap {
 
 		collectorLineTracker = new LineTracker(2, 4);
 		
-		potentionmeter = new AnalogInput(2);
+		potentiometer = new Potentiometer(0.0366, 1.351, 26, 198);
 	}
 }

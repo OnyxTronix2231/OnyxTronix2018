@@ -28,7 +28,12 @@ public class ConveyWithCollector extends Command {
     // Called just before this Command runs the first time
     @Override
 	protected void initialize() {
+    }
+    
+    @Override
+    protected void execute() {
     	Robot.m_collector.setSpeed(m_maxSpeed);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

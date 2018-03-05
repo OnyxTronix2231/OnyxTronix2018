@@ -1,43 +1,36 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveByEncoder extends Command {
-	double m_setpoint;
+public class KeepElevatorInPlace extends Command {
 
-    public DriveByEncoder(double setpoint) {
-        m_setpoint = setpoint;
-    	requires(Robot.m_driveTrain);
+    public KeepElevatorInPlace() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.m_elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.m_driveTrain.resetEncoder();
-    	Robot.m_driveTrain.setPositionOutputRange();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.m_driveTrain.setPositionSetpoint(m_setpoint);
+    	Robot.m_elevator.setSpeed(0.08);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.m_driveTrain.getPositionError();
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.m_driveTrain.resetPositionOutputRange();
-    	Robot.m_driveTrain.stop();
     }
 
     // Called when another command which requires one or more of the same

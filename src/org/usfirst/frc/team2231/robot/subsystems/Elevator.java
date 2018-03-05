@@ -11,6 +11,8 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.commands.KeepElevatorInPlace;
+
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -27,6 +29,7 @@ public class Elevator extends Subsystem {
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new KeepElevatorInPlace());
     }
 
     public void setSpeed(double speed){

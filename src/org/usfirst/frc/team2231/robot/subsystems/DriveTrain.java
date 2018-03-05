@@ -74,6 +74,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void stop() {
+		System.out.println("Stopping");
 		leftTalons.stopMotor();
 		rightTalons.stopMotor();
 	}
@@ -114,15 +115,24 @@ public class DriveTrain extends Subsystem {
 		firstRight.set(ControlMode.Position, -setpoint);
 		secondLeft.set(ControlMode.Follower, firstLeft.getDeviceID());
 		secondRight.set(ControlMode.Follower, firstRight.getDeviceID());
+		System.out.println("Left Error " + firstLeft.getClosedLoopError(0));
+		System.out.println("Right Error " + firstRight.getClosedLoopError(0));
+		System.out.println("Current Left" + firstLeft.getSensorCollection().getQuadraturePosition());
+		System.out.println("Current Right" + firstRight.getSensorCollection().getQuadraturePosition());
 	}
 
 	public boolean getPositionError() {
-		return Math.abs(firstLeft.getClosedLoopError(0)) < 40 && Math.abs(firstRight.getClosedLoopError(0)) < 40;
+		return Math.abs(firstLeft.getClosedLoopError(0)) < 30 && Math.abs(firstRight.getClosedLoopError(0)) < 30;
 	}
 
 	public double convertToEncoderValue(double distanceInCentimeters) {
 		distanceInCentimeters /= 2 * Math.PI * wheelRadius;
 		distanceInCentimeters *= 300 * 1.66;
 		return distanceInCentimeters;
+	}
+	
+	public void setSpeed(double speed) {
+		leftTalons.set(speed);
+		rightTalons.set(-speed);
 	}
 }

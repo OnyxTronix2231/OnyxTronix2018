@@ -24,24 +24,22 @@ public class DriveFromMiddleToRightSwitch extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new DriveByEncoder(20));
-    	addSequential(new DriveByEncoder(20));
-    	addSequential(new RotateByNavX(-90));
-    	addParallel(new Raise(), 3);
-    	addParallel(new EvelatorPitchDrop());
-    	addSequential(new DriveByEncoder(123));
-    	addSequential(new DriveByEncoder(123));
-    	addSequential(new RotateByNavX(90));
-    	addSequential(new DriveByEncoder(326));
-    	addSequential(new DriveByEncoder(326));
-    	addSequential(new Eject(), 1.5);
-    	addParallel(new OpenCollector());
-    	addSequential(new RotateByNavX(90));
-    	addSequential(new DriveByEncoder(-130));
-    	addSequential(new DriveByEncoder(-130));
-    	addSequential(new RotateByNavX(90));
-    	addSequential(new DriveByEncoder(-50));
-    	addSequential(new DriveByEncoder(-50));
-    	addParallel(new Lower(), 4);	
+    	
+    	addSequential(new DriveBySpeed(0.5), 0.4);
+    	addSequential(new DriveBySpeed(0), 0.1);
+    	addSequential(new RotateByNavX(25), 0.4);
+    	addParallel(new RaiseBySpeed(0.7), 1.3);
+    	addParallel(new EvelatorPitchDrop(), 1);
+    	addSequential(new DriveBySpeed(0.4), 2.3);
+    	addParallel(new KeepElevatorInPlace());
+    	addSequential(new Eject(), 3.5);
+//    	addSequential(new RotateByNavX(90));
+//    	addSequential(new DriveByEncoder(-130));
+//    	addSequential(new DriveByEncoder(-130));
+//    	addSequential(new RotateByNavX(90));
+//    	addSequential(new DriveByEncoder(-50));
+//    	addSequential(new DriveByEncoder(-50));
+//    	addSequential(new DriveBySpeed(-0.5), 0.2);
+//    	addSequential(new Lower(), 4);	
     }
 }

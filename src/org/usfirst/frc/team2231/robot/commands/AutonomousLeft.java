@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.ConditionalCommand;
 public class AutonomousLeft extends ConditionalCommand {
 	
 	public AutonomousLeft() {
-		super(new DriveToLeftSwitchFromTheLeft(), new LeftAutonomousFalse());
+		super(new DriveToLeftSwitchFromTheLeft(), new PassAutoLineFromLeft());
 		// TODO Auto-generated constructor stub
 	}
 

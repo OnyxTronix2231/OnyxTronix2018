@@ -77,6 +77,8 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Left", new AutonomousLeft());
 		m_chooser.addObject("Middle", new AutonomousMiddle());
 		m_chooser.addObject("Right", new AutonomousRight());
+		SmartDashboard.putData("Autonomous chooser", m_chooser);
+		
 		m_smartDashboardUpdater.UpdateDashboard();
 	}
 
@@ -141,7 +143,11 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
-	}
+		Robot.m_driveTrain.firstLeft.configPeakOutputForward(0.5, 0);
+		Robot.m_driveTrain.firstLeft.configPeakOutputReverse(-0.5, 0);
+		Robot.m_driveTrain.firstRight.configPeakOutputForward(0.5, 0);
+		Robot.m_driveTrain.firstRight.configPeakOutputReverse(-0.5, 0);
+		}
 
 	/**
 	 * This function is called periodically during operator control.

@@ -28,9 +28,14 @@ public class ConveyWithCollector extends Command {
     // Called just before this Command runs the first time
     @Override
 	protected void initialize() {
-    	Robot.m_collector.setSpeed(m_maxSpeed);
     }
 
+    @Override
+    protected void execute() {
+    	// TODO Auto-generated method stub
+    	Robot.m_collector.setSpeed(m_maxSpeed);
+    }
+    
     // Make this return true when this Command no longer needs to run execute()
     @Override
 	protected boolean isFinished() {

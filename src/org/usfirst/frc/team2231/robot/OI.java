@@ -10,6 +10,7 @@ package org.usfirst.frc.team2231.robot;
 import org.usfirst.frc.team2231.robot.commands.OpenCollector;
 import org.usfirst.frc.team2231.robot.commands.RotateByNavX; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
+import org.usfirst.frc.team2231.robot.commands.CollectCube;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.LifToScale;
 import org.usfirst.frc.team2231.robot.commands.LifToSwitch;

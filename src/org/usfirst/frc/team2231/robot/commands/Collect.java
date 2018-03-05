@@ -9,7 +9,6 @@ public class Collect extends ConveyWithCollector {
 	public Collect() {
 		super(maxSpeed);
 	}
-<<<<<<< HEAD
 //
 	@Override
 	protected void execute() {
@@ -18,16 +17,15 @@ public class Collect extends ConveyWithCollector {
 		System.out.println("Left " + Robot.m_robotMap.collectorLeftWheel.get());
 		System.out.println("Right " + Robot.m_robotMap.collectorRightWheel.get());
 	}
-//	@Override
-//	protected boolean isFinished() {
-//		return Robot.m_collector.isMicroSwitchPressed();
-//	}
-//
-//	@Override
-//	protected void end() {
-//		super.end();
-//		Robot.m_collector.setCubeCollected(Robot.m_collector.isMicroSwitchPressed());
-//	}
-=======
->>>>>>> origin/Feature/WhiteNightManualChanges
+	@Override
+	protected boolean isFinished() {
+		return Robot.m_collector.isMicroSwitchPressed();
+	}
+
+	@Override
+	protected void end() {
+		super.end();
+		Robot.m_collector.setCubeCollected(Robot.m_collector.isMicroSwitchPressed());
+	}
+
 }

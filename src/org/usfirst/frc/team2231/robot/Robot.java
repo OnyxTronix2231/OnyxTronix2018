@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -34,10 +35,10 @@ public class Robot extends TimedRobot {
 	public static RobotMap m_robotMap;
 	public static OI m_oi;
 	public static Elevator m_elevator;
-	public static Potentionmeter m_potentionmeter;
 	public static ElevatorPitch m_elevatorPitch;
 	public static FieldPositions m_fieldPositions;
 	public static SmartDashboardUpdater m_smartDashboardUpdater;
+	public static Potentiometer m_potentiometer;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -52,12 +53,12 @@ public class Robot extends TimedRobot {
 		m_collector = new Collector();
 		m_elevator = new Elevator();
 		m_elevatorPitch = new ElevatorPitch();
-		m_potentionmeter = new Potentionmeter();
 		m_oi = new OI();
 		m_smartDashboardUpdater = new SmartDashboardUpdater();
 		CameraServer.getInstance().startAutomaticCapture();
 		CameraServer.getInstance().startAutomaticCapture(1);
 		m_smartDashboardUpdater.updateDashboard();
+		m_potentiometer = new Potentiometer(2, 0.0366, 1.351, 26, 198);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
 
@@ -119,11 +120,8 @@ public class Robot extends TimedRobot {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
-<<<<<<< HEAD
 		// this line or comment it out.\][
-=======
 		// this line or comment it out.
->>>>>>> origin/Feature/WhiteNightManualChanges
 		
 		
 		if (m_autonomousCommand != null) {

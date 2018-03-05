@@ -11,13 +11,10 @@ public class Raise extends ChangeCubeElevation {
     public Raise() {
         super(maxSpeed);
     }
-<<<<<<< HEAD
     
     @Override
     protected boolean isFinished() {
     	// TODO Auto-generated method stub
     	return Robot.m_elevator.firstMotor.getSensorCollection().isFwdLimitSwitchClosed();
     }
-=======
->>>>>>> origin/Feature/WhiteNightManualChanges
 }

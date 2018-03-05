@@ -17,18 +17,13 @@ public class KeepPitchInPlace extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-<<<<<<< HEAD
-=======
+
     	Robot.m_elevatorPitch.setSpeed(-0.1);
->>>>>>> origin/Feature/WhiteNightManualChanges
-    }
+    	}
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-<<<<<<< HEAD
     	Robot.m_elevatorPitch.setSpeed(-0.1);
-=======
->>>>>>> origin/Feature/WhiteNightManualChanges
     }
 
     // Make this return true when this Command no longer needs to run execute()

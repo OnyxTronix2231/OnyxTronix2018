@@ -14,11 +14,21 @@ import org.usfirst.frc.team2231.robot.Potentiometer;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.commands.KeepElevatorInPlace;
 
+<<<<<<< HEAD
 
 import edu.wpi.first.wpilibj.PIDController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+=======
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import edu.wpi.first.wpilibj.DigitalInput;
+>>>>>>> origin/Feature/WhiteNightManualChanges
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -30,8 +40,11 @@ public class Elevator extends Subsystem {
     public final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
     public final WPI_TalonSRX firstMotor = Robot.m_robotMap.elevatorFirstMotor;
     public final WPI_VictorSPX secondMotor = Robot.m_robotMap.elevatorSecondMotor;
+<<<<<<< HEAD
     public final Potentiometer m_potentiometer = Robot.m_robotMap.potentiometer;
     public final PIDController pidController = Robot.m_robotMap.elevatorPIDController;
+=======
+>>>>>>> origin/Feature/WhiteNightManualChanges
     public final WPI_VictorSPX thirdMotor = Robot.m_robotMap.elevatorThirdMotor;
     public final WPI_VictorSPX fourthMotor = Robot.m_robotMap.elevatorFourthMotor;
     
@@ -46,15 +59,19 @@ public class Elevator extends Subsystem {
     }
 
     public void setSpeed(double speed) {
+<<<<<<< HEAD
     	//if (firstMotor.getSensorCollection().isFwdLimitSwitchClosed() && speed < 0) {
 //    	elevatorWheels.set(0);
 //    	}	
 //    	else if (firstMotor.getSensorCollection().isRevLimitSwitchClosed() & speed > 0) {
+=======
+>>>>>>> origin/Feature/WhiteNightManualChanges
     		firstMotor.set(speed);
     		secondMotor.follow(firstMotor);
     		thirdMotor.follow(firstMotor);
     		fourthMotor.follow(firstMotor);
     	}
+<<<<<<< HEAD
 //    	else {
     	
 //    	}
@@ -62,6 +79,8 @@ public class Elevator extends Subsystem {
 //    	secondMotor.set(speed);
 //    	thirdMotor.set(speed);
 //    	fourthMotor.set(speed);
+=======
+>>>>>>> origin/Feature/WhiteNightManualChanges
     
     public void stop() {
     	elevatorWheels.set(0);

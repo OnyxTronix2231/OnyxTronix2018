@@ -11,12 +11,8 @@ import org.usfirst.frc.team2231.robot.commands.OpenCollector;
 import org.usfirst.frc.team2231.robot.commands.RotateByNavX; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.Eject;
-<<<<<<< HEAD
-=======
-import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.LifToScale;
 import org.usfirst.frc.team2231.robot.commands.LifToSwitch;
->>>>>>> PotentionmeterClass
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.LowerElevatorPitch;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
@@ -73,13 +69,13 @@ public class OI {
 	private JoystickButton closeCollector;
 	private JoystickButton operatorOpenCollector;
 	private JoystickButton collectCube;
-<<<<<<< HEAD
 	private JoystickButton elevatorUp;
 	private JoystickButton operatorCloseCollector;
-=======
+<<<<<<< HEAD
 	private JoystickButton scaleRaise;
 	private JoystickButton switchRaise;
->>>>>>> PotentionmeterClass
+=======
+>>>>>>> origin/Feature/WhiteNightManualChanges
 
 	public OI() {
 		driveStick = new Joystick(0);

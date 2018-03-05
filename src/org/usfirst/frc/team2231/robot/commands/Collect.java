@@ -9,6 +9,7 @@ public class Collect extends ConveyWithCollector {
 	public Collect() {
 		super(maxSpeed);
 	}
+<<<<<<< HEAD
 //
 	@Override
 	protected void execute() {
@@ -27,4 +28,6 @@ public class Collect extends ConveyWithCollector {
 //		super.end();
 //		Robot.m_collector.setCubeCollected(Robot.m_collector.isMicroSwitchPressed());
 //	}
+=======
+>>>>>>> origin/Feature/WhiteNightManualChanges
 }

@@ -37,11 +37,15 @@ public class Collector extends Subsystem {
 	}
 
 	public void setSpeed(final double speed) {
+<<<<<<< HEAD
 //		if (isMicroSwitchPressed() && speed > 0) {
 //			stop();
 //		} else {
 			wheels.set(speed);
 //		}
+=======
+			wheels.set(speed);
+>>>>>>> origin/Feature/WhiteNightManualChanges
 	}
 
 	public void stop() {

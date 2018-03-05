@@ -7,6 +7,14 @@
 
 package org.usfirst.frc.team2231.robot;
 
+<<<<<<< HEAD
+=======
+import java.awt.Window.Type;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+>>>>>>> origin/Feature/WhiteNightManualChanges
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
@@ -111,10 +119,15 @@ public class RobotMap {
 		elevatorFourthMotor = new WPI_VictorSPX(11);
 		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor,
 				elevatorFourthMotor);
+<<<<<<< HEAD
 		elevatorFirstMotor.setInverted(true);
 		elevatorSecondMotor.setInverted(true);
 		elevatorThirdMotor.setInverted(true);
 		elevatorFourthMotor.setInverted(true);
+=======
+//		elevatorFirstMotor.overrideLimitSwitchesEnable(true);
+		elevatorWheels.setInverted(true);
+>>>>>>> origin/Feature/WhiteNightManualChanges
 		
 
 		elevatorPitchMotor = new WPI_TalonSRX(12);

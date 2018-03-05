@@ -105,6 +105,8 @@ public class OI {
 		operatorCloseCollector = new JoystickButton(buttonStick, 5);
 		operatorCloseCollector.whenPressed(new CloseCollector());
 		
+		collectCube = new JoystickButton(buttonStick, 8);
+		collectCube.whileHeld(new CollectCube());
 		
 		scaleRaise = new JoystickButton(buttonStick, 9);
 		scaleRaise.whenPressed(new LifToScale());

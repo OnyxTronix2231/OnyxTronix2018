@@ -21,12 +21,16 @@ public class KeepElevatorInPlace extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+<<<<<<< HEAD
     	if  (!Robot.m_robotMap.elevatorFirstMotor.getSensorCollection().isFwdLimitSwitchClosed()) {
     		Robot.m_robotMap.elevatorFirstMotor.set(0.07);
 //    		Robot.m_robotMap.elevatorSecondMotor.set(0.07);
 //    		Robot.m_robotMap.elevatorThirdMotor.set(0.07);
 //    		Robot.m_robotMap.elevatorFourthMotor.set(0.07);
     	}
+=======
+    		Robot.m_elevator.elevatorWheels.set(0.07);
+>>>>>>> origin/Feature/WhiteNightManualChanges
     }
 
     // Make this return true when this Command no longer needs to run execute()

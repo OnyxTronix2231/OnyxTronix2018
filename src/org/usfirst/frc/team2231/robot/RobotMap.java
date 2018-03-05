@@ -67,6 +67,9 @@ public class RobotMap {
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
 	public Potentiometer potentiometer;
+	public PIDController elevatorPIDController;
+	public double scaleHeight = 160;
+	public double switchHeight = 53;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -113,5 +116,6 @@ public class RobotMap {
 		collectorLineTracker = new LineTracker(2, 4);
 		
 		potentiometer = new Potentiometer(2, 0.0366, 1.351, 26, 198);
+		elevatorPIDController = new PIDController(0.1, 0, 0, potentiometer, elevatorWheels);
 	}
 }

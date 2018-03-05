@@ -10,7 +10,10 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import org.usfirst.frc.team2231.robot.Potentiometer;
 import org.usfirst.frc.team2231.robot.Robot;
+
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -19,7 +22,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-    private final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
+    public final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
+    public final Potentiometer m_potentiometer = Robot.m_robotMap.potentiometer;
+    public final PIDController pidController = Robot.m_robotMap.elevatorPIDController;
   
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -38,4 +43,7 @@ public class Elevator extends Subsystem {
     	elevatorWheels.set(0);
     }
     
+    public void setHeight(double height) {
+    	pidController.setSetpoint(height);
+    }
 }

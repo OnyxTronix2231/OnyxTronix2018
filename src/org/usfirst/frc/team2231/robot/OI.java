@@ -11,6 +11,8 @@ import org.usfirst.frc.team2231.robot.commands.OpenCollector;
 import org.usfirst.frc.team2231.robot.commands.RotateByNavX; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.Eject;
+import org.usfirst.frc.team2231.robot.commands.LifToScale;
+import org.usfirst.frc.team2231.robot.commands.LifToSwitch;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.LowerElevatorPitch;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
@@ -69,6 +71,8 @@ public class OI {
 	private JoystickButton collectCube;
 	private JoystickButton elevatorUp;
 	private JoystickButton operatorCloseCollector;
+	private JoystickButton scaleRaise;
+	private JoystickButton switchRaise;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -102,6 +106,12 @@ public class OI {
 		operatorCloseCollector.whenPressed(new CloseCollector());
 		
 		
+		scaleRaise = new JoystickButton(buttonStick, 9);
+		scaleRaise.whenPressed(new LifToScale());
+		
+		switchRaise = new JoystickButton(buttonStick, 10);
+		switchRaise.whenPressed(new LifToSwitch());
+
 		}
 
 

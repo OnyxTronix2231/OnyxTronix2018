@@ -10,9 +10,12 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import org.usfirst.frc.team2231.robot.Potentiometer;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.commands.KeepElevatorInPlace;
 
+
+import edu.wpi.first.wpilibj.PIDController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -27,6 +30,8 @@ public class Elevator extends Subsystem {
     public final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
     public final WPI_TalonSRX firstMotor = Robot.m_robotMap.elevatorFirstMotor;
     public final WPI_VictorSPX secondMotor = Robot.m_robotMap.elevatorSecondMotor;
+    public final Potentiometer m_potentiometer = Robot.m_robotMap.potentiometer;
+    public final PIDController pidController = Robot.m_robotMap.elevatorPIDController;
     public final WPI_VictorSPX thirdMotor = Robot.m_robotMap.elevatorThirdMotor;
     public final WPI_VictorSPX fourthMotor = Robot.m_robotMap.elevatorFourthMotor;
     
@@ -62,4 +67,7 @@ public class Elevator extends Subsystem {
     	elevatorWheels.set(0);
     }
     
+    public void setHeight(double height) {
+    	pidController.setSetpoint(height);
+    }
 }

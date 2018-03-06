@@ -16,6 +16,7 @@ import org.usfirst.frc.team2231.robot.commands.DriveFromMiddleToRightSwitch;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchRaise;
+import org.usfirst.frc.team2231.robot.commands.KeepClimberInPlace;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
 import org.usfirst.frc.team2231.robot.commands.Raise;
@@ -67,11 +68,10 @@ public class OI {
 	public JoystickButton collect;
 	public JoystickButton ejectCube;
 	public JoystickButton elevatorPitchLower;
-	public JoystickButton Drive50CM;
+	public JoystickButton keepClimberInPlace;
 	private JoystickButton openCollector;
 	private JoystickButton closeCollector;
 	private JoystickButton operatorOpenCollector;
-	private JoystickButton collectCube;
 	private JoystickButton elevatorPitchRaise;
 
 	public OI() {
@@ -93,15 +93,14 @@ public class OI {
 		elevatorPitchRaise = new JoystickButton(buttonStick, 8);
 		elevatorPitchRaise.whenPressed(new EvelatorPitchRaise());
 		
-		Drive50CM = new JoystickButton(driveStick, 8);
-		Drive50CM.whenPressed(new DriveFromMiddleToRightSwitch());
-		
 		openCollector = new JoystickButton(driveStick, 5);
 		openCollector.whenPressed(new OpenCollector());
 		closeCollector = new JoystickButton(driveStick, 6);
 		closeCollector.whenPressed(new CloseCollector());
 		operatorOpenCollector = new JoystickButton(buttonStick, 6);
 		operatorOpenCollector.whenPressed(new OpenCollector());
+		keepClimberInPlace = new JoystickButton(driveStick, 8);
+		keepClimberInPlace.whenPressed(new KeepClimberInPlace());
 		
 //		collectCube = new JoystickButton(buttonStick, 8);
 //		collectCube.whileHeld(new CollectCube());

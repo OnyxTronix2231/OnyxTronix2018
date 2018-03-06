@@ -20,7 +20,6 @@ import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.Elevator;
 import org.usfirst.frc.team2231.robot.subsystems.ElevatorPitch;
 
-import java.text.FieldPosition;
 import org.usfirst.frc.team2231.robot.OI;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLeft;
 import org.usfirst.frc.team2231.robot.commands.AutonomousMiddle;
@@ -143,10 +142,10 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
-		Robot.m_driveTrain.firstLeft.configPeakOutputForward(0.5, 0);
-		Robot.m_driveTrain.firstLeft.configPeakOutputReverse(-0.5, 0);
-		Robot.m_driveTrain.firstRight.configPeakOutputForward(0.5, 0);
-		Robot.m_driveTrain.firstRight.configPeakOutputReverse(-0.5, 0);
+		Robot.m_driveTrain.firstLeft.configPeakOutputForward(1, 0);
+		Robot.m_driveTrain.firstLeft.configPeakOutputReverse(-1, 0);
+		Robot.m_driveTrain.firstRight.configPeakOutputForward(1, 0);
+		Robot.m_driveTrain.firstRight.configPeakOutputReverse(-1, 0);
 		}
 
 	/**

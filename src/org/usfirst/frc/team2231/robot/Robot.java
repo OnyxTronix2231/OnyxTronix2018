@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -38,7 +37,6 @@ public class Robot extends TimedRobot {
 	public static ElevatorPitch m_elevatorPitch;
 	public static FieldPositions m_fieldPositions;
 	public static SmartDashboardUpdater m_smartDashboardUpdater;
-	public static Potentiometer m_potentiometer;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -58,7 +56,6 @@ public class Robot extends TimedRobot {
 		CameraServer.getInstance().startAutomaticCapture();
 		CameraServer.getInstance().startAutomaticCapture(1);
 		m_smartDashboardUpdater.updateDashboard();
-		m_potentiometer = new Potentiometer(2, 0.0366, 1.351, 26, 198);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
 

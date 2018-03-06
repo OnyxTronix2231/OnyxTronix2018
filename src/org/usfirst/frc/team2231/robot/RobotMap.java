@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import OnyxTronix.LineTracker;
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -69,6 +70,8 @@ public class RobotMap {
 	public DoubleSolenoid collectorHolderPistonRight;
 	public DigitalInput elevatorUpperMicroswitch;
 	public DigitalInput elevatorLowerMicroswitch;
+	public PowerDistributionPanel pdpModule;
+	
 	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0);
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
@@ -133,5 +136,7 @@ public class RobotMap {
 		
 		potentiometer = new Potentiometer(2, 0.0366, 1.351, 26, 198);
 		elevatorPIDController = new PIDController(0.1, 0, 0, potentiometer, elevatorWheels);
+		
+		pdpModule = new PowerDistributionPanel();
 	}
 }

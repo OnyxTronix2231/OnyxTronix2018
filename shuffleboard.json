@@ -1,0 +1,292 @@
+{
+  "dividerPosition": 0.31154381084840055,
+  "tabPane": [
+    {
+      "title": "Drivers",
+      "autoPopulate": true,
+      "autoPopulatePrefix": "Drivers",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "2,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///Drivers/upperMicroSwitch",
+              "_title": "upperMicroSwitch",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "4,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///Drivers/lowerMicroSwitch",
+              "_title": "lowerMicroSwitch",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "0,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///Drivers/is cube collected",
+              "_title": "is cube collected",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "1,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///Drivers/Left Encoder Position",
+              "_title": "Left Encoder Position"
+            }
+          },
+          "3,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///Drivers/Right Encoder Position",
+              "_title": "Right Encoder Position"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "PID Rotation",
+      "autoPopulate": true,
+      "autoPopulatePrefix": "PID Rotation",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///PID Rotation/Gyro",
+              "_title": "Gyro"
+            }
+          },
+          "1,0": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///PID Rotation/Error Graph",
+              "_title": "Error Graph",
+              "Visible time": 30.0,
+              "PID Rotation/Error Graph visible": true
+            }
+          },
+          "0,1": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///PID Rotation/PID",
+              "_title": "PID"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "PID Encoders",
+      "autoPopulate": true,
+      "autoPopulatePrefix": "PID Encoders",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,1": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///PID Encoders/Left Error Graph",
+              "_title": "Left Error Graph",
+              "Visible time": 30.0,
+              "PID Encoders/Left Error Graph visible": true
+            }
+          },
+          "3,1": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///PID Encoders/Right Error Graph",
+              "_title": "Right Error Graph",
+              "Visible time": 30.0,
+              "PID Encoders/Right Error Graph visible": true
+            }
+          },
+          "0,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///PID Encoders/Left Encoder",
+              "_title": "Left Encoder"
+            }
+          },
+          "3,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///PID Encoders/Right Encoder",
+              "_title": "Right Encoder"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "PID Elevator Height",
+      "autoPopulate": true,
+      "autoPopulatePrefix": "PID Elevator Height",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,1": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///PID Elevator Height/PID",
+              "_title": "PID"
+            }
+          },
+          "1,0": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///PID Elevator Height/Error Graph",
+              "_title": "Error Graph",
+              "Visible time": 30.0,
+              "PID Elevator Height/Error Graph visible": true
+            }
+          },
+          "0,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///PID Elevator Height/Elevator\u0027s Height",
+              "_title": "Elevator\u0027s Height"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "PID Elevator Pitch",
+      "autoPopulate": true,
+      "autoPopulatePrefix": "PID Elevator Pitch",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///PID Elevator Pitch/Error Graph",
+              "_title": "Error Graph",
+              "Visible time": 30.0,
+              "PID Elevator Pitch/Error Graph visible": true
+            }
+          },
+          "3,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///PID Elevator Pitch/Angle",
+              "_title": "Angle"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Electronic",
+      "autoPopulate": true,
+      "autoPopulatePrefix": "Electronic",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              6,
+              5
+            ],
+            "content": {
+              "_type": "PDP",
+              "_source0": "network_table:///Electronic/PDPModule",
+              "_title": "PDPModule",
+              "showIndicatorText": true
+            }
+          }
+        }
+      }
+    }
+  ]
+}

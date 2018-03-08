@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
  *
  */
 public class EvelatorPitchRaise extends TimedCommand {
-	private static final double SPEED = -0.4;
+	private static final double SPEED = -0.8;
 
     public EvelatorPitchRaise() {
 		super(0.5);

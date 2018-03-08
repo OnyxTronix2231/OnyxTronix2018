@@ -26,11 +26,12 @@ public class DriveToRightSwitchFromTheRight extends CommandGroup {
         // arm.
     	addParallel(new RaiseBySpeed(0.7), 1.3);
     	addParallel(new EvelatorPitchDrop(), 1);
-    	addSequential(new DriveBySpeed(0.4), 3.1);
+    	addSequential(new DriveBySpeed(0.4), 2.8);
+    	addSequential(new DriveBySpeed(0), 0.1);
     	addParallel(new KeepElevatorInPlace());
     	addSequential(new RotateByNavX(-85), 0.7);
     	addParallel(new KeepElevatorInPlace());
-    	addSequential(new DriveBySpeed(0.4), 2);
+    	addSequential(new DriveBySpeed(0.4), 2.4);
     	addSequential(new Eject(), 3.5);
     	
     }

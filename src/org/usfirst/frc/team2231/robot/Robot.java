@@ -20,6 +20,8 @@ import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.Elevator;
 import org.usfirst.frc.team2231.robot.subsystems.ElevatorPitch;
 
+import Configuration.CameraConfiguration;
+
 import org.usfirst.frc.team2231.robot.OI;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLeft;
 import org.usfirst.frc.team2231.robot.commands.AutonomousMiddle;
@@ -69,8 +71,8 @@ public class Robot extends TimedRobot {
 		m_elevatorPitch = new ElevatorPitch();
 		m_oi = new OI();
 		m_smartDashboardUpdater = new SmartDashboardUpdater();
-		CameraServer.getInstance().startAutomaticCapture();
-		CameraServer.getInstance().startAutomaticCapture(1);
+		CameraServer.getInstance().startAutomaticCapture().setResolution(10, 5);
+		CameraServer.getInstance().startAutomaticCapture(1).setResolution(10, 5);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		m_chooser.addDefault("Default", new PassAutoLineFromMiddle());
 		m_chooser.addObject("Left", new AutonomousLeft());
@@ -142,11 +144,8 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
-		Robot.m_driveTrain.firstLeft.configPeakOutputForward(1, 0);
-		Robot.m_driveTrain.firstLeft.configPeakOutputReverse(-1, 0);
-		Robot.m_driveTrain.firstRight.configPeakOutputForward(1, 0);
-		Robot.m_driveTrain.firstRight.configPeakOutputReverse(-1, 0);
-		}
+		
+	}
 
 	/**
 	 * This function is called periodically during operator control.

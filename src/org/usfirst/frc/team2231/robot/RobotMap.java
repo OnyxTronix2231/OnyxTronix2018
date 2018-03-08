@@ -55,10 +55,10 @@ public class RobotMap {
 	public PIDController driveTrainLeftRotationPIDController;
 	public PIDController driveTrainRightRotationPIDController;
 	public SpeedControllerGroup collectorWheels;
-	private WPI_TalonSRX elevatorFirstMotor;
-	private WPI_VictorSPX elevatorSecondMotor;
-	private WPI_VictorSPX elevatorThirdMotor;
-	private WPI_VictorSPX elevatorFourthMotor;
+	public WPI_TalonSRX elevatorFirstMotor;
+	public WPI_VictorSPX elevatorSecondMotor;
+	public WPI_VictorSPX elevatorThirdMotor;
+	public WPI_VictorSPX elevatorFourthMotor;
 	public LineTracker collectorLineTracker;
 	public SpeedControllerGroup elevatorWheels;
 	public WPI_TalonSRX elevatorPitchMotor;
@@ -98,13 +98,14 @@ public class RobotMap {
 		driveTrainFirstRight.config_kD(0, 0, 0);
 		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
 		driveTrainFirstRight.configAllowableClosedloopError(0, 3, 0);
-
+		
+		
 		collectorLeftWheel = new WPI_VictorSPX(6);
 		collectorRightWheel = new WPI_VictorSPX(7);
 		collectorRightWheel.setInverted(true);
 		
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
-		collectorHolderPistonLeft = new DoubleSolenoid(0, 1);
+		collectorHolderPistonLeft = new DoubleSolenoid(0,7);
 		collectorHolderPistonRight = new DoubleSolenoid(2, 3);
 
 		elevatorFirstMotor = new WPI_TalonSRX(8);
@@ -124,5 +125,18 @@ public class RobotMap {
 		
 		compressor = new Compressor();
 		compressor.setClosedLoopControl(true);
-		}
+		driveTrainFirstLeft.configPeakOutputForward(1, 0);
+		driveTrainFirstLeft.configPeakOutputReverse(-1, 0);
+		driveTrainSecondLeft.configPeakOutputForward(1, 0);
+		driveTrainSecondLeft.configPeakOutputReverse(-1, 0);
+		driveTrainFirstRight.configPeakOutputForward(1, 0);
+		driveTrainFirstRight.configPeakOutputReverse(-1, 0);
+		driveTrainSecondRight.configPeakOutputForward(1, 0);
+		driveTrainSecondRight.configPeakOutputReverse(-1, 0);
+		
+		driveTrainFirstLeft.enableCurrentLimit(false);
+		driveTrainSecondLeft.enableCurrentLimit(false);
+		driveTrainFirstRight.enableCurrentLimit(false);
+		driveTrainSecondRight.enableCurrentLimit(false);
+	}
 }

@@ -14,10 +14,12 @@ import org.usfirst.frc.team2231.robot.commands.CollectCube;
 import org.usfirst.frc.team2231.robot.commands.DriveByEncoder;
 import org.usfirst.frc.team2231.robot.commands.DriveFromMiddleToRightSwitch;
 import org.usfirst.frc.team2231.robot.commands.Eject;
+import org.usfirst.frc.team2231.robot.commands.EjectSlowly;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchRaise;
 import org.usfirst.frc.team2231.robot.commands.KeepClimberInPlace;
 import org.usfirst.frc.team2231.robot.commands.Lower;
+import org.usfirst.frc.team2231.robot.commands.LowerNeutral;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
 import org.usfirst.frc.team2231.robot.commands.Raise;
 
@@ -73,6 +75,7 @@ public class OI {
 	private JoystickButton closeCollector;
 	private JoystickButton operatorOpenCollector;
 	private JoystickButton elevatorPitchRaise;
+	private JoystickButton ejectCubeSlowly;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -87,15 +90,17 @@ public class OI {
 		collect.whileHeld(new Collect());
 		ejectCube = new JoystickButton(buttonStick, 3);
 		ejectCube.whileHeld(new Eject());
-		
+		ejectCubeSlowly = new JoystickButton(driveStick, 2);
+		ejectCubeSlowly.whileHeld(new EjectSlowly());
+				
 		elevatorPitchLower = new JoystickButton(buttonStick, 7);
-		elevatorPitchLower.whenPressed(new EvelatorPitchDrop());
+		elevatorPitchLower.whileHeld(new EvelatorPitchDrop());
 		elevatorPitchRaise = new JoystickButton(buttonStick, 8);
-		elevatorPitchRaise.whenPressed(new EvelatorPitchRaise());
+		elevatorPitchRaise.whileHeld(new EvelatorPitchRaise());
 		
-		openCollector = new JoystickButton(driveStick, 5);
+		openCollector = new JoystickButton(driveStick, 6);
 		openCollector.whenPressed(new OpenCollector());
-		closeCollector = new JoystickButton(driveStick, 6);
+		closeCollector = new JoystickButton(driveStick, 5);
 		closeCollector.whenPressed(new CloseCollector());
 		operatorOpenCollector = new JoystickButton(buttonStick, 6);
 		operatorOpenCollector.whenPressed(new OpenCollector());

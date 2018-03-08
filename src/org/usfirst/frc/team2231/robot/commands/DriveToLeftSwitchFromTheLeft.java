@@ -26,11 +26,11 @@ public class DriveToLeftSwitchFromTheLeft extends CommandGroup {
         // arm.
     	addParallel(new RaiseBySpeed(0.7), 1.3);
     	addParallel(new EvelatorPitchDrop(), 1);
-    	addSequential(new DriveBySpeed(0.4), 3.1);
+    	addSequential(new DriveBySpeed(0.4), 2.9);
     	addParallel(new KeepElevatorInPlace());
     	addSequential(new RotateByNavX(85), 0.7);
     	addParallel(new KeepElevatorInPlace());
-    	addSequential(new DriveBySpeed(0.4), 2);
+    	addSequential(new DriveBySpeed(0.4), 2.5);
     	addSequential(new Eject(), 3.5);
     	
     }

@@ -60,7 +60,7 @@ public class RobotMap {
 	public WPI_VictorSPX elevatorSecondMotor;
 	public WPI_VictorSPX elevatorThirdMotor;
 	public WPI_VictorSPX elevatorFourthMotor;
-	public LineTracker collectorLineTracker;
+	public DigitalInput collectorBumperSwitch;
 	public SpeedControllerGroup elevatorWheels;
 	public WPI_TalonSRX elevatorPitchMotor;
 	public DoubleSolenoid collectorHolderPistonLeft;
@@ -125,7 +125,7 @@ public class RobotMap {
 
 		elevatorPitchMotor = new WPI_TalonSRX(12);
 
-		collectorLineTracker = new LineTracker(2, 4);
+		collectorBumperSwitch = new DigitalInput(1);
 		
 		compressor = new Compressor();
 		compressor.setClosedLoopControl(true);

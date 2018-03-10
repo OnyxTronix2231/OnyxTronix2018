@@ -69,7 +69,7 @@ public class RobotMap {
 	public PIDController elevatorPIDController;
 	public double scaleHeight = 160;
 	public double switchHeight = 53;
-	private AnalogInput potentiometer;
+	public AnalogInput potentiometer;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);

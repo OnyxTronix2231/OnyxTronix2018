@@ -12,17 +12,16 @@ package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.Robot;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
-
 /**
  *
  */
 public class Elevator extends Subsystem {
 	public final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
-	public final Potentiometer m_potentiometer = Robot.m_robotMap.potentiometer;
+	public final AnalogInput m_potentiometer = Robot.m_robotMap.potentiometer;
 	public final PIDController pidController = Robot.m_robotMap.elevatorPIDController;
 
 	// Put methods for controlling this subsystem
@@ -47,7 +46,13 @@ public class Elevator extends Subsystem {
 	}
 
 	public double getVoltageFromHeight(double height) {
-		double voltage = 1.31 / 172 * height - 0.162;
-		return voltage;
+		return mapRange(26,196,0.00488,4.876,height);
+	}
+	
+	public double getHeightFromVoltage(double voltage) {
+		return mapRange(0.0048,4.876,26,196,voltage);
+	}
+	public double mapRange (double a1, double a2, double b1, double b2, double s) {
+		return b1 + ((s-a1)*(b2-b1))/(a2-a1);
 	}
 }

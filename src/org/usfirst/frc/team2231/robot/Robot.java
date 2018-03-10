@@ -133,6 +133,7 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		m_smartDashboardUpdater.UpdateDashboard();
+		System.out.println(m_elevator.getHeightFromVoltage(m_robotMap.potentiometer.getVoltage()));
 	}
 	
 

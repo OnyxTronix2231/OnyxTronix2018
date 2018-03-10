@@ -144,7 +144,6 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
-		
 	}
 
 	/**
@@ -154,7 +153,7 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		m_smartDashboardUpdater.UpdateDashboard();
-	}
+		}
 	
 
 	/**

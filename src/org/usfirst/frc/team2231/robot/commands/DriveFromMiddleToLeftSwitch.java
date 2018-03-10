@@ -31,6 +31,7 @@ public class DriveFromMiddleToLeftSwitch extends CommandGroup {
     	addParallel(new RaiseBySpeed(0.7), 1.3);
     	addParallel(new EvelatorPitchDrop(), 1);
     	addSequential(new DriveBySpeed(0.4), 4);
+    	addParallel(new KeepElevatorInPlace());
     	addSequential(new Eject(), 3);
     	addSequential(new OpenCollector());
 //    	addSequential(new RotateByNavX(90));

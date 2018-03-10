@@ -9,6 +9,7 @@ package org.usfirst.frc.team2231.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
@@ -118,6 +119,9 @@ public class RobotMap {
 		elevatorSecondMotor.setInverted(true);
 		elevatorThirdMotor.setInverted(true);
 		elevatorFourthMotor.setInverted(true);
+		elevatorSecondMotor.follow(elevatorFirstMotor, FollowerType.PercentOutput);
+		elevatorThirdMotor.follow(elevatorFirstMotor, FollowerType.PercentOutput);
+		elevatorFourthMotor.follow(elevatorFirstMotor, FollowerType.PercentOutput);
 
 		elevatorPitchMotor = new WPI_TalonSRX(12);
 

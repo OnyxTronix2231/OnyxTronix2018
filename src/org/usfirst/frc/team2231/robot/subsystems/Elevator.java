@@ -16,10 +16,15 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
 /**
  *
  */
 public class Elevator extends Subsystem {
+	private static final double maximumVoltage = 4.876;
+	private static final double minimumVoltage = 0.00488;
+	private static final int maximumHeight = 196;
+	private static final int minimumHeight = 26;
 	public final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
 	public final AnalogInput m_potentiometer = Robot.m_robotMap.potentiometer;
 	public final PIDController pidController = Robot.m_robotMap.elevatorPIDController;
@@ -41,18 +46,21 @@ public class Elevator extends Subsystem {
 		elevatorWheels.set(0);
 	}
 
-	public void setHeight(double height) {
-		pidController.setSetpoint(height);
+	public void setHeight(double voltage) {
+		pidController.setSetpoint(voltage);
 	}
 
 	public double getVoltageFromHeight(double height) {
-		return mapRange(26,196,0.00488,4.876,height);
+		return mapRange(minimumHeight, maximumHeight, minimumVoltage, maximumVoltage, height);
 	}
-	
+
 	public double getHeightFromVoltage(double voltage) {
-		return mapRange(0.0048,4.876,26,196,voltage);
+		return mapRange(minimumVoltage, maximumVoltage, minimumHeight, maximumHeight, voltage);
 	}
-	public double mapRange (double a1, double a2, double b1, double b2, double s) {
-		return b1 + ((s-a1)*(b2-b1))/(a2-a1);
+
+	public double mapRange(double firstMinimalValue, double firstMaximalValue, double secondMinimalValue,
+			double secondMaximalValue, double value) {
+		return secondMinimalValue + ((value - firstMinimalValue) * (secondMaximalValue - secondMinimalValue))
+				/ (firstMaximalValue - firstMinimalValue);
 	}
 }

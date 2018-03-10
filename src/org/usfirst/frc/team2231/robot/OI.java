@@ -14,8 +14,8 @@ import org.usfirst.frc.team2231.robot.commands.CollectCube;
 import org.usfirst.frc.team2231.robot.commands.DriveByEncoder;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
-import org.usfirst.frc.team2231.robot.commands.LifToScale;
-import org.usfirst.frc.team2231.robot.commands.LifToSwitch;
+import org.usfirst.frc.team2231.robot.commands.LiftToScale;
+import org.usfirst.frc.team2231.robot.commands.LiftToSwitch;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
 import org.usfirst.frc.team2231.robot.commands.Raise;
@@ -106,10 +106,10 @@ public class OI {
 		collectCube.whileHeld(new CollectCube());
 		
 		scaleRaise = new JoystickButton(buttonStick, 9);
-		scaleRaise.whenPressed(new LifToScale());
+		scaleRaise.whenPressed(new LiftToScale());
 		
 		switchRaise = new JoystickButton(buttonStick, 10);
-		switchRaise.whenPressed(new LifToSwitch());
+		switchRaise.whenPressed(new LiftToSwitch());
 
 		}
 

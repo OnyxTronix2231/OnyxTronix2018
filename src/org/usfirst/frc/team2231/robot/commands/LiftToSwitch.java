@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2231.robot.commands;
 
-import org.usfirst.frc.team2231.robot.Potentiometer;
 import org.usfirst.frc.team2231.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,14 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LifToScale extends Command {
+public class LiftToSwitch extends Command {
 	double voltage;
-	double scaleHeight = Robot.m_robotMap.scaleHeight;
-
-    public LifToScale() {
+	
+    public LiftToSwitch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	voltage = Potentiometer.getFixedVoltage(scaleHeight);
+    	voltage = Robot.m_elevator.getVoltageFromHeight(Robot.m_robotMap.switchHeight);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +22,7 @@ public class LifToScale extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.m_elevator.setHeight(scaleHeight);
+    	Robot.m_elevator.setHeight(voltage);
     }
 
     // Make this return true when this Command no longer needs to run execute()

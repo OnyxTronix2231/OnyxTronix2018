@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-	public final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
+	private final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
     public final WPI_TalonSRX firstMotor = Robot.m_robotMap.elevatorFirstMotor;
     private final WPI_VictorSPX secondMotor = Robot.m_robotMap.elevatorSecondMotor;
     private final WPI_VictorSPX thirdMotor = Robot.m_robotMap.elevatorThirdMotor;

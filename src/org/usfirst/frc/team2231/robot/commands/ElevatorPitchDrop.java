@@ -3,21 +3,18 @@ package org.usfirst.frc.team2231.robot.commands;
 import org.usfirst.frc.team2231.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 /**
  *
  */
-public class EvelatorPitchRaise extends Command {
-	private static final double SPEED = -0.8;
+public class ElevatorPitchDrop extends Command {
+	private static final double SPEED = 0.4;
 
-    public EvelatorPitchRaise() {
+    public ElevatorPitchDrop() {
     	requires(Robot.m_elevatorPitch);
 	}
 
-
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -41,5 +38,4 @@ public class EvelatorPitchRaise extends Command {
     protected void interrupted() {
     	end();
     }
-
 }

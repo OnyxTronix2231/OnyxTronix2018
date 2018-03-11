@@ -27,7 +27,7 @@ public class DriveToLeftScaleFromTheLeft extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new Raise(), 3);
-    	addParallel(new EvelatorPitchDrop());
+    	addParallel(new ElevatorPitchDrop());
     	addSequential(new DriveByEncoder(822));
     	addSequential(new DriveByEncoder(822));
     	addSequential(new RotateByNavX(-90));

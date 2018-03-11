@@ -9,15 +9,4 @@ public class Collect extends ConveyWithCollector {
 	public Collect() {
 		super(maxSpeed);
 	}
-
-	@Override
-	protected boolean isFinished() {
-		return Robot.m_collector.isMicroSwitchPressed();
-	}
-
-	@Override
-	protected void end() {
-		super.end();
-		Robot.m_collector.setCubeCollected(Robot.m_collector.isMicroSwitchPressed());
-	}
 }

@@ -25,6 +25,8 @@ public class CloseAndCollect extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new CloseCollector());
-    	addSequential(new Collect(), 2);
+    	addSequential(new CollectUntilMicroswitchPressed(), 2);
+    	addSequential(new Collect(), 0.5);
+    	addSequential(new ElevatorPitchRaise(), 2);
     }
 }

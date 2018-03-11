@@ -8,8 +8,8 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc.team2231.robot.commands;
+
 import org.usfirst.frc.team2231.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,40 +18,40 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ConveyWithCollector extends Command {
-    private double m_maxSpeed;
-    
-    public ConveyWithCollector(double maxSpeed) {
-        m_maxSpeed = maxSpeed;
-        requires(Robot.m_collector);
-    }
+	private final double m_maxSpeed;
 
-    // Called just before this Command runs the first time
-    @Override
-	protected void initialize() {
-    }
+	public ConveyWithCollector(final double maxSpeed) {
+		m_maxSpeed = maxSpeed;
+		requires(Robot.m_collector);
+	}
 
-    @Override
-    protected void execute() {
-    	// TODO Auto-generated method stub
-    	Robot.m_collector.setSpeed(m_maxSpeed);
-    }
-    
-    // Make this return true when this Command no longer needs to run execute()
-    @Override
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize() {}
+
+	@Override
+	protected void execute() {
+		// TODO Auto-generated method stub
+		Robot.m_collector.setSpeed(m_maxSpeed);
+	}
+
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
 	protected boolean isFinished() {
-        return false;
-    }
+		return false;
+	}
 
-    // Called once after isFinished returns true
-    @Override
+	// Called once after isFinished returns true
+	@Override
 	protected void end() {
-    	Robot.m_collector.stop();
-    }
+		Robot.m_collector.stop();
+		Robot.m_collector.setCubeCollected(Robot.m_collector.isMicroSwitchPressed());
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    @Override
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
 	protected void interrupted() {
-    	end();
-    }
+		end();
+	}
 }

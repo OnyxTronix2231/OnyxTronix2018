@@ -15,6 +15,12 @@ import org.usfirst.frc.team2231.robot.Robot;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.PIDController;
+import org.usfirst.frc.team2231.robot.commands.KeepElevatorInPlace;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -23,9 +29,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
 	public final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
+    public final WPI_TalonSRX firstMotor = Robot.m_robotMap.elevatorFirstMotor;
+    private final WPI_VictorSPX secondMotor = Robot.m_robotMap.elevatorSecondMotor;
+    private final WPI_VictorSPX thirdMotor = Robot.m_robotMap.elevatorThirdMotor;
 	public final Potentiometer m_potentiometer = Robot.m_robotMap.potentiometer;
 	public final PIDController pidController = Robot.m_robotMap.elevatorPIDController;
 
+    private final WPI_VictorSPX fourthMotor = Robot.m_robotMap.elevatorFourthMotor;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -33,6 +43,7 @@ public class Elevator extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new KeepElevatorInPlace());
 	}
 
 	public void setSpeed(double speed) {

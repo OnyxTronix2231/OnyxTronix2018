@@ -1,48 +1,46 @@
 package org.usfirst.frc.team2231.robot.commands;
 
+import java.text.FieldPosition;
+
+import org.usfirst.frc.team2231.robot.FieldPositions;
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveByEncoder extends Command {
-	double m_setpoint;
+public class GetFieldPosition extends Command {
+	private String gamedata;
 
-    public DriveByEncoder(double setpoint) {
-        m_setpoint = setpoint;
-    	requires(Robot.m_driveTrain);
+    public GetFieldPosition() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.m_driveTrain.resetEncoder();
-    	Robot.m_driveTrain.setPositionOutputRange();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.m_driveTrain.setPositionSetpoint(m_setpoint);
+    	gamedata = DriverStation.getInstance().getGameSpecificMessage();
+//    	gamedata = "LLL";
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.m_driveTrain.getPositionError();
+        return !gamedata.equals(null);
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.m_driveTrain.resetPositionOutputRange();
-    	Robot.m_driveTrain.stop();
+    	Robot.m_fieldPositions = FieldPositions.createFieldPositions(gamedata);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

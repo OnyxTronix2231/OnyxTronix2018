@@ -20,8 +20,22 @@ import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.Elevator;
 import org.usfirst.frc.team2231.robot.subsystems.ElevatorPitch;
 
-import java.text.FieldPosition;
+import Configuration.CameraConfiguration;
+
 import org.usfirst.frc.team2231.robot.OI;
+import org.usfirst.frc.team2231.robot.commands.AutonomousLeft;
+import org.usfirst.frc.team2231.robot.commands.AutonomousMiddle;
+import org.usfirst.frc.team2231.robot.commands.AutonomousRight;
+import org.usfirst.frc.team2231.robot.commands.DriveFromMiddleToLeftSwitch;
+import org.usfirst.frc.team2231.robot.commands.DriveFromMiddleToRightSwitch;
+import org.usfirst.frc.team2231.robot.commands.DriveToLeftScaleFromTheLeft;
+import org.usfirst.frc.team2231.robot.commands.DriveToLeftSwitchFromTheLeft;
+import org.usfirst.frc.team2231.robot.commands.DriveToRightScaleFromTheRight;
+import org.usfirst.frc.team2231.robot.commands.DriveToRightSwitchFromTheRight;
+import org.usfirst.frc.team2231.robot.commands.GetFieldPosition;
+import org.usfirst.frc.team2231.robot.commands.PassAutoLineFromLeft;
+import org.usfirst.frc.team2231.robot.commands.PassAutoLineFromMiddle;
+import org.usfirst.frc.team2231.robot.commands.PassAutoLineFromRight;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -43,6 +57,7 @@ public class Robot extends TimedRobot {
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	Command getFieldPosition;
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
@@ -56,10 +71,16 @@ public class Robot extends TimedRobot {
 		m_elevatorPitch = new ElevatorPitch();
 		m_oi = new OI();
 		m_smartDashboardUpdater = new SmartDashboardUpdater();
-		CameraServer.getInstance().startAutomaticCapture();
-		CameraServer.getInstance().startAutomaticCapture(1);
-		m_smartDashboardUpdater.UpdateDashboard();
+		CameraServer.getInstance().startAutomaticCapture().setResolution(10, 5);
+		CameraServer.getInstance().startAutomaticCapture(1).setResolution(10, 5);
 		// chooser.addObject("My Auto", new MyAutoCommand());
+		m_chooser.addDefault("Default", new PassAutoLineFromMiddle());
+		m_chooser.addObject("Left", new AutonomousLeft());
+		m_chooser.addObject("Middle", new AutonomousMiddle());
+		m_chooser.addObject("Right", new AutonomousRight());
+		SmartDashboard.putData("Autonomous chooser", m_chooser);
+		
+		m_smartDashboardUpdater.UpdateDashboard();
 	}
 
 	/**
@@ -90,10 +111,9 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		getFieldPosition = new GetFieldPosition();
+		getFieldPosition.start();
 		m_autonomousCommand = m_chooser.getSelected();
-		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		m_fieldPositions = FieldPositions.createFieldPositions(gameData);
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		 * switch(autoSelected) { case "My Auto": autonomousCommand = new
@@ -134,7 +154,7 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run();
 		m_smartDashboardUpdater.UpdateDashboard();
 		System.out.println(m_elevator.getHeight());
-	}
+		}
 	
 
 	/**

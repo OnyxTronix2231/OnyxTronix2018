@@ -5,11 +5,11 @@ import org.usfirst.frc.team2231.robot.Robot;
 /**
  *
  */
-public class Eject extends ConveyWithCollector {
+public class EjectSlowly extends ConveyWithCollector {
 
-	private static final double maxSpeed = -0.5;
+	private static final double maxSpeed = -0.3;
 
-	public Eject() {
+	public EjectSlowly() {
 		super(maxSpeed);
 	}
 }

@@ -8,9 +8,13 @@
 package org.usfirst.frc.team2231.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -48,24 +52,25 @@ public class RobotMap {
 	public WPI_TalonSRX driveTrainThirdRight;
 	public SpeedControllerGroup driveTrainleftTalons;
 	public SpeedControllerGroup driveTrainRightTalons;
-	public SpeedController collectorLeftWheel;
-	public SpeedController collectorRightWheel;
+	public WPI_VictorSPX collectorLeftWheel;
+	public WPI_VictorSPX collectorRightWheel;
 	public AHRS driveTrainNavX;
 	public PIDController driveTrainLeftRotationPIDController;
 	public PIDController driveTrainRightRotationPIDController;
 	public SpeedControllerGroup collectorWheels;
-	private SpeedController elevatorFirstMotor;
-	private SpeedController elevatorSecondMotor;
-	private SpeedController elevatorThirdMotor;
-	private SpeedController elevatorFourthMotor;
+	public WPI_TalonSRX elevatorFirstMotor;
+	public WPI_VictorSPX elevatorSecondMotor;
+	public WPI_VictorSPX elevatorThirdMotor;
+	public WPI_VictorSPX elevatorFourthMotor;
 	public LineTracker collectorLineTracker;
 	public SpeedControllerGroup elevatorWheels;
-	public SpeedController elevatorPitchMotor;
+	public WPI_TalonSRX elevatorPitchMotor;
 	public DoubleSolenoid collectorHolderPistonLeft;
 	public DoubleSolenoid collectorHolderPistonRight;
-	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0);
+	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0.1);
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
+	public Compressor compressor;
 	private final double maximumVoltage = 4.876;
 	private final double minimumVoltage = 0.00488;
 	private final int maximumHeight = 196;
@@ -95,33 +100,61 @@ public class RobotMap {
 				rotationRugRobotA.getD(), driveTrainNavX, driveTrainleftTalons);
 		driveTrainRightRotationPIDController = new PIDController(rotationRugRobotA.getP(), rotationRugRobotA.getI(),
 				rotationRugRobotA.getD(), driveTrainNavX, driveTrainRightTalons);
-		driveTrainFirstLeft.config_kP(0, 6, 0);
+		driveTrainSecondLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		driveTrainFirstRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		driveTrainFirstLeft.config_kP(0, 0.3, 0);
 		driveTrainFirstLeft.config_kI(0, 0, 0);
 		driveTrainFirstLeft.config_kD(0, 0, 0);
-		driveTrainFirstRight.config_kP(0, 6, 0);
+		driveTrainFirstRight.config_kP(0, 1, 0);
 		driveTrainFirstRight.config_kI(0, 0, 0);
 		driveTrainFirstRight.config_kD(0, 0, 0);
 		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
-
-		collectorLeftWheel = new WPI_TalonSRX(6);
-		collectorRightWheel = new WPI_TalonSRX(7);
+		driveTrainFirstRight.configAllowableClosedloopError(0, 3, 0);
+		
+		
+		collectorLeftWheel = new WPI_VictorSPX(6);
+		collectorRightWheel = new WPI_VictorSPX(7);
+		collectorRightWheel.setInverted(true);
+		
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
-		collectorHolderPistonLeft = new DoubleSolenoid(0, 1);
+		collectorHolderPistonLeft = new DoubleSolenoid(0,7);
 		collectorHolderPistonRight = new DoubleSolenoid(2, 3);
 
 		elevatorFirstMotor = new WPI_TalonSRX(8);
-		elevatorSecondMotor = new WPI_TalonSRX(9);
-		elevatorThirdMotor = new WPI_TalonSRX(10);
-		elevatorFourthMotor = new WPI_TalonSRX(11);
+		elevatorSecondMotor = new WPI_VictorSPX(9);
+		elevatorThirdMotor = new WPI_VictorSPX(10);
+		elevatorFourthMotor = new WPI_VictorSPX(11);
 		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor,
 				elevatorFourthMotor);
+		elevatorFirstMotor.setInverted(true);
+		elevatorSecondMotor.setInverted(true);
+		elevatorThirdMotor.setInverted(true);
+		elevatorFourthMotor.setInverted(true);
+		elevatorSecondMotor.follow(elevatorFirstMotor, FollowerType.PercentOutput);
+		elevatorThirdMotor.follow(elevatorFirstMotor, FollowerType.PercentOutput);
+		elevatorFourthMotor.follow(elevatorFirstMotor, FollowerType.PercentOutput);
 
 		elevatorPitchMotor = new WPI_TalonSRX(12);
 
 		collectorLineTracker = new LineTracker(2, 4);
 		
+		compressor = new Compressor();
+		compressor.setClosedLoopControl(true);
+		driveTrainFirstLeft.configPeakOutputForward(1, 0);
 		analogPotentiometer = new AnalogInput(1);
 		potentiometer = new Potentiometer(analogPotentiometer, minimumVoltage, maximumVoltage, minimumHeight, maximumHeight);
 		elevatorPIDController = new PIDController(0.1, 0, 0, potentiometer, elevatorWheels);
+		driveTrainFirstLeft.configPeakOutputReverse(-1, 0);
+		driveTrainSecondLeft.configPeakOutputForward(1, 0);
+		driveTrainSecondLeft.configPeakOutputReverse(-1, 0);
+		driveTrainFirstRight.configPeakOutputForward(1, 0);
+		driveTrainFirstRight.configPeakOutputReverse(-1, 0);
+		driveTrainSecondRight.configPeakOutputForward(1, 0);
+		driveTrainSecondRight.configPeakOutputReverse(-1, 0);
+		
+		driveTrainFirstLeft.enableCurrentLimit(false);
+		driveTrainSecondLeft.enableCurrentLimit(false);
+		driveTrainFirstRight.enableCurrentLimit(false);
+		driveTrainSecondRight.enableCurrentLimit(false);
 	}
 }

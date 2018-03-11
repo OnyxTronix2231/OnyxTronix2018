@@ -66,10 +66,15 @@ public class RobotMap {
 	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0);
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
+	private final double maximumVoltage = 4.876;
+	private final double minimumVoltage = 0.00488;
+	private final int maximumHeight = 196;
+	private final int minimumHeight = 26;
 	public PIDController elevatorPIDController;
 	public double scaleHeight = 160;
 	public double switchHeight = 53;
-	public AnalogInput potentiometer;
+	public Potentiometer potentiometer;
+	private AnalogInput analogPotentiometer;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -115,7 +120,8 @@ public class RobotMap {
 
 		collectorLineTracker = new LineTracker(2, 4);
 		
-		potentiometer = new AnalogInput(1);
+		analogPotentiometer = new AnalogInput(1);
+		potentiometer = new Potentiometer(analogPotentiometer, minimumVoltage, maximumVoltage, minimumHeight, maximumHeight);
 		elevatorPIDController = new PIDController(0.1, 0, 0, potentiometer, elevatorWheels);
 	}
 }

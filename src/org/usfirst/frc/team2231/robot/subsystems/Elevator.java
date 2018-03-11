@@ -10,6 +10,7 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import org.usfirst.frc.team2231.robot.Potentiometer;
 import org.usfirst.frc.team2231.robot.Robot;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -21,12 +22,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-	private static final double maximumVoltage = 4.876;
-	private static final double minimumVoltage = 0.00488;
-	private static final int maximumHeight = 196;
-	private static final int minimumHeight = 26;
 	public final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
-	public final AnalogInput m_potentiometer = Robot.m_robotMap.potentiometer;
+	public final Potentiometer m_potentiometer = Robot.m_robotMap.potentiometer;
 	public final PIDController pidController = Robot.m_robotMap.elevatorPIDController;
 
 	// Put methods for controlling this subsystem
@@ -46,21 +43,11 @@ public class Elevator extends Subsystem {
 		elevatorWheels.set(0);
 	}
 
-	public void setHeight(double voltage) {
-		pidController.setSetpoint(voltage);
+	public void setHeight(double height) {
+		pidController.setSetpoint(height);
 	}
 
-	public double getVoltageFromHeight(double height) {
-		return mapRange(minimumHeight, maximumHeight, minimumVoltage, maximumVoltage, height);
-	}
-
-	public double getHeightFromVoltage(double voltage) {
-		return mapRange(minimumVoltage, maximumVoltage, minimumHeight, maximumHeight, voltage);
-	}
-
-	public double mapRange(double firstMinimalValue, double firstMaximalValue, double secondMinimalValue,
-			double secondMaximalValue, double value) {
-		return secondMinimalValue + ((value - firstMinimalValue) * (secondMaximalValue - secondMinimalValue))
-				/ (firstMaximalValue - firstMinimalValue);
+	public double getHeight() {
+		return m_potentiometer.getHeight();
 	}
 }

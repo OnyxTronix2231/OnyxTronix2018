@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
@@ -46,6 +47,7 @@ public class RobotMap {
 	public WPI_TalonSRX driveTrainThirdLeft;
 	public WPI_TalonSRX driveTrainFirstRight;
 	public WPI_TalonSRX driveTrainSecondRight;
+	
 	public DifferentialDrive driveTrainRobotDrive;
 	public WPI_TalonSRX driveTrainThirdRight;
 	public SpeedControllerGroup driveTrainleftTalons;
@@ -69,6 +71,15 @@ public class RobotMap {
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
 	public Compressor compressor;
+	private final double maximumVoltage = 4.876;
+	private final double minimumVoltage = 0.00488;
+	private final int maximumHeight = 196;
+	private final int minimumHeight = 26;
+	public PIDController elevatorPIDController;
+	public double scaleHeight = 160;
+	public double switchHeight = 53;
+	public Potentiometer potentiometer;
+	private AnalogInput analogPotentiometer;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -76,7 +87,7 @@ public class RobotMap {
 		driveTrainThirdLeft = new WPI_TalonSRX(2);
 
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);
-
+		
 		driveTrainFirstRight = new WPI_TalonSRX(3);
 		driveTrainSecondRight = new WPI_TalonSRX(4);
 		driveTrainThirdRight = new WPI_TalonSRX(5);
@@ -130,6 +141,9 @@ public class RobotMap {
 		compressor = new Compressor();
 		compressor.setClosedLoopControl(true);
 		driveTrainFirstLeft.configPeakOutputForward(1, 0);
+		analogPotentiometer = new AnalogInput(1);
+		potentiometer = new Potentiometer(analogPotentiometer, minimumVoltage, maximumVoltage, minimumHeight, maximumHeight);
+		elevatorPIDController = new PIDController(0.1, 0, 0, potentiometer, elevatorWheels);
 		driveTrainFirstLeft.configPeakOutputReverse(-1, 0);
 		driveTrainSecondLeft.configPeakOutputForward(1, 0);
 		driveTrainSecondLeft.configPeakOutputReverse(-1, 0);

@@ -18,6 +18,8 @@ import org.usfirst.frc.team2231.robot.commands.EjectSlowly;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchRaise;
 import org.usfirst.frc.team2231.robot.commands.KeepClimberInPlace;
+import org.usfirst.frc.team2231.robot.commands.LiftToScale;
+import org.usfirst.frc.team2231.robot.commands.LiftToSwitch;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.LowerNeutral;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
@@ -76,6 +78,8 @@ public class OI {
 	private JoystickButton operatorOpenCollector;
 	private JoystickButton elevatorPitchRaise;
 	private JoystickButton ejectCubeSlowly;
+	private JoystickButton scaleRaise;
+	private JoystickButton switchRaise;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -110,6 +114,12 @@ public class OI {
 //		collectCube = new JoystickButton(buttonStick, 8);
 //		collectCube.whileHeld(new CollectCube());
 		
+		scaleRaise = new JoystickButton(buttonStick, 9);
+		scaleRaise.whenPressed(new LiftToScale());
+		
+		switchRaise = new JoystickButton(buttonStick, 10);
+		switchRaise.whenPressed(new LiftToSwitch());
+
 		}
 
 

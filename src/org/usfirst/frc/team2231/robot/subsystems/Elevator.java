@@ -10,7 +10,11 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import org.usfirst.frc.team2231.robot.Potentiometer;
 import org.usfirst.frc.team2231.robot.Robot;
+
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.PIDController;
 import org.usfirst.frc.team2231.robot.commands.KeepElevatorInPlace;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -20,32 +24,41 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-
 /**
  *
  */
 public class Elevator extends Subsystem {
-    private final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
+	private final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
     public final WPI_TalonSRX firstMotor = Robot.m_robotMap.elevatorFirstMotor;
     private final WPI_VictorSPX secondMotor = Robot.m_robotMap.elevatorSecondMotor;
     private final WPI_VictorSPX thirdMotor = Robot.m_robotMap.elevatorThirdMotor;
-    private final WPI_VictorSPX fourthMotor = Robot.m_robotMap.elevatorFourthMotor;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-    
-    @Override
-	public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new KeepElevatorInPlace());
-    }
+	public final Potentiometer m_potentiometer = Robot.m_robotMap.potentiometer;
+	public final PIDController pidController = Robot.m_robotMap.elevatorPIDController;
 
-    public void setSpeed(double speed){
-    	elevatorWheels.set(speed);
-    }
-    
-    public void stop() {
-    	elevatorWheels.set(0);
-    }
-    
+    private final WPI_VictorSPX fourthMotor = Robot.m_robotMap.elevatorFourthMotor;
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
+
+	@Override
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new KeepElevatorInPlace());
+	}
+
+	public void setSpeed(double speed) {
+		elevatorWheels.set(speed);
+	}
+
+	public void stop() {
+		elevatorWheels.set(0);
+	}
+
+	public void setHeight(double height) {
+		pidController.setSetpoint(height);
+	}
+
+	public double getHeight() {
+		return m_potentiometer.getHeight();
+	}
 }

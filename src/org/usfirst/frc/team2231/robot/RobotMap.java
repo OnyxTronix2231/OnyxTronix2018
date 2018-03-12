@@ -47,7 +47,7 @@ public class RobotMap {
 	public WPI_TalonSRX driveTrainThirdLeft;
 	public WPI_TalonSRX driveTrainFirstRight;
 	public WPI_TalonSRX driveTrainSecondRight;
-	
+
 	public DifferentialDrive driveTrainRobotDrive;
 	public WPI_TalonSRX driveTrainThirdRight;
 	public SpeedControllerGroup driveTrainleftTalons;
@@ -70,16 +70,17 @@ public class RobotMap {
 	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0.1);
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
+	private final PIDCalibrationHolder elvevatorRobotA = new PIDCalibrationHolder(0.03, 0, 0.001);
 	public Compressor compressor;
-	private final double maximumVoltage = 4.876;
-	private final double minimumVoltage = 0.00488;
-	private final int maximumHeight = 196;
-	private final int minimumHeight = 26;
+	private final double maximumVoltage = 3.09;
+	private final double minimumVoltage = 4.49;
+	private final int maximumHeight = 194;
+	private final int minimumHeight = 18;
 	public PIDController elevatorPIDController;
 	public double scaleHeight = 160;
 	public double switchHeight = 53;
 	public Potentiometer potentiometer;
-	private AnalogInput analogPotentiometer;
+	public AnalogInput analogPotentiometer;
 
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
@@ -87,7 +88,7 @@ public class RobotMap {
 		driveTrainThirdLeft = new WPI_TalonSRX(2);
 
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);
-		
+
 		driveTrainFirstRight = new WPI_TalonSRX(3);
 		driveTrainSecondRight = new WPI_TalonSRX(4);
 		driveTrainThirdRight = new WPI_TalonSRX(5);
@@ -110,14 +111,13 @@ public class RobotMap {
 		driveTrainFirstRight.config_kD(0, 0, 0);
 		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
 		driveTrainFirstRight.configAllowableClosedloopError(0, 3, 0);
-		
-		
+
 		collectorLeftWheel = new WPI_VictorSPX(6);
 		collectorRightWheel = new WPI_VictorSPX(7);
 		collectorRightWheel.setInverted(true);
-		
+
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
-		collectorHolderPistonLeft = new DoubleSolenoid(0,7);
+		collectorHolderPistonLeft = new DoubleSolenoid(0, 7);
 		collectorHolderPistonRight = new DoubleSolenoid(2, 3);
 
 		elevatorFirstMotor = new WPI_TalonSRX(8);
@@ -130,20 +130,20 @@ public class RobotMap {
 		elevatorSecondMotor.setInverted(true);
 		elevatorThirdMotor.setInverted(true);
 		elevatorFourthMotor.setInverted(true);
-		elevatorSecondMotor.follow(elevatorFirstMotor, FollowerType.PercentOutput);
-		elevatorThirdMotor.follow(elevatorFirstMotor, FollowerType.PercentOutput);
-		elevatorFourthMotor.follow(elevatorFirstMotor, FollowerType.PercentOutput);
 
 		elevatorPitchMotor = new WPI_TalonSRX(12);
 
 		collectorLineTracker = new LineTracker(2, 4);
-		
+
 		compressor = new Compressor();
 		compressor.setClosedLoopControl(true);
 		driveTrainFirstLeft.configPeakOutputForward(1, 0);
 		analogPotentiometer = new AnalogInput(1);
-		potentiometer = new Potentiometer(analogPotentiometer, minimumVoltage, maximumVoltage, minimumHeight, maximumHeight);
-		elevatorPIDController = new PIDController(0.1, 0, 0, potentiometer, elevatorWheels);
+		potentiometer = new Potentiometer(analogPotentiometer, minimumVoltage, maximumVoltage, minimumHeight,
+				maximumHeight);
+		elevatorPIDController = new PIDController(elvevatorRobotA.getP(), elvevatorRobotA.getI(),
+				elvevatorRobotA.getD(), potentiometer, elevatorWheels);
+		elevatorPIDController.setAbsoluteTolerance(3);
 		driveTrainFirstLeft.configPeakOutputReverse(-1, 0);
 		driveTrainSecondLeft.configPeakOutputForward(1, 0);
 		driveTrainSecondLeft.configPeakOutputReverse(-1, 0);
@@ -151,7 +151,7 @@ public class RobotMap {
 		driveTrainFirstRight.configPeakOutputReverse(-1, 0);
 		driveTrainSecondRight.configPeakOutputForward(1, 0);
 		driveTrainSecondRight.configPeakOutputReverse(-1, 0);
-		
+
 		driveTrainFirstLeft.enableCurrentLimit(false);
 		driveTrainSecondLeft.enableCurrentLimit(false);
 		driveTrainFirstRight.enableCurrentLimit(false);

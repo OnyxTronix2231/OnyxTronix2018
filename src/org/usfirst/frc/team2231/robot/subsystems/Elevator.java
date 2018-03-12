@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import org.usfirst.frc.team2231.robot.commands.KeepElevatorInPlace;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -48,10 +49,17 @@ public class Elevator extends Subsystem {
 
 	public void setSpeed(double speed) {
 		elevatorWheels.set(speed);
+		secondMotor.follow(firstMotor);
+		thirdMotor.follow(firstMotor);
+		fourthMotor.follow(firstMotor);
 	}
 
 	public void stop() {
 		elevatorWheels.set(0);
+	}
+	
+	public void enablePIDController() {
+		pidController.enable();
 	}
 
 	public void setHeight(double height) {
@@ -60,5 +68,18 @@ public class Elevator extends Subsystem {
 
 	public double getHeight() {
 		return m_potentiometer.getHeight();
+	}
+	
+	public boolean isLiftOnTarget() {
+		return pidController.onTarget();
+	}
+
+	public void setOutputRange() {
+		pidController.setOutputRange(-0.3, 1);
+		
+	}
+
+	public void disablePIDController() {
+		pidController.disable();
 	}
 }

@@ -80,7 +80,7 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Right", new AutonomousRight());
 		SmartDashboard.putData("Autonomous chooser", m_chooser);
 		
-		m_smartDashboardUpdater.UpdateDashboard();
+		m_smartDashboardUpdater.updateDashboard();
 	}
 
 	/**
@@ -152,8 +152,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		m_smartDashboardUpdater.UpdateDashboard();
-		}
+		m_smartDashboardUpdater.updateDashboard();
+//		System.out.println(m_robotMap.analogPotentiometer.getVoltage());
+	}
 	
 
 	/**

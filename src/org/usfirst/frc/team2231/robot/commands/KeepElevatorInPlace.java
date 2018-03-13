@@ -18,14 +18,12 @@ public class KeepElevatorInPlace extends Command {
 	@Override
 	protected void initialize() {
     	Robot.m_elevator.setHeight(Robot.m_elevator.getHeight());
-		Robot.m_elevator.setOutputRange();
 		Robot.m_elevator.enablePIDController();
 	}
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	System.out.println(Robot.m_elevator.isLiftOnTarget());
-        return Robot.m_elevator.isLiftOnTarget();
+    	return false;
     }
     
     @Override

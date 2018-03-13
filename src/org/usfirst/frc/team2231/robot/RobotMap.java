@@ -77,8 +77,8 @@ public class RobotMap {
 	private final int maximumHeight = 194;
 	private final int minimumHeight = 18;
 	public PIDController elevatorPIDController;
-	public double scaleHeight = 160;
-	public double switchHeight = 53;
+	public double scaleHeight = 190;
+	public double switchHeight = 93;
 	public Potentiometer potentiometer;
 	public AnalogInput analogPotentiometer;
 

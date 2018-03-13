@@ -18,7 +18,6 @@ public class LiftToScale extends Command {
 	@Override
 	protected void initialize() {
     	Robot.m_elevator.setHeight(scaleHeight);
-		Robot.m_elevator.setOutputRange();
 		Robot.m_elevator.enablePIDController();
 	}
 

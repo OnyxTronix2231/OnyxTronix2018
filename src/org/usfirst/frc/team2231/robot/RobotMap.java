@@ -144,6 +144,8 @@ public class RobotMap {
 		elevatorPIDController = new PIDController(elvevatorRobotA.getP(), elvevatorRobotA.getI(),
 				elvevatorRobotA.getD(), potentiometer, elevatorWheels);
 		elevatorPIDController.setAbsoluteTolerance(3);
+		elevatorFirstMotor.configPeakOutputReverse(-0.15, 0);
+		
 		driveTrainFirstLeft.configPeakOutputReverse(-1, 0);
 		driveTrainSecondLeft.configPeakOutputForward(1, 0);
 		driveTrainSecondLeft.configPeakOutputReverse(-1, 0);

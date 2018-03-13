@@ -19,7 +19,6 @@ public class LiftToSwitch extends Command {
 	@Override
 	protected void initialize() {
     	Robot.m_elevator.setHeight(Robot.m_robotMap.switchHeight);
-		Robot.m_elevator.setOutputRange();
 		Robot.m_elevator.enablePIDController();
 	}
 

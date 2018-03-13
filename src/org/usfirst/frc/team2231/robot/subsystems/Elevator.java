@@ -74,11 +74,6 @@ public class Elevator extends Subsystem {
 		return pidController.onTarget();
 	}
 
-	public void setOutputRange() {
-		pidController.setOutputRange(-0.3, 1);
-		
-	}
-
 	public void disablePIDController() {
 		pidController.disable();
 	}

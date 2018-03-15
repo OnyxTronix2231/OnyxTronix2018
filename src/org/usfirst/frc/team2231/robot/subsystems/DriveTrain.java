@@ -43,7 +43,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void arcadeDrive(final Joystick stick) {
-		robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4) * 0.7);
+		robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4) * 0.9);
 	}
 
 	public void resetAHRSGyro() {

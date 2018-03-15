@@ -27,12 +27,13 @@ public class DriveFromMiddleToRightSwitch extends CommandGroup {
     	
     	addSequential(new DriveBySpeed(0.5), 0.5);
     	addSequential(new DriveBySpeed(0), 0.1);
-    	addSequential(new RotateByNavX(37), 0.5);
-    	addParallel(new RaiseBySpeed(0.7), 1.3);
+    	addSequential(new RotateByNavX(39), 0.5);
+    	addParallel(new RaiseBySpeed(0.7), 0.9);
+//    	addParallel(new LiftToSwitch());
     	addParallel(new EvelatorPitchDrop(), 1);
     	addSequential(new DriveBySpeed(0.4), 4);
     	addParallel(new KeepElevatorInPlace());
-    	addSequential(new Eject(), 3.5);
+    	addSequential(new EjectSlowly(), 4);
     	addSequential(new OpenCollector());
 //    	addSequential(new RotateByNavX(90));
 //    	addSequential(new DriveByEncoder(-130));

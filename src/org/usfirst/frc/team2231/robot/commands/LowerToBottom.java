@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftToScale extends Command {
-	double scaleHeight = Robot.m_robotMap.scaleHeight;
+public class LowerToBottom extends Command {
+	private double bottom = 25;
     // Called just before this Command runs the first time
     // Called repeatedly when this Command is scheduled to run
-	public LiftToScale() {
+	public LowerToBottom() {
         requires(Robot.m_elevator);
     }
 	
 	@Override
 	protected void initialize() {
-    	Robot.m_elevator.setHeight(scaleHeight);
+    	Robot.m_elevator.setHeight(bottom);
 		Robot.m_elevator.enablePIDController();
 	}
 

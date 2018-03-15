@@ -18,7 +18,7 @@ public class CloseCollector extends InstantCommand {
     // Called once when the command executes
     @Override
 	protected void initialize() {
-    	Robot.m_collector.changeHolderPistonPosition(Value.kReverse);
+    	Robot.m_collector.changeHolderPistonPosition(Value.kForward);
     }
 
 }

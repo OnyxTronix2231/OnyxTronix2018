@@ -10,6 +10,7 @@ package org.usfirst.frc.team2231.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.FollowerType;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
@@ -72,13 +73,15 @@ public class RobotMap {
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
 	private final PIDCalibrationHolder elvevatorRobotA = new PIDCalibrationHolder(0.03, 0, 0.001);
 	public Compressor compressor;
-	private final double maximumVoltage = 3.09;
-	private final double minimumVoltage = 4.49;
+	private final double maximumVoltage = 3.147; //previously 3.09
+	private final double minimumVoltage = 4.471; //previously 4.49
 	private final int maximumHeight = 194;
 	private final int minimumHeight = 18;
 	public PIDController elevatorPIDController;
-	public double scaleHeight = 190;
-	public double switchHeight = 93;
+	public double scaleHighHeight = 198;
+	public double scaleLowHeight = 155;
+	public double scaleMiddleHeight = 187;
+	public double switchHeight = 83;
 	public Potentiometer potentiometer;
 	public AnalogInput analogPotentiometer;
 
@@ -101,16 +104,16 @@ public class RobotMap {
 				rotationRugRobotA.getD(), driveTrainNavX, driveTrainleftTalons);
 		driveTrainRightRotationPIDController = new PIDController(rotationRugRobotA.getP(), rotationRugRobotA.getI(),
 				rotationRugRobotA.getD(), driveTrainNavX, driveTrainRightTalons);
-		driveTrainSecondLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-		driveTrainFirstRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-		driveTrainFirstLeft.config_kP(0, 0.3, 0);
-		driveTrainFirstLeft.config_kI(0, 0, 0);
-		driveTrainFirstLeft.config_kD(0, 0, 0);
-		driveTrainFirstRight.config_kP(0, 1, 0);
-		driveTrainFirstRight.config_kI(0, 0, 0);
-		driveTrainFirstRight.config_kD(0, 0, 0);
-		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
-		driveTrainFirstRight.configAllowableClosedloopError(0, 3, 0);
+//		driveTrainSecondLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+//		driveTrainFirstRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+//		driveTrainFirstLeft.config_kP(0, 0.3, 0);
+//		driveTrainFirstLeft.config_kI(0, 0, 0);
+//		driveTrainFirstLeft.config_kD(0, 0, 0);
+//		driveTrainFirstRight.config_kP(0, 1, 0);
+//		driveTrainFirstRight.config_kI(0, 0, 0);
+//		driveTrainFirstRight.config_kD(0, 0, 0);
+//		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
+//		driveTrainFirstRight.configAllowableClosedloopError(0, 3, 0);
 
 		collectorLeftWheel = new WPI_VictorSPX(6);
 		collectorRightWheel = new WPI_VictorSPX(7);
@@ -133,8 +136,6 @@ public class RobotMap {
 
 		elevatorPitchMotor = new WPI_TalonSRX(12);
 
-		collectorLineTracker = new LineTracker(2, 4);
-
 		compressor = new Compressor();
 		compressor.setClosedLoopControl(true);
 		driveTrainFirstLeft.configPeakOutputForward(1, 0);
@@ -144,7 +145,10 @@ public class RobotMap {
 		elevatorPIDController = new PIDController(elvevatorRobotA.getP(), elvevatorRobotA.getI(),
 				elvevatorRobotA.getD(), potentiometer, elevatorWheels);
 		elevatorPIDController.setAbsoluteTolerance(3);
-		elevatorFirstMotor.configPeakOutputReverse(-0.15, 0);
+		elevatorFirstMotor.configPeakOutputReverse(-0.3, 0);
+		elevatorSecondMotor.configPeakOutputReverse(-0.3, 0);
+		elevatorThirdMotor.configPeakOutputReverse(-0.3, 0);
+		elevatorFourthMotor.configPeakOutputReverse(-0.3, 0);
 		
 		driveTrainFirstLeft.configPeakOutputReverse(-1, 0);
 		driveTrainSecondLeft.configPeakOutputForward(1, 0);
@@ -154,9 +158,9 @@ public class RobotMap {
 		driveTrainSecondRight.configPeakOutputForward(1, 0);
 		driveTrainSecondRight.configPeakOutputReverse(-1, 0);
 
-		driveTrainFirstLeft.enableCurrentLimit(false);
-		driveTrainSecondLeft.enableCurrentLimit(false);
-		driveTrainFirstRight.enableCurrentLimit(false);
-		driveTrainSecondRight.enableCurrentLimit(false);
+//		driveTrainFirstLeft.enableCurrentLimit(false);
+//		driveTrainSecondLeft.enableCurrentLimit(false);
+//		driveTrainFirstRight.enableCurrentLimit(false);
+//		driveTrainSecondRight.enableCurrentLimit(false);
 	}
 }

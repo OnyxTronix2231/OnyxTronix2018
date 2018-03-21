@@ -7,8 +7,23 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.FollowerType;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
+import OnyxTronix.LineTracker;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -28,33 +43,124 @@ public class RobotMap {
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
-	public static WPI_TalonSRX driveTrainFirstLeft;
-	public static WPI_TalonSRX driveTrainSecondLeft;
-//	public static WPI_TalonSRX driveTrainThirdLeft;
-	public static WPI_TalonSRX driveTrainFirstRight;
-	public static WPI_TalonSRX driveTrainSecondRight;
-//	public static WPI_TalonSRX driveTrainThirdRight;
-	public static DifferentialDrive driveTrainRobotDrive;
-	public static SpeedControllerGroup driveTrainleftTalons;
-	public static SpeedControllerGroup driveTrainRightTalons;
-	public static WPI_TalonSRX collectorLeftWheel;
-	public static WPI_TalonSRX collectorRightWheel;
-	public static WPI_TalonSRX elevatorFirstMotor;
-	public static WPI_TalonSRX elevatorSecondMotor;
-	
-	
+	public WPI_TalonSRX driveTrainFirstLeft;
+	public WPI_TalonSRX driveTrainSecondLeft;
+	public WPI_TalonSRX driveTrainThirdLeft;
+	public WPI_TalonSRX driveTrainFirstRight;
+	public WPI_TalonSRX driveTrainSecondRight;
+
+	public DifferentialDrive driveTrainRobotDrive;
+	public WPI_TalonSRX driveTrainThirdRight;
+	public SpeedControllerGroup driveTrainleftTalons;
+	public SpeedControllerGroup driveTrainRightTalons;
+	public WPI_VictorSPX collectorLeftWheel;
+	public WPI_VictorSPX collectorRightWheel;
+	public AHRS driveTrainNavX;
+	public PIDController driveTrainLeftRotationPIDController;
+	public PIDController driveTrainRightRotationPIDController;
+	public SpeedControllerGroup collectorWheels;
+	public WPI_TalonSRX elevatorFirstMotor;
+	public WPI_VictorSPX elevatorSecondMotor;
+	public WPI_VictorSPX elevatorThirdMotor;
+	public WPI_VictorSPX elevatorFourthMotor;
+	public LineTracker collectorLineTracker;
+	public SpeedControllerGroup elevatorWheels;
+	public WPI_TalonSRX elevatorPitchMotor;
+	public DoubleSolenoid collectorHolderPistonLeft;
+	public DoubleSolenoid collectorHolderPistonRight;
+	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0.1);
+	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
+	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
+	private final PIDCalibrationHolder elvevatorRobotA = new PIDCalibrationHolder(0.03, 0, 0.001);
+	public Compressor compressor;
+	private final double maximumVoltage = 3.147; //previously 3.09
+	private final double minimumVoltage = 4.471; //previously 4.49
+	private final int maximumHeight = 194;
+	private final int minimumHeight = 18;
+	public PIDController elevatorPIDController;
+	public double scaleHighHeight = 198;
+	public double scaleLowHeight = 155;
+	public double scaleMiddleHeight = 187;
+	public double switchHeight = 83;
+	public Potentiometer potentiometer;
+	public AnalogInput analogPotentiometer;
+
 	public RobotMap() {
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
 		driveTrainSecondLeft = new WPI_TalonSRX(1);
+		driveTrainThirdLeft = new WPI_TalonSRX(2);
+
 		driveTrainleftTalons = new SpeedControllerGroup(driveTrainFirstLeft, driveTrainSecondLeft);
-		
-		driveTrainFirstRight= new WPI_TalonSRX(2);
-		driveTrainSecondRight = new WPI_TalonSRX(3);
+
+		driveTrainFirstRight = new WPI_TalonSRX(3);
+		driveTrainSecondRight = new WPI_TalonSRX(4);
+		driveTrainThirdRight = new WPI_TalonSRX(5);
 		driveTrainRightTalons = new SpeedControllerGroup(driveTrainFirstRight, driveTrainSecondRight);
-		
 		driveTrainRobotDrive = new DifferentialDrive(driveTrainleftTalons, driveTrainRightTalons);
+
+		driveTrainNavX = new AHRS(SPI.Port.kMXP);
+
+		driveTrainLeftRotationPIDController = new PIDController(rotationRugRobotA.getP(), rotationRugRobotA.getI(),
+				rotationRugRobotA.getD(), driveTrainNavX, driveTrainleftTalons);
+		driveTrainRightRotationPIDController = new PIDController(rotationRugRobotA.getP(), rotationRugRobotA.getI(),
+				rotationRugRobotA.getD(), driveTrainNavX, driveTrainRightTalons);
+//		driveTrainSecondLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+//		driveTrainFirstRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+//		driveTrainFirstLeft.config_kP(0, 0.3, 0);
+//		driveTrainFirstLeft.config_kI(0, 0, 0);
+//		driveTrainFirstLeft.config_kD(0, 0, 0);
+//		driveTrainFirstRight.config_kP(0, 1, 0);
+//		driveTrainFirstRight.config_kI(0, 0, 0);
+//		driveTrainFirstRight.config_kD(0, 0, 0);
+//		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
+//		driveTrainFirstRight.configAllowableClosedloopError(0, 3, 0);
+
+		collectorLeftWheel = new WPI_VictorSPX(6);
+		collectorRightWheel = new WPI_VictorSPX(7);
+		collectorRightWheel.setInverted(true);
+
+		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
+		collectorHolderPistonLeft = new DoubleSolenoid(0, 7);
+		collectorHolderPistonRight = new DoubleSolenoid(2, 3);
+
+		elevatorFirstMotor = new WPI_TalonSRX(8);
+		elevatorSecondMotor = new WPI_VictorSPX(9);
+		elevatorThirdMotor = new WPI_VictorSPX(10);
+		elevatorFourthMotor = new WPI_VictorSPX(11);
+		elevatorWheels = new SpeedControllerGroup(elevatorFirstMotor, elevatorSecondMotor, elevatorThirdMotor,
+				elevatorFourthMotor);
+		elevatorFirstMotor.setInverted(true);
+		elevatorSecondMotor.setInverted(true);
+		elevatorThirdMotor.setInverted(true);
+		elevatorFourthMotor.setInverted(true);
+
+		elevatorPitchMotor = new WPI_TalonSRX(12);
+
+		compressor = new Compressor();
+		compressor.setClosedLoopControl(true);
+		driveTrainFirstLeft.configPeakOutputForward(1, 0);
+		analogPotentiometer = new AnalogInput(1);
+		potentiometer = new Potentiometer(analogPotentiometer, minimumVoltage, maximumVoltage, minimumHeight,
+				maximumHeight);
+		elevatorPIDController = new PIDController(elvevatorRobotA.getP(), elvevatorRobotA.getI(),
+				elvevatorRobotA.getD(), potentiometer, elevatorWheels);
+		elevatorPIDController.setAbsoluteTolerance(3);
+		elevatorFirstMotor.configPeakOutputReverse(-0.3, 0);
+		elevatorSecondMotor.configPeakOutputReverse(-0.3, 0);
+		elevatorThirdMotor.configPeakOutputReverse(-0.3, 0);
+		elevatorFourthMotor.configPeakOutputReverse(-0.3, 0);
 		
-		//collectorLeftWheel = new WPI_TalonSRX(/);
-		//collectorRightWheel = new WPI_TalonSRX(/);
+		driveTrainFirstLeft.configPeakOutputReverse(-1, 0);
+		driveTrainSecondLeft.configPeakOutputForward(1, 0);
+		driveTrainSecondLeft.configPeakOutputReverse(-1, 0);
+		driveTrainFirstRight.configPeakOutputForward(1, 0);
+		driveTrainFirstRight.configPeakOutputReverse(-1, 0);
+		driveTrainSecondRight.configPeakOutputForward(1, 0);
+		driveTrainSecondRight.configPeakOutputReverse(-1, 0);
+
+//		driveTrainFirstLeft.enableCurrentLimit(false);
+//		driveTrainSecondLeft.enableCurrentLimit(false);
+//		driveTrainFirstRight.enableCurrentLimit(false);
+//		driveTrainSecondRight.enableCurrentLimit(false);
 	}
 }

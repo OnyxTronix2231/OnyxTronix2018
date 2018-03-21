@@ -1,0 +1,6 @@
+*.class
+*.classpath
+bin/*
+build/*
+dist/*
+/bin/

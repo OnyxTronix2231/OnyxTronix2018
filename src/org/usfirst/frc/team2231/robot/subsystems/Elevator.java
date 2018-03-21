@@ -8,45 +8,73 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import org.usfirst.frc.team2231.robot.Potentiometer;
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.commands.ClimbRopeByAxis;
 
-import com.ctre.CANTalon;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.PIDController;
+import org.usfirst.frc.team2231.robot.commands.KeepElevatorInPlace;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
 
 /**
  *
  */
 public class Elevator extends Subsystem {
-    private final WPI_TalonSRX firstMotor = RobotMap.elevatorFirstMotor;
-    private final WPI_TalonSRX secondMotor = RobotMap.elevatorSecondMotor;
-    private static final double SENSITIVITY_VALUE = 1 * 0.2;
-    public static final int DEFAULT_DIRECTION = 1;
-    public int climbDirection = DEFAULT_DIRECTION;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	private final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
+    public final WPI_TalonSRX firstMotor = Robot.m_robotMap.elevatorFirstMotor;
+    private final WPI_VictorSPX secondMotor = Robot.m_robotMap.elevatorSecondMotor;
+    private final WPI_VictorSPX thirdMotor = Robot.m_robotMap.elevatorThirdMotor;
+	public final Potentiometer m_potentiometer = Robot.m_robotMap.potentiometer;
+	public final PIDController pidController = Robot.m_robotMap.elevatorPIDController;
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
-    }
-    
-//    public void climbRope() {
-//    	if(Math.abs(Robot.oi.getbuttonStick().getRawAxis(1)) > SENSITIVITY_VALUE){
-//    		double speed = climbDirection * Math.abs(Robot.oi.getbuttonStick().getRawAxis(1));
-//    		firstMotor.set(speed);
-//    		secondMotor.set(speed);
-//    	} else {
-//    		firstMotor.set(0);
-//    		secondMotor.set(0);
-//    	}
-//    }
+    private final WPI_VictorSPX fourthMotor = Robot.m_robotMap.elevatorFourthMotor;
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
+
+	@Override
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new KeepElevatorInPlace());
+	}
+
+	public void setSpeed(double speed) {
+		elevatorWheels.set(speed);
+		secondMotor.follow(firstMotor);
+		thirdMotor.follow(firstMotor);
+		fourthMotor.follow(firstMotor);
+	}
+
+	public void stop() {
+		elevatorWheels.set(0);
+	}
+	
+	public void enablePIDController() {
+		pidController.enable();
+	}
+
+	public void setHeight(double height) {
+		pidController.setSetpoint(height);
+	}
+
+	public double getHeight() {
+		return m_potentiometer.getHeight();
+	}
+	
+	public boolean isLiftOnTarget() {
+		return pidController.onTarget();
+	}
+
+	public void disablePIDController() {
+		pidController.disable();
+	}
 }
-

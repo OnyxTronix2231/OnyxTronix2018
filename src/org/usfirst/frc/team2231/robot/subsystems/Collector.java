@@ -8,47 +8,62 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc.team2231.robot.subsystems;
 
-import org.usfirst.frc.team2231.robot.RobotMap;
-
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj.Talon;
+import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.commands.CollectWhenMicroSwitchIsNotPressed;
+import OnyxTronix.LineTracker;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
 
 /**
  *
  */
 public class Collector extends Subsystem {
-	public static final double SPEED = 1;
-    private final WPI_TalonSRX leftWheel = RobotMap.collectorLeftWheel;
-    private final WPI_TalonSRX rightWheel = RobotMap.collectorRightWheel;
+	private boolean m_isCubeCollected = false;
+	private final SpeedControllerGroup wheels = Robot.m_robotMap.collectorWheels;
+	private final LineTracker lineTracker = Robot.m_robotMap.collectorLineTracker;
+	private final DoubleSolenoid holderPistonLeft = Robot.m_robotMap.collectorHolderPistonLeft;
+	private final DoubleSolenoid holderPistonRight = Robot.m_robotMap.collectorHolderPistonRight;
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
 
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-    
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
-    }
-    
-    public void startCubeCollector(double speed) {
-    	leftWheel.set(speed);
-    	rightWheel.set(speed);
-    }
-    
-    public void stopCubeCollector() {
-    	leftWheel.set(0);
-    	rightWheel.set(0);
-    }
-    
-    public boolean isCollecting() {
-    	return (leftWheel.get() != 0 && rightWheel.get() != 0);
-    	
-    }
+	@Override
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+		}
+
+	public void setSpeed(final double speed) {
+			wheels.set(speed);
+	}
+
+	public void stop() {
+		wheels.set(0);
+	}
+
+	public boolean isCollecting() {
+		return wheels.get() != 0;
+
+	}
+	
+	public boolean isMicroSwitchPressed() {
+		return lineTracker.isPressed();
+	}
+
+	public void changeHolderPistonPosition(final DoubleSolenoid.Value value) {
+		holderPistonLeft.set(value);
+		holderPistonRight.set(value);
+	}
+
+	public boolean isCubeCollected() {
+		return m_isCubeCollected;
+	}
+
+	public void setCubeCollected(boolean isCubeCollected) {
+		this.m_isCubeCollected = isCubeCollected;
+		System.out.println(isCubeCollected);
+	}
 }
-

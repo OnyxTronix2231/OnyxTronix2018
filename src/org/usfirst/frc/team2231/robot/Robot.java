@@ -53,7 +53,7 @@ public class Robot extends TimedRobot {
 	public static Elevator m_elevator;
 	public static ElevatorPitch m_elevatorPitch;
 	public static FieldPositions m_fieldPositions;
-	public static SmartDashboardUpdater m_smartDashboardUpdater;
+//	public static SmartDashboardUpdater m_smartDashboardUpdater;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -70,7 +70,7 @@ public class Robot extends TimedRobot {
 		m_elevator = new Elevator();
 		m_elevatorPitch = new ElevatorPitch();
 		m_oi = new OI();
-		m_smartDashboardUpdater = new SmartDashboardUpdater();
+//		m_smartDashboardUpdater = new SmartDashboardUpdater();
 		CameraServer.getInstance().startAutomaticCapture().setResolution(10, 5);
 		CameraServer.getInstance().startAutomaticCapture(1).setResolution(10, 5);
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -80,7 +80,7 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Right", new AutonomousRight());
 		SmartDashboard.putData("Autonomous chooser", m_chooser);
 		
-		m_smartDashboardUpdater.UpdateDashboard();
+//		m_smartDashboardUpdater.updateDashboard();
 	}
 
 	/**
@@ -151,8 +151,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
-		m_smartDashboardUpdater.UpdateDashboard();
+		Scheduler.getInstance().run();	
+//		m_smartDashboardUpdater.updateDashboard();
 		}
 	
 

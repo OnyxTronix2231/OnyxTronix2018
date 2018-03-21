@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class DriveToLeftSwitchFromTheLeft extends CommandGroup {
+public class CloseAndCollect extends CommandGroup {
 
-    public DriveToLeftSwitchFromTheLeft() {
+    public CloseAndCollect() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -24,14 +24,8 @@ public class DriveToLeftSwitchFromTheLeft extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addParallel(new RaiseBySpeed(0.7), 0.8);
-    	addParallel(new EvelatorPitchDrop(), 1);
-    	addSequential(new DriveBySpeed(0.4), 2.9);
-    	addParallel(new KeepElevatorInPlace());
-    	addSequential(new RotateByNavX(85), 0.7);
-    	addParallel(new KeepElevatorInPlace());
-    	addSequential(new DriveBySpeed(0.4), 2.5);
-    	addSequential(new Eject(), 4);
-    	
+    	addParallel(new Collect(), 0.8);
+    	addSequential(new CloseCollector());
+//    	addSequential(new EvelatorPitchRaise());
     }
 }

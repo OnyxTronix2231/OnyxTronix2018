@@ -18,10 +18,16 @@ import org.usfirst.frc.team2231.robot.commands.EjectSlowly;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchRaise;
 import org.usfirst.frc.team2231.robot.commands.KeepClimberInPlace;
-import org.usfirst.frc.team2231.robot.commands.LiftToScale;
+import org.usfirst.frc.team2231.robot.commands.LiftToHighScale;
+import org.usfirst.frc.team2231.robot.commands.LiftToLowScale;
+import org.usfirst.frc.team2231.robot.commands.LiftToMidScale;
 import org.usfirst.frc.team2231.robot.commands.LiftToSwitch;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.LowerNeutral;
+import org.usfirst.frc.team2231.robot.commands.LowerToBottom;
+import org.usfirst.frc.team2231.robot.commands.LowerToBottomWithoutCrashing;
+import org.usfirst.frc.team2231.robot.commands.Climb;
+import org.usfirst.frc.team2231.robot.commands.CloseAndCollect;
 import org.usfirst.frc.team2231.robot.commands.CloseCollector;
 import org.usfirst.frc.team2231.robot.commands.Raise;
 
@@ -78,8 +84,11 @@ public class OI {
 	private JoystickButton operatorOpenCollector;
 	private JoystickButton elevatorPitchRaise;
 	private JoystickButton ejectCubeSlowly;
-	private JoystickButton scaleRaise;
+	private JoystickButton middleScaleRaise;
 	private JoystickButton switchRaise;
+	private JoystickButton lowerToBottom;
+	private JoystickButton highScaleRaise;
+	private JoystickButton climb;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -92,8 +101,8 @@ public class OI {
 		
 		collect = new JoystickButton(buttonStick, 2);
 		collect.whileHeld(new Collect());
-		ejectCube = new JoystickButton(buttonStick, 3);
-		ejectCube.whileHeld(new Eject());
+//		ejectCube = new JoystickButton(buttonStick, 3);
+//		ejectCube.whileHeld(new Eject());
 		ejectCubeSlowly = new JoystickButton(driveStick, 2);
 		ejectCubeSlowly.whileHeld(new EjectSlowly());
 				
@@ -102,24 +111,27 @@ public class OI {
 		elevatorPitchRaise = new JoystickButton(buttonStick, 8);
 		elevatorPitchRaise.whileHeld(new EvelatorPitchRaise());
 		
-		openCollector = new JoystickButton(driveStick, 6);
+		openCollector = new JoystickButton(driveStick, 5);
 		openCollector.whenPressed(new OpenCollector());
-		closeCollector = new JoystickButton(driveStick, 5);
+		closeCollector = new JoystickButton(driveStick, 6);
 		closeCollector.whenPressed(new CloseCollector());
-		operatorOpenCollector = new JoystickButton(buttonStick, 6);
-		operatorOpenCollector.whenPressed(new OpenCollector());
-		keepClimberInPlace = new JoystickButton(driveStick, 8);
-		keepClimberInPlace.whenPressed(new KeepClimberInPlace());
 		
 //		collectCube = new JoystickButton(buttonStick, 8);
 //		collectCube.whileHeld(new CollectCube());
 		
-		scaleRaise = new JoystickButton(buttonStick, 9);
-		scaleRaise.whenPressed(new LiftToScale());
+		middleScaleRaise = new JoystickButton(buttonStick, 9);
+		middleScaleRaise.whenPressed(new LiftToMidScale());
 		
 		switchRaise = new JoystickButton(buttonStick, 10);
 		switchRaise.whenPressed(new LiftToSwitch());
-
+		
+		lowerToBottom = new JoystickButton(buttonStick, 5);
+		lowerToBottom.whenPressed(new LowerToBottomWithoutCrashing());
+		highScaleRaise = new JoystickButton(buttonStick, 6);
+		highScaleRaise.whenPressed(new LiftToHighScale());
+		
+//		climb = new JoystickButton(driveStick, 7);
+//		climb.whileHeld(new Climb());
 		}
 
 

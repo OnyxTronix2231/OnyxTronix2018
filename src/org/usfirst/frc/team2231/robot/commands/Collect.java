@@ -4,7 +4,8 @@ import org.usfirst.frc.team2231.robot.Robot;
 
 public class Collect extends ConveyWithCollector {
 
-	private static final int maxSpeed = 1;
+	// Do not raise to 1! This prevents high amper consumption.
+	private static final double maxSpeed = 0.7;
 
 	public Collect() {
 		super(maxSpeed);

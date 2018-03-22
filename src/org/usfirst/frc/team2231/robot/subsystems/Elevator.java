@@ -16,6 +16,7 @@ import org.usfirst.frc.team2231.robot.Robot;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.PIDController;
 import org.usfirst.frc.team2231.robot.commands.KeepElevatorInPlace;
+import org.usfirst.frc.team2231.robot.commands.KeepElevatorInPlaceOld;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FollowerType;
@@ -44,7 +45,7 @@ public class Elevator extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new KeepElevatorInPlace());
+    	setDefaultCommand(new KeepElevatorInPlaceOld());
 	}
 
 	public void setSpeed(double speed) {

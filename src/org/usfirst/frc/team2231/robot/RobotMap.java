@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -73,8 +74,8 @@ public class RobotMap {
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
 	private final PIDCalibrationHolder elvevatorRobotA = new PIDCalibrationHolder(0.03, 0, 0.001);
 	public Compressor compressor;
-	private final double maximumVoltage = 3.147; //previously 3.09
-	private final double minimumVoltage = 4.471; //previously 4.49
+	private final double maximumVoltage = 1.019; //previously 3.09
+	private final double minimumVoltage = 1.363; //previously 4.49
 	private final int maximumHeight = 194;
 	private final int minimumHeight = 18;
 	public PIDController elevatorPIDController;
@@ -86,6 +87,7 @@ public class RobotMap {
 	public AnalogInput analogPotentiometer;
 
 	public RobotMap() {
+		SmartDashboard.putNumber("Pitch_P", 0);
 		driveTrainFirstLeft = new WPI_TalonSRX(0);
 		driveTrainSecondLeft = new WPI_TalonSRX(1);
 		driveTrainThirdLeft = new WPI_TalonSRX(2);
@@ -135,6 +137,9 @@ public class RobotMap {
 		elevatorFourthMotor.setInverted(true);
 
 		elevatorPitchMotor = new WPI_TalonSRX(12);
+		elevatorPitchMotor.config_kP(0, SmartDashboard.getNumber("Pitch_P", 0), 0);
+		elevatorPitchMotor.config_kI(0, 0, 0);
+		elevatorPitchMotor.config_kD(0, 0, 0);
 
 		compressor = new Compressor();
 		compressor.setClosedLoopControl(true);

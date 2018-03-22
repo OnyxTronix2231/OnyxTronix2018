@@ -7,24 +7,25 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class KeepPitchInPlace extends Command {
+public class KeepElevatorInPlaceOld extends Command {
 
-    public KeepPitchInPlace() {
+    public KeepElevatorInPlaceOld() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.m_elevatorPitch);
+    	requires(Robot.m_elevator);
     }
 	
-    @Override
-    protected void initialize() {
-    	// TODO Auto-generated method stub
-    }
-    
+	@Override
+	protected void initialize() {
+		
+	}
+	
 	@Override
 	protected void execute() {
-		Robot.m_elevatorPitch.setSpeed(-0.001);
+		// TODO Auto-generated method stub
+		Robot.m_elevator.setSpeed(0.08);
 	}
-
+	
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	return false;
@@ -32,6 +33,7 @@ public class KeepPitchInPlace extends Command {
     
     @Override
     protected void end() {
+    	Robot.m_elevator.disablePIDController();
     }
     
     @Override

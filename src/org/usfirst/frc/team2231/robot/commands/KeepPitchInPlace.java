@@ -3,6 +3,7 @@ package org.usfirst.frc.team2231.robot.commands;
 import org.usfirst.frc.team2231.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -22,7 +23,7 @@ public class KeepPitchInPlace extends Command {
     
 	@Override
 	protected void execute() {
-		Robot.m_elevatorPitch.setSpeed(-0.001);
+		Robot.m_elevatorPitch.setSpeed(0.1);
 	}
 
     // Make this return true when this Command no longer needs to run execute()

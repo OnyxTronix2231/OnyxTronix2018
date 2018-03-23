@@ -11,6 +11,7 @@ public class EvelatorPitchRaise extends TimedCommand {
 
     public EvelatorPitchRaise() {
 		super(0.5);
+		requires(Robot.m_elevatorPitch);
 	}
 
 

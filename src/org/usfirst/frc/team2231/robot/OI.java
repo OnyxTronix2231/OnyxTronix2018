@@ -130,8 +130,8 @@ public class OI {
 		highScaleRaise = new JoystickButton(buttonStick, 6);
 		highScaleRaise.whenPressed(new LiftToHighScale());
 		
-//		climb = new JoystickButton(driveStick, 7);
-//		climb.whileHeld(new Climb());
+		climb = new JoystickButton(buttonStick, 3);
+		climb.whenPressed(new KeepClimberInPlace());
 		}
 
 

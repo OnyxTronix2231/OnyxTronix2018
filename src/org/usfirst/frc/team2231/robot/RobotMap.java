@@ -122,7 +122,7 @@ public class RobotMap {
 		collectorRightWheel.setInverted(true);
 
 		collectorWheels = new SpeedControllerGroup(collectorLeftWheel, collectorRightWheel);
-		collectorHolderPistonLeft = new DoubleSolenoid(0, 7);
+		collectorHolderPistonLeft = new DoubleSolenoid(0, 1);
 		collectorHolderPistonRight = new DoubleSolenoid(2, 3);
 
 		elevatorFirstMotor = new WPI_TalonSRX(8);

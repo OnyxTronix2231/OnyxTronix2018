@@ -11,6 +11,7 @@ public class EvelatorPitchDrop extends TimedCommand {
 
     public EvelatorPitchDrop() {
 		super(0.5);
+		requires(Robot.m_elevatorPitch);
 	}
 
 

@@ -79,7 +79,6 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Middle", new AutonomousMiddle());
 		m_chooser.addObject("Right", new AutonomousRight());
 		SmartDashboard.putData("Autonomous chooser", m_chooser);
-		
 //		m_smartDashboardUpdater.updateDashboard();
 	}
 

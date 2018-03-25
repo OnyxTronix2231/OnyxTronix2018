@@ -20,12 +20,15 @@ import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.Elevator;
 import org.usfirst.frc.team2231.robot.subsystems.ElevatorPitch;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import Configuration.CameraConfiguration;
 
 import org.usfirst.frc.team2231.robot.OI;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLeft;
 import org.usfirst.frc.team2231.robot.commands.AutonomousMiddle;
 import org.usfirst.frc.team2231.robot.commands.AutonomousRight;
+import org.usfirst.frc.team2231.robot.commands.DriveBySpeed;
 import org.usfirst.frc.team2231.robot.commands.DriveFromMiddleToLeftSwitch;
 import org.usfirst.frc.team2231.robot.commands.DriveFromMiddleToRightSwitch;
 import org.usfirst.frc.team2231.robot.commands.DriveToLeftScaleFromTheLeft;
@@ -89,6 +92,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
+    	Robot.m_robotMap.driveTrainFirstLeft.setNeutralMode(NeutralMode.Coast);
+    	Robot.m_robotMap.driveTrainFirstRight.setNeutralMode(NeutralMode.Coast);
+    	Robot.m_robotMap.driveTrainSecondRight.setNeutralMode(NeutralMode.Coast);
+    	Robot.m_robotMap.driveTrainSecondLeft.setNeutralMode(NeutralMode.Coast);
     }
 
 	@Override
@@ -143,6 +150,10 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+    	Robot.m_robotMap.driveTrainFirstLeft.setNeutralMode(NeutralMode.Brake);
+    	Robot.m_robotMap.driveTrainFirstRight.setNeutralMode(NeutralMode.Brake);
+		m_robotMap.driveTrainFirstLeft.getSensorCollection().setQuadraturePosition(0, 0);
+		m_robotMap.driveTrainFirstRight.getSensorCollection().setQuadraturePosition(0, 0);
 	}
 
 	/**

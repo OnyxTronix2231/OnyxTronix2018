@@ -13,6 +13,7 @@ import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.CollectCube;
 import org.usfirst.frc.team2231.robot.commands.DriveByEncoder;
 import org.usfirst.frc.team2231.robot.commands.DriveFromMiddleToRightSwitch;
+import org.usfirst.frc.team2231.robot.commands.DriveToLeftScaleFromTheLeft;
 import org.usfirst.frc.team2231.robot.commands.Eject;
 import org.usfirst.frc.team2231.robot.commands.EjectSlowly;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
@@ -89,6 +90,7 @@ public class OI {
 	private JoystickButton lowerToBottom;
 	private JoystickButton highScaleRaise;
 	private JoystickButton climb;
+	private JoystickButton driveByEncoder;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -132,6 +134,9 @@ public class OI {
 		
 		climb = new JoystickButton(buttonStick, 3);
 		climb.whenPressed(new KeepClimberInPlace());
+		
+		driveByEncoder = new JoystickButton(driveStick, 7);
+		driveByEncoder.whenPressed(new DriveByEncoder(50)); // Under 150 give -20, 590 + 10
 		}
 
 

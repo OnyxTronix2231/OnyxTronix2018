@@ -26,20 +26,18 @@ public class DriveToLeftScaleFromTheLeft extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addParallel(new Raise(), 3);
-    	addParallel(new EvelatorPitchDrop());
-    	addSequential(new DriveByEncoder(822));
-    	addSequential(new DriveByEncoder(822));
-    	addSequential(new RotateByNavX(-90));
-    	addSequential(new DriveByEncoder(15));
-    	addSequential(new DriveByEncoder(15));
-    	addSequential(new Eject());
-    	addParallel(new OpenCollector());
-    	addParallel(new Lower(), 4);
-    	addSequential(new DriveByEncoder(-30));
-    	addSequential(new DriveByEncoder(-30));
-    	addSequential(new RotateByNavX(-60));
-    	addSequential(new DriveByEncoder(150));
-    	addSequential(new DriveByEncoder(150));
+    	addSequential(new DriveByEncoder(550));
+//    	addSequential(new DriveByEncoder(400));
+    	addSequential(new RotateByNavX(25), 1.5);
+//    	addSequential(new DriveByEncoder(200));
+//    	addSequential(new DriveByEncoder(100));
+    	addSequential(new LiftToMidScale(), 1.5);
+    	addParallel(new KeepElevatorInPlace());
+    	addParallel(new EvelatorPitchRaise(), 2);
+    	addSequential(new DriveByEncoder(80));
+//    	addSequential(new DriveByEncoder(80));
+    	addSequential(new Eject(), 2);
+    	addSequential(new OpenCollector());
+    	addSequential(new DriveBySpeed(-0.2), 2);
     }
 }

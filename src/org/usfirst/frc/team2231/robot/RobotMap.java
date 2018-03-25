@@ -11,9 +11,12 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
+import com.ni.vision.NIVision.WindowSize;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -74,9 +77,9 @@ public class RobotMap {
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
 	private final PIDCalibrationHolder elvevatorRobotA = new PIDCalibrationHolder(0.03, 0, 0.001);
 	public Compressor compressor;
-	private final double maximumVoltage = 1.019; //previously 3.09
-	private final double minimumVoltage = 1.363; //previously 4.49
-	private final int maximumHeight = 194;
+	private final double maximumVoltage = 0.847; //previously 3.09
+	private final double minimumVoltage = 1.19; //previously 4.49
+	private final int maximumHeight = 185; //194
 	private final int minimumHeight = 18;
 	public PIDController elevatorPIDController;
 	public double scaleHighHeight = 198;
@@ -108,12 +111,16 @@ public class RobotMap {
 				rotationRugRobotA.getD(), driveTrainNavX, driveTrainRightTalons);
 //		driveTrainSecondLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 //		driveTrainFirstRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-//		driveTrainFirstLeft.config_kP(0, 0.3, 0);
-//		driveTrainFirstLeft.config_kI(0, 0, 0);
-//		driveTrainFirstLeft.config_kD(0, 0, 0);
-//		driveTrainFirstRight.config_kP(0, 1, 0);
-//		driveTrainFirstRight.config_kI(0, 0, 0);
-//		driveTrainFirstRight.config_kD(0, 0, 0);
+		driveTrainFirstLeft.config_kP(0, 3, 0);
+		driveTrainFirstLeft.config_kI(0, 0, 0);
+		driveTrainFirstLeft.config_kD(0, 0, 0);
+		driveTrainFirstRight.config_kP(0, 3, 0);
+		driveTrainFirstRight.config_kI(0, 0, 0);
+		driveTrainFirstRight.config_kD(0, 0, 0);
+//		driveTrainFirstLeft.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_20Ms, 0);
+//		driveTrainFirstRight.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_20Ms, 0);
+//		driveTrainFirstLeft.configVelocityMeasurementWindow(16, 0);
+//		driveTrainFirstRight.configVelocityMeasurementWindow(16, 0);
 //		driveTrainFirstLeft.configAllowableClosedloopError(0, 3, 0);
 //		driveTrainFirstRight.configAllowableClosedloopError(0, 3, 0);
 
@@ -154,6 +161,7 @@ public class RobotMap {
 		elevatorSecondMotor.configPeakOutputReverse(-0.3, 0);
 		elevatorThirdMotor.configPeakOutputReverse(-0.3, 0);
 		elevatorFourthMotor.configPeakOutputReverse(-0.3, 0);
+		
 		
 		driveTrainFirstLeft.configPeakOutputReverse(-1, 0);
 		driveTrainSecondLeft.configPeakOutputForward(1, 0);

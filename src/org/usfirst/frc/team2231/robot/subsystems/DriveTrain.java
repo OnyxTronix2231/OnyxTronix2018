@@ -3,7 +3,9 @@ package org.usfirst.frc.team2231.robot.subsystems;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 
+import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -70,7 +72,8 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public boolean isRotationPIDOnPoint() {
-		return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget() && Math.abs(Robot.m_driveTrain.m_navX.getRawGyroZ()) < 0.1;
+		return rightRotationPIDController.onTarget() && leftRotationPIDController.onTarget()
+				&& Math.abs(Robot.m_driveTrain.m_navX.getRawGyroZ()) < 0.1;
 	}
 
 	public void stop() {
@@ -90,15 +93,15 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void resetEncoder() {
-		firstLeft.getSensorCollection().setQuadraturePosition(0, 0);
-		firstRight.getSensorCollection().setQuadraturePosition(0, 0);
+		firstLeft.getSensorCollection().setQuadraturePosition(0, 200);
+		firstRight.getSensorCollection().setQuadraturePosition(0, 200);
 	}
 
 	public void setPositionOutputRange() {
-		firstLeft.configPeakOutputForward(0.50, 0);
-		firstLeft.configPeakOutputReverse(-0.50, 0);
-		firstRight.configPeakOutputForward(0.50, 0);
-		firstRight.configPeakOutputReverse(-0.50, 0);
+		firstLeft.configPeakOutputForward(0.4, 0);
+		firstLeft.configPeakOutputReverse(-0.4, 0);
+		firstRight.configPeakOutputForward(0.37, 0);
+		firstRight.configPeakOutputReverse(-0.37, 0);
 
 	}
 
@@ -115,22 +118,29 @@ public class DriveTrain extends Subsystem {
 		firstRight.set(ControlMode.Position, -setpoint);
 		secondLeft.set(ControlMode.Follower, firstLeft.getDeviceID());
 		secondRight.set(ControlMode.Follower, firstRight.getDeviceID());
+		System.out.println("Setpoint " + setpoint);
 		System.out.println("Left Error " + firstLeft.getClosedLoopError(0));
 		System.out.println("Right Error " + firstRight.getClosedLoopError(0));
 		System.out.println("Current Left" + firstLeft.getSensorCollection().getQuadraturePosition());
 		System.out.println("Current Right" + firstRight.getSensorCollection().getQuadraturePosition());
+
 	}
 
 	public boolean getPositionError() {
-		return Math.abs(firstLeft.getClosedLoopError(0)) < 30 && Math.abs(firstRight.getClosedLoopError(0)) < 30;
+		return Math.abs(firstLeft.getClosedLoopError(0)) < 50 && Math.abs(firstRight.getClosedLoopError(0)) < 50
+				&& firstLeft.getSelectedSensorVelocity(0) == 0;
 	}
 
 	public double convertToEncoderValue(double distanceInCentimeters) {
-		distanceInCentimeters /= 2 * Math.PI * wheelRadius;
-		distanceInCentimeters *= 300 * 1.66;
-		return distanceInCentimeters;
+		double encoderValue;
+		// encoderValue = distanceInCentimeters * 2.5;
+		// encoderValue /= 2 * Math.PI * wheelRadius * 2.54;
+		// 300 * 1.66 / 2.2 / 1.15
+		// encoderValue *= 256;
+		encoderValue = 24.574 * distanceInCentimeters + 7.462;
+		return encoderValue;
 	}
-	
+
 	public void setSpeed(double speed) {
 		leftTalons.set(speed);
 		rightTalons.set(-speed);

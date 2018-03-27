@@ -25,23 +25,42 @@ public class DriveFromMiddleToRightSwitch extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new DriveBySpeed(0.5), 0.5);
-    	addSequential(new DriveBySpeed(0), 0.1);
-    	addSequential(new RotateByNavX(39), 0.5);
-    	addParallel(new RaiseBySpeed(0.7), 0.9);
-//    	addParallel(new LiftToSwitch());
-    	addParallel(new EvelatorPitchDrop(), 1);
-    	addSequential(new DriveBySpeed(0.4), 4);
-    	addParallel(new KeepElevatorInPlace());
-    	addSequential(new EjectSlowly(), 4);
-    	addSequential(new OpenCollector());
-//    	addSequential(new RotateByNavX(90));
-//    	addSequential(new DriveByEncoder(-130));
-//    	addSequential(new DriveByEncoder(-130));
-//    	addSequential(new RotateByNavX(90));
-//    	addSequential(new DriveByEncoder(-50));
-//    	addSequential(new DriveByEncoder(-50));
-//    	addSequential(new DriveBySpeed(-0.5), 0.2);
-//    	addSequential(new Lower(), 4);	
+//    	addSequential(new DriveBySpeed(0.75), 0.35);
+//    	addSequential(new DriveBySpeed(0), 0.1);
+//    	addSequential(new RotateByNavX(39), 0.5);
+//
+//    	addSequential(new LiftToSwitch());
+//    	addParallel(new KeepElevatorInPlace());
+    	addParallel(new EvelatorPitchDrop(), 2);
+//    	addSequential(new DriveBySpeed(0.5), 1);
+//    	addParallel(new KeepElevatorInPlace());
+//    	addSequential(new EjectSlowly(), 0.5);
+//    	addSequential(new OpenCollector());
+    	
+    	// Collect and put second cube
+//    	addSequential(new DriveBySpeed(-0.3), 1.2);
+//    	addSequential(new LowerToBottom());
+//    	addSequential(new RotateByNavX(-57), 0.6);
+//    	addParallel(new Collect(), 1.3);
+//    	addSequential(new DriveBySpeed(0.5), 1.3);
+//    	addSequential(new CloseCollector());
+//    	addParallel(new Collect(), 1);
+//    	addSequential(new DriveBySpeed(-0.5), 1.3);
+//    	addSequential(new RotateByNavX(60), 0.8);
+//    	addSequential(new LiftToSwitch());
+//    	addParallel(new KeepElevatorInPlace());
+//    	addSequential(new DriveBySpeed(0.7), 1);
+//    	addParallel(new OpenCollector());
+    	
+    	// Collect third cube
+//    	addSequential(new DriveBySpeed(-0.3), 1);
+//    	addSequential(new LowerToBottom());
+//    	addSequential(new RotateByNavX(-53), 0.6);
+//    	addParallel(new Collect(), 1);
+//    	addSequential(new DriveBySpeed(0.5), 1.3);
+//    	addSequential(new CloseCollector());
+//    	addParallel(new Collect(), 1);
+//    	addSequential(new DriveBySpeed(-0.7), 0.5);
+    	
     }
 }

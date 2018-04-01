@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.commands.KeepPitchInPlace;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.FollowerType;
@@ -63,7 +65,7 @@ public class RobotMap {
 	public WPI_VictorSPX elevatorSecondMotor;
 	public WPI_VictorSPX elevatorThirdMotor;
 	public WPI_VictorSPX elevatorFourthMotor;
-	public LineTracker collectorLineTracker;
+	public DigitalInput collectorBumperSwitch;
 	public SpeedControllerGroup elevatorWheels;
 	public WPI_TalonSRX elevatorPitchMotor;
 	public DoubleSolenoid collectorHolderPistonLeft;
@@ -78,10 +80,10 @@ public class RobotMap {
 	private final int maximumHeight = 194;
 	private final int minimumHeight = 18;
 	public PIDController elevatorPIDController;
-	public double scaleHighHeight = 198;
+	public double scaleHighHeight = 201;
 	public double scaleLowHeight = 155;
 	public double scaleMiddleHeight = 187;
-	public double switchHeight = 83;
+	public double switchHeight = 90;
 	public Potentiometer potentiometer;
 	public AnalogInput analogPotentiometer;
 
@@ -133,7 +135,9 @@ public class RobotMap {
 		elevatorSecondMotor.setInverted(true);
 		elevatorThirdMotor.setInverted(true);
 		elevatorFourthMotor.setInverted(true);
-
+		
+		collectorBumperSwitch = new DigitalInput(2);		
+		
 		elevatorPitchMotor = new WPI_TalonSRX(12);
 
 		compressor = new Compressor();

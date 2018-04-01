@@ -12,4 +12,11 @@ public class EjectSlowly extends ConveyWithCollector {
 	public EjectSlowly() {
 		super(maxSpeed);
 	}
+	
+	@Override
+	protected void initialize() {
+		// TODO Auto-generated method stub
+		super.initialize();
+		KeepPitchInPlace.isCubePicked = false;
+	}
 }

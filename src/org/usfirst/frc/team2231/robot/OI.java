@@ -11,6 +11,7 @@ import org.usfirst.frc.team2231.robot.commands.OpenCollector;
 import org.usfirst.frc.team2231.robot.commands.RotateByNavX; 
 import org.usfirst.frc.team2231.robot.commands.Collect;
 import org.usfirst.frc.team2231.robot.commands.CollectCube;
+import org.usfirst.frc.team2231.robot.commands.CollectWhenMicroSwitchIsNotPressed;
 import org.usfirst.frc.team2231.robot.commands.DriveByEncoder;
 import org.usfirst.frc.team2231.robot.commands.DriveFromMiddleToRightSwitch;
 import org.usfirst.frc.team2231.robot.commands.Eject;
@@ -19,9 +20,11 @@ import org.usfirst.frc.team2231.robot.commands.EvelatorPitchDrop;
 import org.usfirst.frc.team2231.robot.commands.EvelatorPitchRaise;
 import org.usfirst.frc.team2231.robot.commands.KeepClimberInPlace;
 import org.usfirst.frc.team2231.robot.commands.LiftToHighScale;
+import org.usfirst.frc.team2231.robot.commands.LiftToMidScaleAndLowerPitch;
 import org.usfirst.frc.team2231.robot.commands.LiftToLowScale;
 import org.usfirst.frc.team2231.robot.commands.LiftToMidScale;
 import org.usfirst.frc.team2231.robot.commands.LiftToSwitch;
+import org.usfirst.frc.team2231.robot.commands.LiftToSwitchAndLowerPitch;
 import org.usfirst.frc.team2231.robot.commands.Lower;
 import org.usfirst.frc.team2231.robot.commands.LowerNeutral;
 import org.usfirst.frc.team2231.robot.commands.LowerToBottom;
@@ -78,7 +81,6 @@ public class OI {
 	public JoystickButton collect;
 	public JoystickButton ejectCube;
 	public JoystickButton elevatorPitchLower;
-	public JoystickButton keepClimberInPlace;
 	private JoystickButton openCollector;
 	private JoystickButton closeCollector;
 	private JoystickButton operatorOpenCollector;
@@ -88,7 +90,7 @@ public class OI {
 	private JoystickButton switchRaise;
 	private JoystickButton lowerToBottom;
 	private JoystickButton highScaleRaise;
-	private JoystickButton climb;
+	private JoystickButton keepClimberInPlace;
 
 	public OI() {
 		driveStick = new Joystick(0);
@@ -120,18 +122,18 @@ public class OI {
 //		collectCube.whileHeld(new CollectCube());
 		
 		middleScaleRaise = new JoystickButton(buttonStick, 9);
-		middleScaleRaise.whenPressed(new LiftToMidScale());
+		middleScaleRaise.whenPressed(new LiftToMidScaleAndLowerPitch());
 		
 		switchRaise = new JoystickButton(buttonStick, 10);
-		switchRaise.whenPressed(new LiftToSwitch());
+		switchRaise.whenPressed(new LiftToSwitchAndLowerPitch());
 		
 		lowerToBottom = new JoystickButton(buttonStick, 5);
 		lowerToBottom.whenPressed(new LowerToBottomWithoutCrashing());
 		highScaleRaise = new JoystickButton(buttonStick, 6);
 		highScaleRaise.whenPressed(new LiftToHighScale());
 		
-//		climb = new JoystickButton(driveStick, 7);
-//		climb.whileHeld(new Climb());
+		keepClimberInPlace = new JoystickButton(buttonStick, 3);
+		keepClimberInPlace.whenPressed(new KeepClimberInPlace());
 		}
 
 

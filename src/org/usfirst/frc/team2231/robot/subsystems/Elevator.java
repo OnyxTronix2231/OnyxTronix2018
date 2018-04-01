@@ -30,13 +30,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
 	private final SpeedControllerGroup elevatorWheels = Robot.m_robotMap.elevatorWheels;
-    public final WPI_TalonSRX firstMotor = Robot.m_robotMap.elevatorFirstMotor;
-    private final WPI_VictorSPX secondMotor = Robot.m_robotMap.elevatorSecondMotor;
-    private final WPI_VictorSPX thirdMotor = Robot.m_robotMap.elevatorThirdMotor;
+	public final WPI_TalonSRX firstMotor = Robot.m_robotMap.elevatorFirstMotor;
+	private final WPI_VictorSPX secondMotor = Robot.m_robotMap.elevatorSecondMotor;
+	private final WPI_VictorSPX thirdMotor = Robot.m_robotMap.elevatorThirdMotor;
 	public final Potentiometer m_potentiometer = Robot.m_robotMap.potentiometer;
 	public final PIDController pidController = Robot.m_robotMap.elevatorPIDController;
 
-    private final WPI_VictorSPX fourthMotor = Robot.m_robotMap.elevatorFourthMotor;
+	private final WPI_VictorSPX fourthMotor = Robot.m_robotMap.elevatorFourthMotor;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -44,20 +44,28 @@ public class Elevator extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new KeepElevatorInPlace());
+		setDefaultCommand(new KeepElevatorInPlace());
 	}
 
 	public void setSpeed(double speed) {
-		elevatorWheels.set(speed);
-		secondMotor.follow(firstMotor);
-		thirdMotor.follow(firstMotor);
-		fourthMotor.follow(firstMotor);
+		if (m_potentiometer.getHeight() > 193) {
+			elevatorWheels.set(0);
+			secondMotor.follow(firstMotor);
+			thirdMotor.follow(firstMotor);
+			fourthMotor.follow(firstMotor);
+		}
+		else {
+			elevatorWheels.set(speed);
+			secondMotor.follow(firstMotor);
+			thirdMotor.follow(firstMotor);
+			fourthMotor.follow(firstMotor);
+		}
 	}
 
 	public void stop() {
 		elevatorWheels.set(0);
 	}
-	
+
 	public void enablePIDController() {
 		pidController.enable();
 	}
@@ -69,7 +77,7 @@ public class Elevator extends Subsystem {
 	public double getHeight() {
 		return m_potentiometer.getHeight();
 	}
-	
+
 	public boolean isLiftOnTarget() {
 		return pidController.onTarget();
 	}

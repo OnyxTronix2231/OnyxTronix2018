@@ -4,9 +4,9 @@ import org.usfirst.frc.team2231.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.ConditionalCommand;
 
-public class CollectWhenMicroSwitchIsNotPressed extends ConditionalCommand {
+public class RaisePitchWhenMicroswitchIsPressed extends ConditionalCommand {
 
-	public CollectWhenMicroSwitchIsNotPressed() {
+	public RaisePitchWhenMicroswitchIsPressed() {
 		super(new Collect(), new EvelatorPitchRaise());
 		// TODO Auto-generated constructor stub
 	}

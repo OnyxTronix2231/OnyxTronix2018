@@ -33,6 +33,7 @@ import org.usfirst.frc.team2231.robot.commands.DriveToLeftSwitchFromTheLeft;
 import org.usfirst.frc.team2231.robot.commands.DriveToRightScaleFromTheRight;
 import org.usfirst.frc.team2231.robot.commands.DriveToRightSwitchFromTheRight;
 import org.usfirst.frc.team2231.robot.commands.GetFieldPosition;
+import org.usfirst.frc.team2231.robot.commands.KeepPitchInPlace;
 import org.usfirst.frc.team2231.robot.commands.PassAutoLineFromLeft;
 import org.usfirst.frc.team2231.robot.commands.PassAutoLineFromMiddle;
 import org.usfirst.frc.team2231.robot.commands.PassAutoLineFromRight;
@@ -144,6 +145,8 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		
+		KeepPitchInPlace.isCubePicked = false;
 	}
 
 	/**
@@ -152,6 +155,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();	
+//		System.out.println("FirstCube- " + KeepPitchInPlace.isFirstCube);
+//		System.out.println("Pitch - " + KeepPitchInPlace.isCubePicked);
+//		System.out.println("Bumper - " + Robot.m_elevatorPitch.isPressed());
 //		m_smartDashboardUpdater.updateDashboard();
 		}
 	

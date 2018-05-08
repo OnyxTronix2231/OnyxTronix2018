@@ -159,6 +159,8 @@ public class Robot extends TimedRobot {
 //		System.out.println("Pitch - " + KeepPitchInPlace.isCubePicked);
 //		System.out.println("Bumper - " + Robot.m_elevatorPitch.isPressed());
 //		m_smartDashboardUpdater.updateDashboard();
+//		System.out.println(m_robotMap.potentiometer.getHeight());
+//		m_robotMap.driveTrainSecondLeft.set(0.3);
 		}
 	
 

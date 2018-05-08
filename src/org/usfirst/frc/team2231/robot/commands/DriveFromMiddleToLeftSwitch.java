@@ -26,7 +26,7 @@ public class DriveFromMiddleToLeftSwitch extends CommandGroup {
         // arm.
     	addSequential(new DriveBySpeed(0.75), 0.35);
     	addSequential(new DriveBySpeed(0), 0.1);
-    	addSequential(new RotateByNavX(-37), 0.5);
+    	addSequential(new RotateByNavX(-34.5), 0.5);
     	addSequential(new LiftToSwitch());
     	addParallel(new KeepElevatorInPlace());
     	addParallel(new EvelatorPitchDrop(), 1);
@@ -37,7 +37,7 @@ public class DriveFromMiddleToLeftSwitch extends CommandGroup {
     	// Collect and put second cube
     	addSequential(new DriveBySpeed(-0.4), 1.15);
     	addSequential(new LowerToBottom());
-    	addSequential(new RotateByNavX(57), 0.6);
+    	addSequential(new RotateByNavX(54.2), 0.6);
     	addParallel(new Collect(), 1.3);
     	addSequential(new DriveBySpeed(0.5), 1.5);
     	addSequential(new CloseCollector());

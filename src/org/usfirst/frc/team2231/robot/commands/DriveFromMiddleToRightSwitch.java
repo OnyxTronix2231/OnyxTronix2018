@@ -39,13 +39,13 @@ public class DriveFromMiddleToRightSwitch extends CommandGroup {
     	// Collect and put second cube
     	addSequential(new DriveBySpeed(-0.4), 1);
     	addSequential(new LowerToBottom());
-    	addSequential(new RotateByNavX(-55), 0.6);
+    	addSequential(new RotateByNavX(-58), 0.6);
     	addParallel(new Collect(), 1.3);
     	addSequential(new DriveBySpeed(0.5), 1.5);
     	addSequential(new CloseCollector());
     	addParallel(new Collect(), 1);
     	addSequential(new DriveBySpeed(-0.5), 1.3);
-    	addSequential(new RotateByNavX(55), 0.8);
+    	addSequential(new RotateByNavX(59), 0.8);
     	addSequential(new LiftToSwitch());
     	addParallel(new KeepElevatorInPlace());
     	addSequential(new DriveBySpeed(0.5), 1.5);

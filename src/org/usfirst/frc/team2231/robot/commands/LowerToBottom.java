@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class LowerToBottom extends Command {
-	private double bottom = 25;
+	private double bottom = 33;
     // Called just before this Command runs the first time
     // Called repeatedly when this Command is scheduled to run
 	public LowerToBottom() {

@@ -73,17 +73,18 @@ public class RobotMap {
 	private final PIDCalibrationHolder rotationRugRobotA = new PIDCalibrationHolder(0.05, 0, 0.1);
 	private final PIDCalibrationHolder rotationRugRobotB = new PIDCalibrationHolder(0.0425, 0, 0.1);
 	private final PIDCalibrationHolder rotationFloorRobotB = new PIDCalibrationHolder(0.19, 0, 0.035);
-	private final PIDCalibrationHolder elvevatorRobotA = new PIDCalibrationHolder(0.03, 0, 0.001);
+	private final PIDCalibrationHolder elevatorRobotA = new PIDCalibrationHolder(0.03, 0, 0.001);
+	private final PIDCalibrationHolder fastElevatorRobotA = new PIDCalibrationHolder(0.1, 0, 0.032);
 	public Compressor compressor;
 	private final double maximumVoltage = 3.147; //previously 3.09
 	private final double minimumVoltage = 4.471; //previously 4.49
 	private final int maximumHeight = 194;
 	private final int minimumHeight = 18;
 	public PIDController elevatorPIDController;
-	public double scaleHighHeight = 201;
+	public double scaleHighHeight = 208;
 	public double scaleLowHeight = 155;
 	public double scaleMiddleHeight = 187;
-	public double switchHeight = 90;
+	public double switchHeight = 96;
 	public Potentiometer potentiometer;
 	public AnalogInput analogPotentiometer;
 
@@ -146,13 +147,15 @@ public class RobotMap {
 		analogPotentiometer = new AnalogInput(1);
 		potentiometer = new Potentiometer(analogPotentiometer, minimumVoltage, maximumVoltage, minimumHeight,
 				maximumHeight);
-		elevatorPIDController = new PIDController(elvevatorRobotA.getP(), elvevatorRobotA.getI(),
-				elvevatorRobotA.getD(), potentiometer, elevatorWheels);
+//		elevatorPIDController = new PIDController(elevatorRobotA.getP(), elevatorRobotA.getI(),
+//				elevatorRobotA.getD(), potentiometer, elevatorWheels);
+		elevatorPIDController = new PIDController(fastElevatorRobotA.getP(), fastElevatorRobotA.getI(),
+				fastElevatorRobotA.getD(), potentiometer, elevatorWheels);
 		elevatorPIDController.setAbsoluteTolerance(3);
-		elevatorFirstMotor.configPeakOutputReverse(-0.3, 0);
-		elevatorSecondMotor.configPeakOutputReverse(-0.3, 0);
-		elevatorThirdMotor.configPeakOutputReverse(-0.3, 0);
-		elevatorFourthMotor.configPeakOutputReverse(-0.3, 0);
+		elevatorFirstMotor.configPeakOutputReverse(-0.42, 0);
+		elevatorSecondMotor.configPeakOutputReverse(-0.42, 0);
+		elevatorThirdMotor.configPeakOutputReverse(-0.42, 0);
+		elevatorFourthMotor.configPeakOutputReverse(-0.42, 0);
 		
 		driveTrainFirstLeft.configPeakOutputReverse(-1, 0);
 		driveTrainSecondLeft.configPeakOutputForward(1, 0);

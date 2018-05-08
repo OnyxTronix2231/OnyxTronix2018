@@ -48,8 +48,8 @@ public class Elevator extends Subsystem {
 	}
 
 	public void setSpeed(double speed) {
-		if (m_potentiometer.getHeight() > 193) {
-			elevatorWheels.set(0);
+		if (m_potentiometer.getHeight() > 208) {
+			elevatorWheels.set(0.07);
 			secondMotor.follow(firstMotor);
 			thirdMotor.follow(firstMotor);
 			fourthMotor.follow(firstMotor);

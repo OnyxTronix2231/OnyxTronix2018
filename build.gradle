@@ -1,0 +1,66 @@
+plugins {
+    id "java"
+    id "idea"
+    id "edu.wpi.first.GradleRIO" version "2018.06.21"
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+//    maven {
+//        url 'http://' + artifactory_hostname + ':8081/artifactory/gradle-dev-local'
+//        credentials {
+//            username=artifactory_username
+//            password=artifactory_password
+//        }
+//    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'src.main.java'
+        }
+    }
+}
+
+// Define my targets (RoboRIO) and artifacts (deployable files)
+// This is added by GradleRIO's backing project EmbeddedTools.
+deploy {
+    targets {
+        target("roborio", edu.wpi.first.gradlerio.frc.RoboRIO) {
+            // Team can be overridden by command line, for use with VSCode
+            team = getTeamOrDefault(TEAM_NUMBER.toInteger())
+        }
+    }
+    artifacts {
+        artifact('frcJava', edu.wpi.first.gradlerio.frc.FRCJavaArtifact) {
+            targets << "roborio"
+            // Debug can be overridden by command line, for use with VSCode
+            debug = getDebugOrDefault(IS_DEBUG_MODE.toBoolean())
+        }
+    }
+}
+
+// Defining my dependencies. In this case, WPILib (+ friends), CTRE Toolsuite (Talon SRX)
+// and NavX.
+dependencies {
+    compile wpilib()
+    compile "openrio.mirror.third.ctre:CTRE-phoenix-java:5.3.1.0"
+    compile navx()
+    //compile 'onyx.tronix.2231:Team2231API-FRC:1.0.0'
+}
+
+// Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
+// in order to make them all available at runtime. Also adding the manifest so WPILib
+// knows where to look for our Robot Class.
+jar {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } {
+        exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+    }
+    manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_CLASS)
+}
+
+wrapper {
+    gradleVersion = '4.10.2'
+}

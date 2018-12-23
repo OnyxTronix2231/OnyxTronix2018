@@ -151,8 +151,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
-		System.out.println(m_elevator.firstMotor.getSensorCollection().isRevLimitSwitchClosed());
+		Scheduler.getInstance().run();	
 //		m_smartDashboardUpdater.updateDashboard();
 		}
 	

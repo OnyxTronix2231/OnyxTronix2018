@@ -37,6 +37,14 @@ public class Elevator extends Subsystem {
 	public final PIDController pidController = Robot.m_robotMap.elevatorPIDController;
 
     private final WPI_VictorSPX fourthMotor = Robot.m_robotMap.elevatorFourthMotor;
+    public Elevator() {
+        secondMotor.follow(firstMotor);
+    	thirdMotor.follow(firstMotor);
+    	fourthMotor.follow(firstMotor);
+    	}
+
+    
+    
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 

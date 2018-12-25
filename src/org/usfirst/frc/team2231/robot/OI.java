@@ -119,17 +119,17 @@ public class OI {
 //		collectCube = new JoystickButton(buttonStick, 8);
 //		collectCube.whileHeld(new CollectCube());
 		
-		middleScaleRaise = new JoystickButton(buttonStick, 9);
-		middleScaleRaise.whenPressed(new LiftToMidScale());
-		
-		switchRaise = new JoystickButton(buttonStick, 10);
-		switchRaise.whenPressed(new LiftToSwitch());
-		
-		lowerToBottom = new JoystickButton(buttonStick, 5);
-		lowerToBottom.whenPressed(new LowerToBottomWithoutCrashing());
-		highScaleRaise = new JoystickButton(buttonStick, 6);
-		highScaleRaise.whenPressed(new LiftToHighScale());
-		
+//		middleScaleRaise = new JoystickButton(buttonStick, 9);
+//		middleScaleRaise.whenPressed(new LiftToMidScale());
+//		
+//		switchRaise = new JoystickButton(buttonStick, 10);
+//		switchRaise.whenPressed(new LiftToSwitch());
+//		
+//		lowerToBottom = new JoystickButton(buttonStick, 5);
+//		lowerToBottom.whenPressed(new LowerToBottomWithoutCrashing());
+//		highScaleRaise = new JoystickButton(buttonStick, 6);
+//		highScaleRaise.whenPressed(new LiftToHighScale());
+//		
 //		climb = new JoystickButton(driveStick, 7);
 //		climb.whileHeld(new Climb());
 		}

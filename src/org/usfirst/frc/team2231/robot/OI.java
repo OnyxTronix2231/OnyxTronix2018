@@ -101,8 +101,8 @@ public class OI {
 		
 		collect = new JoystickButton(buttonStick, 2);
 		collect.whileHeld(new Collect());
-//		ejectCube = new JoystickButton(buttonStick, 3);
-//		ejectCube.whileHeld(new Eject());
+		ejectCube = new JoystickButton(buttonStick, 3);
+		ejectCube.whileHeld(new Eject());
 		ejectCubeSlowly = new JoystickButton(driveStick, 2);
 		ejectCubeSlowly.whileHeld(new EjectSlowly());
 				
